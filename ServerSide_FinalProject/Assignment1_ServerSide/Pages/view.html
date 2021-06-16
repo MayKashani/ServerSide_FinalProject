@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous">
+    </script>
+    <script src="../Scripts/ajaxCalls.js"></script>
+    <script src="../Scripts/pagesScripts/view.js"></script>
+    <link rel="stylesheet" href="../Stylesheets/jquery.notifyBar.css">
+    <script src="../Scripts/pagesScripts/alerts.js"></script>
+    <script src="../Scripts/jquery.notifyBar.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../Stylesheets/StyleSheet.css" rel="stylesheet" />
+    <style>
+        body {
+            background: linear-gradient(to left, #370606,#701c1c,#370606)
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <div class="logo"><i class="fa fa-film"></i>The movie DB </div>
+        <div id="welcomeDiv"></div>
+        <button id="linkBtn" onclick="window.location.replace('index.html')"> <i class="fa fa-home"></i> Home </button>
+    </div>
+    <div>
+        <h1> My List </h1>
+        <div>
+            <select id="tvShows"></select>
+        </div>
+        <h3 id="tvName"> </h3>
+        <div id="seriesEpisodes">
+        </div>
+    </div>
+</body>
+</html>
