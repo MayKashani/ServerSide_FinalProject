@@ -3,9 +3,6 @@ var searchInput = 'addressTB';
 
 $(document).ready(function () {
 
-    if (localStorage["User"] != null) {
-        window.location.replace("index.html");
-    }
     var autocomplete;
     autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
         types: ['geocode']

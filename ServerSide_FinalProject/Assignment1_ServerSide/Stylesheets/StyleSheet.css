@@ -45,7 +45,7 @@ div {
         margin: 0px auto;
     }
 
-.card p {
+.episodeCard p {
 	text-align:left;
 }
 
@@ -64,15 +64,28 @@ button:hover, input[type=submit]:hover {
     color: white;
 }
 
-
 .card {
+    color: black;
+}
+
+#actors > .card {
+    float: left;
+    height: 300px;
+    width:150px;
+}
+
+.card > img {
+    height:50%;
+}
+
+.episodeCard {
 	width: 100%;
 	height: auto;
     flex-direction: row;
     background-color:transparent;
 } 
 
-.card > div 
+.episodeCard > div 
 {
 	float:left;
 	height:100%;

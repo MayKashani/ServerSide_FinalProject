@@ -44,7 +44,7 @@ function getEpisodes() {
 function getEpisodesSuccessCB(episodes) {
     let str = "";
     for (let i = 0; i < episodes.length; i++) {
-        str += "<div class='card'><div><img src='" + (imagePath + episodes[i].ImageURL) + "' onerror='" + errorPng + "'/></div><div><h3>" + episodes[i].EpisodeName + "</h3><p><b>Overview:</b> " + episodes[i].Overview + "</p>";
+        str += "<div class='episodeCard'><div><img src='" + (imagePath + episodes[i].ImageURL) + "' onerror='" + errorPng + "'/></div><div><h3>" + episodes[i].EpisodeName + "</h3><p><b>Overview:</b> " + episodes[i].Overview + "</p>";
         str += "<p><b>Air Date: </b>" + episodes[i].AirDate + "</p></div>"
         str += "</div><hr>"
     }
