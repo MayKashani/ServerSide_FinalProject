@@ -70,6 +70,8 @@ $(document).ready(function () {
         toggleBar();
     })
 
+    $("#getTV").click(getTV);
+
 });
 
 function toggleBar() {

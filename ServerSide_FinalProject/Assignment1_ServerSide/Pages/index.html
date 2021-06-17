@@ -17,6 +17,24 @@
 		body {
 			background: linear-gradient(to left, #370606,#701c1c,#370606)
 		}
+
+		.cardsOL {
+			overflow-x: scroll;
+			overflow-y: hidden;
+			max-width: 100%;
+			display: inline-flex;
+			flex-direction: row;
+			width: 100%;
+			margin: auto;
+			padding: 0px
+		}
+
+		 .cardsOL > .card {
+			height: 300px;
+			min-width: inherit;
+		}
+
+
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -53,25 +71,26 @@
 			<button id="loginBtn"><i class="fa fa-sign-in"></i>Login</button>
 		</div>
 	</div>
-	<div>
-		<div class="row">
+	<div id="seriesDiv" class="container" style="display:none">
+		<div class="row" id="header">
 			<div id="ph" class="col-5"></div>
 			<div id="details" class="col-7">
 				<div id="average"></div>
 				<button id="watchTrailerBtn"> watch trailer </button>
 				<div id="overview"></div>
-
 			</div>
 		</div>
+		<div><h5>Actors</h5> <ol id="actors" class="cardsOL"></ol></div>
 
+		<div><h5>Seasons</h5><ol id="seasonsList" class="cardsOL"></ol></div>
 
-		<div id="watchTrailerDiv"></div>
-		<select id="seasonsList"> </select>
-		<div id="actors" class="row"></div>
-		<!--<div id="seasonsCheck"></div>-->
-		<div id="episode"></div>
-		
+		<div><h5>Recommendations</h5><ol id="recommendations" class="cardsOL"></ol></div>
 	</div>
+		<div class="row">
+			<div class="row" id="watchTrailerDiv"></div>
+		<div id="episode"></div>
+	</div>
+
 	<div id="registerModal" class="modal">
 		<form id="registerForm" class="modal-content">
 			<h2>Sign Up</h2>
@@ -123,7 +142,7 @@
 		</form>
 	</div>
 
-	<div id="loginModal" class="modal" style="display:block">
+	<div id="loginModal" class="modal">
 		<form id="loginForm" class="modal-content">
 			<h2>Sign In</h2>
 			<div class="form-group">
