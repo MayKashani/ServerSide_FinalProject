@@ -1,6 +1,6 @@
 ﻿
 var mode = "";
-
+// function check user logged in
 function checkLS() {
     if (localStorage["User"] != null) {
         user = JSON.parse(localStorage["User"]);
@@ -15,12 +15,7 @@ function checkLS() {
 }
 
     $(document).ready(function () {
-        var memberBar = document.getElementById("memberBar");
-        var guestBar = document.getElementById("guestBar");
-        var user;
-      
-        guestBar.style.display = "block";
-        memberBar.style.display = "none";
+
         checkLS();
 
         var Current_TV;
@@ -66,11 +61,7 @@ function checkLS() {
         })
 
 
-        $(document).on("click", "#logoutBtn", function () {
-            localStorage.clear();
-            $("#welcomeDiv").html("");
-            toggleBar();
-        })
+
 
 
 
@@ -82,16 +73,7 @@ function checkLS() {
         $("#watchTrailerBtn").click(getTrailer)
     });
 
-    function toggleBar() {
-        if (memberBar.style.display != "block") {
-            memberBar.style.display = "block";
-            guestBar.style.display = "none";
-        }
-        else {
-            memberBar.style.display = "none";
-            guestBar.style.display = "block";
-        }
-    }
+    
 
 
     function getTrailer() {

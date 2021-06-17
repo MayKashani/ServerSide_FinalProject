@@ -1,7 +1,28 @@
 ﻿
 var searchInput = 'addressTB';
+function checkLS() {
+    if (localStorage["User"] != null) {
+        user = JSON.parse(localStorage["User"]);
+        $("#welcomeDiv").html("<h3>Welcome back, " + user.FirstName + " " + user.LastName + "</h3>");
+        toggleBar();
+        user = JSON.parse(localStorage["User"]).Mail;
+        mode = "member";
+    }
+    else {
+        mode = "guest";
+    }
+}
 
 $(document).ready(function () {
+
+    var memberBar = document.getElementById("memberBar");
+    var guestBar = document.getElementById("guestBar");
+    var user;
+
+    guestBar.style.display = "block";
+    memberBar.style.display = "none";
+
+    checkLS();
 
     var autocomplete;
     autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
@@ -43,9 +64,24 @@ $(document).ready(function () {
 
     $("#loginForm").submit(getUserByData);
 
-
+    $(document).on("click", "#logoutBtn", function () {
+        localStorage.clear();
+        $("#welcomeDiv").html("");
+        toggleBar();
+    })
 
 });
+
+function toggleBar() {
+    if (memberBar.style.display != "block") {
+        memberBar.style.display = "block";
+        guestBar.style.display = "none";
+    }
+    else {
+        memberBar.style.display = "none";
+        guestBar.style.display = "block";
+    }
+}
 
 function toggleModal() {
     if (loginModal.style.display != "block") {
@@ -100,7 +136,7 @@ function getUserSuccessCB(user) {
     delete user["Password"];
     localStorage["User"] = JSON.stringify(user);
     loginModal.style.display = "none";
-    window.location.replace("index.html");
+    checkLS();
 }
 
 function getUserErrorCB(err) {
