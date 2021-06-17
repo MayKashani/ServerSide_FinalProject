@@ -74,7 +74,6 @@ function getTVSuccessCB(tv) {
 	$("#ph").html(str);
 	$("#average").html(Current_TV.vote_average * 10 + "%");
 	$("#overview").html(Current_TV.overview);
-	$("#seriesDiv").show();
 	let apiCall = url + method + tvId + "/season/" + i + "?" + api_key
 	ajaxCall("GET", apiCall, "", getSeasonSuccessCB, getSeasonErrorCB)
 }
@@ -86,7 +85,6 @@ function getTVErrorCB(err) {
 
 
 function getSeasonSuccessCB(season) {
-	console.log(season)
 	seasonsArr.push(season);
 	seasonsList += "<div id=" + i + " class='card'> <img class='card-img-top' src='" + imagePath + season.poster_path + "'><div class='card-body'><h5>" + season.name + "</h5><p>" + season.air_date + "</p><p>" + season.overview + "</p></div></div>";
 	i++;
@@ -98,14 +96,12 @@ function getSeasonSuccessCB(season) {
 function getSeasonErrorCB(err) {
 	if (err.status == 404)
 		$("#seasonsList").append(seasonsList);
-	//$("#seasonsList").show().html(seasonsList);
 	else console.log("Error");
 	let apiCall = url + method + Current_TV.id + "/credits?" + api_key;
 	ajaxCall("GET", apiCall, "", getCreditsSuccess, getCreditsError)
 }
 
 function getCreditsSuccess(credits) {
-	console.log(credits)
 	actors = credits.cast;
 	$("#actors").html("");
 	for (let i = 0; i < actors.length; i++) {
@@ -138,13 +134,13 @@ function getCreditsError(err) {
 }
 
 function getSimilarSuccessCB(similar) {
-	console.log(similar.results)
 	series = similar.results;
 	let recommendations = "";
 	for (let i = 0; i < series.length; i++) {
-		recommendations += "<div id=" + series[i].id + " class='card'> <img class='card-img-top' src='" + imagePath + series[i].poster_path + "'><div class='card-body'><h5>" + series[i].name + "</h5></div></div>";
+		recommendations += "<div id=" + series[i].id + " class='card'> <img class='card-img-top' src='" + imagePath + series[i].poster_path + "'></div>";
 	}
 	$("#recommendations").html(recommendations)
+	$("#seriesDiv").show();
 }
 
 function getSimilarErrorCB(err) {
