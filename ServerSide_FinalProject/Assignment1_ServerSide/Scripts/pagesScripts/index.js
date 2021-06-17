@@ -1,8 +1,27 @@
 ﻿
 var mode = "";
 
+function checkLS() {
+    if (localStorage["User"] != null) {
+        user = JSON.parse(localStorage["User"]);
+        $("#welcomeDiv").html("<h3>Welcome back, " + user.FirstName + " " + user.LastName + "</h3>");
+        toggleBar();
+        user = JSON.parse(localStorage["User"]).Mail;
+        mode = "member";
+    }
+    else {
+        mode = "guest";
+    }
+}
 
     $(document).ready(function () {
+        var memberBar = document.getElementById("memberBar");
+        var guestBar = document.getElementById("guestBar");
+        var user;
+      
+        guestBar.style.display = "block";
+        memberBar.style.display = "none";
+        checkLS();
 
         var Current_TV;
         var Current_ep;
@@ -47,11 +66,7 @@ var mode = "";
         })
 
 
-        $(document).on("click", "#logoutBtn", function () {
-            localStorage.clear();
-            $("#welcomeDiv").html("");
-            toggleBar();
-        })
+
 
 
 
@@ -62,6 +77,18 @@ var mode = "";
 
         $("#watchTrailerBtn").click(getTrailer)
     });
+
+    function toggleBar() {
+        if (memberBar.style.display != "block") {
+            memberBar.style.display = "block";
+            guestBar.style.display = "none";
+        }
+        else {
+            memberBar.style.display = "none";
+            guestBar.style.display = "block";
+        }
+    }
+
 
     function getTrailer() {
         let apiCall = "https://api.themoviedb.org/3/tv/" + Current_TV.id + "/videos?api_key=46ee229c787140412cbafa9f3aa03555";
