@@ -26,7 +26,7 @@ h1 {
 }
 
 div {
-    text-align: center;
+	text-align: center;
 }
 
 .chapterImg {
@@ -67,11 +67,11 @@ button, input[type=submit] {
     color: black;
 }
 
-#actors > .card {
+/*#actors > .card {
     float: left;
     height: 300px;
-    width: 150px;
-}
+    width:150px;
+}*/
 
 .card > img {
     height: 50%;
@@ -98,7 +98,7 @@ button, input[type=submit] {
     padding: 10px
 }
 
-#seasonsList, #tvShowName, #tvShows {
+ #tvShowName, #tvShows {
     height: 25px;
     width: 200px;
     border: 1px solid black;
