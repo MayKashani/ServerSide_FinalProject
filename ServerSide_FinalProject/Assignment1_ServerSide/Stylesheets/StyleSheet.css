@@ -326,3 +326,27 @@ h4 {
     text-align: center;
     color: white
 }
+
+/*Search CSS */
+.result{
+    width:80%;
+    height:50px;
+    border:1px solid white;
+    border-radius:15px 15px;
+    float:left;
+}
+
+.result > div {
+    height:100%;
+}
+
+div>img
+{
+    height:100%;
+    width:100%;
+}
+
+.chosen
+{
+    background-color:aqua;
+}
