@@ -283,6 +283,8 @@ i {
     color: indianred;
 }
 
+
+
 /*Homepage CSS*/
 
 .orderList > .card {
@@ -297,7 +299,7 @@ i {
     opacity: 0.5;
 }
 
-card:hover .goToPage {
+.card:hover .goToPage {
     visibility: visible;
 }
 
