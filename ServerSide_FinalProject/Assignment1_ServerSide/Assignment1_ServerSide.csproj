@@ -184,6 +184,7 @@
     <Content Include="img\bg.png" />
     <Content Include="img\jq-notify-bar-icons.svg" />
     <Content Include="Pages\Admin.html" />
+    <Content Include="Pages\Episodes.html" />
     <Content Include="Pages\Homepage.html" />
     <Content Include="Pages\index.html" />
     <Content Include="NotInUse\Register.html" />
@@ -211,6 +212,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Scripts\pagesScripts\alerts.js" />
     <Content Include="Scripts\pagesScripts\Homepage.js" />
     <Content Include="Scripts\pagesScripts\search.js" />
     <Content Include="Web.config" />

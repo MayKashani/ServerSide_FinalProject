@@ -1,6 +1,6 @@
 ﻿
 var popularMode = "";
-var trailerMode = "";
+
 $(document).ready(function () {
     key = "46ee229c787140412cbafa9f3aa03555";
     url = "https://api.themoviedb.org/";
@@ -82,31 +82,5 @@ function togglePopular() {
         $("#showTvPopular").css("background-color", "aqua");
         popularMode = "tv";
     }
-}
-
-function getLatestTV() {
-    let apiCall = url + tvMethod + "latest?" + api_key + "&language=en-US&page=1";
-    ajaxCall("GET", apiCall, "", getLatestShowSuccessCB, getLatestShowErrorCB);
-
-}
-function getLatestShowSuccessCB(shows) {
-    console.log(shows);
-}
-
-function getLatestShowErrorCB(err) {
-    console.log(err);
-}
-
-function getLatestMovie() {
-    let apiCall = url + movieMethod + "latest?" + api_key + "&language=en-US&page=1";
-    ajaxCall("GET", apiCall, "", getLatestMovieSuccessCB, getLatestMovieErrorCB);
-}
-
-function getLatestMovieSuccessCB(movies) {
-    console.log(movies);
-}
-
-function getLatestMovieErrorCB(err) {
-    console.log(err);
 }
 
