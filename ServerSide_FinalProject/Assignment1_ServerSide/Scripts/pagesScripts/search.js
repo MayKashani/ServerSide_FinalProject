@@ -22,7 +22,6 @@ $(document).ready(function () {
         }
         sessionStorage.setItem("mediaChoose", JSON.stringify(method));
         window.location.replace("index.html");
-
     });
     $(document).on("click", ".person", function () {
         let method = {
@@ -113,7 +112,7 @@ function renderSearchMovie(movie) {
         str += "<div id='" + movieArr[i].id + "' class='row result movie'><div class = 'col-2'> ";
         name = movieArr[i].title;
         imageSrc = movieArr[i].poster_path;
-        description = "<div class='col-10'><h3>" + name + "</h3><p>" + movieArr[i].first_air_date + "</p><h6>" + movieArr[i].overview + "</h6></div>";
+        description = "<div class='col-10'><h3>" + name + "</h3><p>" + movieArr[i].release_date + "</p><h6>" + movieArr[i].overview + "</h6></div>";
         if (imageSrc == null)
             image = "<img class='imgResult' src = '" + errorPng + "'/></div>";
         else

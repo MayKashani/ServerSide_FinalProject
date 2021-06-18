@@ -15,7 +15,9 @@ function checkLS() {
 
 $(document).ready(function () {
 
+
     errorPng = 'this.src="..//Images//noImage.jpg"';
+
     key = "46ee229c787140412cbafa9f3aa03555";
     url = "https://api.themoviedb.org/";
     imagePath = "https://image.tmdb.org/t/p/w500/";

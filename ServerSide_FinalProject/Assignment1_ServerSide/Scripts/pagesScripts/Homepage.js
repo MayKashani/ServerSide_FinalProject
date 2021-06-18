@@ -16,6 +16,22 @@ $(document).ready(function () {
         if ($(this).css("background-color") != "aqua")
             togglePopular();
     });
+    $(document).on("click", ".tv", function () {
+        let method = {
+            id: this.id,
+            type: "tv"
+        }
+        sessionStorage.setItem("mediaChoose", JSON.stringify(method));
+        window.location.replace("index.html");
+    });
+    $(document).on("click", ".movie", function () {
+        let method = {
+            id: this.id,
+            type: "movie"
+        }
+        sessionStorage.setItem("mediaChoose", JSON.stringify(method));
+        window.location.replace("index.html");
+    });
 
 });
 
@@ -30,7 +46,7 @@ function getTopShowSuccessCB(topTv) {
     popularShows = topTv.results;
     let str = "";
     for (let i = 0; i < popularShows.length; i++) {
-        str += "<li id = '" + popularShows[i].id + "'class = 'card'>";
+        str += "<li id = '" + popularShows[i].id + "'class = 'card tv'>";
         image = "<img class='card-img-top' src = '" + imagePath + popularShows[i].poster_path + "'";
         cardBody = "<div class='card-body'><h5>" + popularShows[i].name + "</h5> <p class='card-text'>" + popularShows[i].original_language + "</p></div>";
         str += image + cardBody + "<p class='goToPage'>Go to page</p></li> ";
@@ -53,7 +69,7 @@ function getTopMovieSuccessCB(movies) {
     popularMovies = movies.results;
     let str = "";
     for (let i = 0; i < popularMovies.length; i++) {
-        str += "<li id = '" + popularMovies[i].id + "'class = 'card'>";
+        str += "<li id = '" + popularMovies[i].id + "'class = 'card movie'>";
         image = "<img class='card-img-top' src = '" + imagePath + popularMovies[i].poster_path + "'";
         cardBody = "<div class='card-body'><h5>" + popularMovies[i].original_title + "</h5> <p class='card-text'>" + popularMovies[i].original_language + "</p></div>";
         str += image + cardBody + "</li>";
@@ -61,7 +77,6 @@ function getTopMovieSuccessCB(movies) {
     $("#anyMovieType").html(str);
     $("#popularMovie").hide();
     popularMode = "tv";
-    trailerMode = "tv";
 }
 function getTopMovieErrorCB(err) {
     console.log(err);
