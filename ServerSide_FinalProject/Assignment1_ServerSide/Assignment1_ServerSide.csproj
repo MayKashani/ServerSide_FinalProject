@@ -183,6 +183,7 @@
     <Content Include="Images\Presentation11.png" />
     <Content Include="img\bg.png" />
     <Content Include="img\jq-notify-bar-icons.svg" />
+    <Content Include="Pages\Actor.html" />
     <Content Include="Pages\Admin.html" />
     <Content Include="Pages\Homepage.html" />
     <Content Include="Pages\index.html" />
@@ -211,6 +212,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+<<<<<<< HEAD
     <Content Include="Scripts\pagesScripts\Homepage.js" />
     <Content Include="Scripts\pagesScripts\search.js" />
     <Content Include="Web.config" />
@@ -220,9 +222,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+=======
+>>>>>>> newShira
     <None Include="packages.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery.notifyBar.js" />
+    <Content Include="Scripts\pagesScripts\Actor.js" />
     <Content Include="Scripts\pagesScripts\admin.js" />
     <Content Include="Scripts\pagesScripts\index.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -236,11 +241,17 @@
     <Content Include="Stylesheets\StyleSheet.css" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\Site.css" />
-    <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

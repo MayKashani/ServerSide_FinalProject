@@ -1,4 +1,5 @@
 ﻿
+<<<<<<< HEAD
 
 $(document).ready(function () {
 	var Current_TV;
@@ -100,6 +101,169 @@ function getSeasonErrorCB(err) {
 	else console.log("Error");
 	let apiCall = url + method + Current_TV.id + "/credits?" + api_key;
 	ajaxCall("GET", apiCall, "", getCreditsSuccess, getCreditsError)
+=======
+var mode = "";
+
+function checkLS() {
+    if (localStorage["User"] != null) {
+        user = JSON.parse(localStorage["User"]);
+        $("#welcomeDiv").html("<h3>Welcome back, " + user.FirstName + " " + user.LastName + "</h3>");
+        toggleBar();
+        user = JSON.parse(localStorage["User"]).Mail;
+        mode = "member";
+    }
+    else {
+        mode = "guest";
+    }
+}
+
+    $(document).ready(function () {
+        var memberBar = document.getElementById("memberBar");
+        var guestBar = document.getElementById("guestBar");
+        var user;
+      
+        guestBar.style.display = "block";
+        memberBar.style.display = "none";
+        checkLS();
+
+        var Current_TV;
+        var Current_ep;
+        var i = 1;
+        var errorPng = 'this.src="..//Images//noImage.jpg"';
+
+        $("#getTV").click(getTV);
+        $("#seasonsList").hide();
+        key = "46ee229c787140412cbafa9f3aa03555";
+        url = "https://api.themoviedb.org/";
+        imagePath = "https://image.tmdb.org/t/p/w500/";
+        method = "3/tv/";
+        api_key = "api_key=" + key;
+
+        seasonsList = "";
+        seasonsArr = [];
+
+        $(document).on('click', '.addEpisode', postTV);
+
+        $("#seasonsList").change(function () {
+            let selected = $("#seasonsList").prop('selectedIndex');
+            if (selected == 0) {
+                $("#episode").html("");
+                return;
+            }
+
+            let episodes = seasonsArr[selected - 1].episodes;
+            let str = "";
+
+            for (let i = 0; i < episodes.length; i++) {
+                str += "<div class='episodeCard row'><div class='col-4'><img class='chapterImg'src='" + (imagePath + episodes[i].still_path) + "' onerror='" + errorPng + "'/></div><div class='info col-8'><h3>" + episodes[i].name + "</h3><p><b>Overview:</b> " + episodes[i].overview + "</p>";
+                str += "<p><b>Air Date: </b>" + episodes[i].air_date + "</p> <button id='" + i + "' class = 'addEpisode heart'><i class='fa fa-heart'></i></button></div>"
+                str += "</div><hr>"
+            }
+            $("#episode").html(str);
+
+            if (mode == "guest") {
+                $(".addEpisode").hide();
+            }
+ 
+
+        })
+
+
+        $(document).on("click", "#logoutBtn", function () {
+            localStorage.clear();
+            $("#welcomeDiv").html("");
+            toggleBar();
+        })
+
+
+
+        $(document).on("click", ".heart", function () {
+            $(this).removeClass("heart").addClass("red-heart");
+
+        });
+
+        $("#watchTrailerBtn").click(getTrailer)
+    });
+
+    function toggleBar() {
+        if (memberBar.style.display != "block") {
+            memberBar.style.display = "block";
+            guestBar.style.display = "none";
+        }
+        else {
+            memberBar.style.display = "none";
+            guestBar.style.display = "block";
+        }
+    }
+
+
+    function getTrailer() {
+        let apiCall = "https://api.themoviedb.org/3/tv/" + Current_TV.id + "/videos?api_key=46ee229c787140412cbafa9f3aa03555";
+        ajaxCall("GET", apiCall, "", getTrailerSuccess, getTrailerError);
+    }
+
+    function getTrailerSuccess(t) {
+        let url = "https://www.youtube.com/embed/" + t.results[0].key;
+        $("#watchTrailerDiv").html('<iframe width="420" height="315" src="' + url + '"></iframe>')
+    }
+
+    function getTrailerError(err) {
+        console.log(err)
+    }
+
+    function getTV() {
+        i = 1;
+
+        seasonsArr = [];
+        $("#seasonsList").hide().html("");
+        $("#episode").html("");
+        let name = $("#tvShowName").val();
+        let method = "3/search/tv?";
+        let api_key = "api_key=" + key;
+        let moreParams = "&language=en-US&page=1&include_adult=false&"; 
+        let query = "query=" + encodeURIComponent(name);
+        let apiCall = url + method + api_key + moreParams + query;
+        ajaxCall("GET", apiCall, "", getTVSuccessCB, getTVErrorCB);
+    }
+
+    function getTVSuccessCB(tv) {
+        console.log(tv)
+        Current_TV = tv.results[0];
+        seasonsList = "";
+        tvId = tv.results[0].id;
+        let poster = imagePath + tv.results[0].poster_path;
+        str = "<img src='" + poster + "'/>";
+        $("#ph").html(str);
+        $("#average").html(Current_TV.vote_average * 10 + "%");
+        $("#overview").html(Current_TV.overview);
+        seasonsList = "<option> Select season </option> "
+        let apiCall = url + method + tvId + "/season/" + i + "?" + api_key
+        ajaxCall("GET", apiCall, "", getSeasonSuccessCB, getSeasonErrorCB)
+    }
+
+
+    function getTVErrorCB(err) {
+        console.log(err);
+    }
+
+
+    function getSeasonSuccessCB(season) {
+        console.log(season)
+        seasonsArr.push(season);
+        seasonsList += "<option id=" + i + ">" + season.name + "</option>";
+        i++;
+        let apiCall = url + method + tvId + "/season/" + i + "?" + api_key;
+        ajaxCall("GET", apiCall, "", getSeasonSuccessCB, getSeasonErrorCB);
+    }
+
+
+    function getSeasonErrorCB(err) {
+        if (err.status == 404)
+            $("#seasonsList").show().html(seasonsList);
+        else console.log("Error");
+        let apiCall = url + method + Current_TV.id + "/credits?"+api_key;
+        ajaxCall("GET", apiCall, "",getCreditsSuccess, getCreditsError)
+>>>>>>> newShira
 }
 
 function getCreditsSuccess(credits) {
