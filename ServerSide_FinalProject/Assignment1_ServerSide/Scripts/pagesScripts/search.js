@@ -11,15 +11,16 @@ $(document).ready(function () {
             id: this.id,
             type: "tv"
         }
-        sessionStorage.setItem("mediaChoose", method);
+        sessionStorage.setItem("mediaChoose", JSON.stringify(method));
         window.location.replace("index.html");
     });
     $(document).on("click", ".movie", function () {
         let method = {
             id: this.id,
             type: "movie"
+            
         }
-        sessionStorage.setItem("mediaChoose", method);
+        sessionStorage.setItem("mediaChoose", JSON.stringify(method));
         window.location.replace("index.html");
 
     });
@@ -28,7 +29,7 @@ $(document).ready(function () {
             id: this.id,
             type: "person"
         }
-        sessionStorage.setItem("mediaChoose", method);
+        sessionStorage.setItem("mediaChoose", JSON.stringify(method));
         window.location.replace("actor.html");
     });
 });

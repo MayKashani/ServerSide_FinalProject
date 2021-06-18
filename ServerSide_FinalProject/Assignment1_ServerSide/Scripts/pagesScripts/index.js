@@ -1,30 +1,88 @@
 ﻿
+
 $(document).ready(function () {
 	var Current_TV;
 	var Current_ep;
 	var i = 1;
-	/*var errorPng = 'this.src="..//Images//noImage.jpg"';*/
+	trailerUrl = "";
+	$("#watchTrailerBtn").hide();
+	chosenMedia = sessionStorage.getItem("mediaChoose");
 
-	//key = "46ee229c787140412cbafa9f3aa03555";
-	//url = "https://api.themoviedb.org/";
-	//imagepath = "https://image.tmdb.org/t/p/w500/";
-	//method = "3/tv/";
-	//api_key = "api_key=" + key;
+	if (chosenMedia != null) {
+		chosenMedia = JSON.parse(sessionStorage.getItem("mediaChoose"));
+		getMedia();
+		seasonsList = "";
+		seasonsArr = [];
 
-	seasonsList = "";
-	seasonsArr = [];
+		$(document).on('click', '.addEpisode', postTV);
 
-	$(document).on('click', '.addEpisode', postTV);
+		$(document).on('click', '#seasonsList > .card', viewEpisodes)
 
-	$(document).on('click', '#seasonsList > .card', viewEpisodes)
+		$(document).on("click", ".heart", function () {
+			$(this).removeClass("heart").addClass("red-heart");
 
-	$(document).on("click", ".heart", function () {
-		$(this).removeClass("heart").addClass("red-heart");
+		});
 
-	});
+		$("#watchTrailerBtn").click(watchTrailer)
 
-	$("#watchTrailerBtn").click(getTrailer)
+		$(document).on('click', '.recommended', function () {
+			sessionStorage.setItem("mediaChoose", JSON.stringify({ id: this.id, type: chosenMedia.type }))
+			location.reload();
+		})
+	}
+
 });
+
+function watchTrailer() {
+	$("#watchTrailerDiv").html('<iframe width="420" height="315" src="' + trailerUrl + '"></iframe>')
+}
+
+function getMedia() {
+	mediaType = "3/" + chosenMedia.type + "/";
+	i = 1;
+	apiCall = url + mediaType + chosenMedia.id + "?" + api_key + "&append_to_response=credits,videos,recommendations";
+	ajaxCall("GET", apiCall, "", getMediaSuccess, getMediaError);
+}
+
+function getMediaSuccess(media) {
+	seasonsList = "";
+	mediaId = media.id;
+	Current_TV = media;
+	console.log(media)
+	let poster = imagePath + Current_TV.poster_path;
+	str = "<img src='" + poster + "'/>";
+	$("#ph").html(str);
+	$("#average").html(Current_TV.vote_average * 10 + "%");
+	$("#overview").html(Current_TV.overview);
+	$("#seriesDiv").show();
+
+	switch (chosenMedia.type) {
+		case "movie": {
+			renderDetails(Current_TV);
+			break;
+		}
+		case "tv": {
+			let apiCall = url + mediaType + Current_TV.id + "/season/" + i + "?" + api_key;
+			ajaxCall("GET", apiCall, "", getSeasonSuccessCB, getSeasonErrorCB)
+			break;
+		}
+
+	}
+}
+
+function renderDetails(media) {
+	let video = media.videos.results[0];
+	let credits = media.credits.cast;
+	let recommendations = media.recommendations.results;
+	getCredits(credits);
+	getSimilar(recommendations);
+	getTrailer(video);
+	$("#seriesDiv").show();
+}
+
+function getMediaError(err) {
+	console.log(err);
+}
 
 function viewEpisodes() {
 	let id = this.id;
@@ -34,78 +92,34 @@ function viewEpisodes() {
 	window.location.replace("Episodes.html")
 }
 
-function getTrailer() {
-	let apiCall = "https://api.themoviedb.org/3/tv/" + Current_TV.id + "/videos?api_key=46ee229c787140412cbafa9f3aa03555";
-	ajaxCall("GET", apiCall, "", getTrailerSuccess, getTrailerError);
+function getTrailer(video) {
+	if (video) {
+		trailerUrl = "https://www.youtube.com/embed/" + video.key;
+		$("#watchTrailerBtn").show();
+	}
+	else $("#watchTrailerBtn").hide();
+
 }
-
-function getTrailerSuccess(t) {
-	let url = "https://www.youtube.com/embed/" + t.results[0].key;
-	$("#watchTrailerDiv").html('<iframe width="420" height="315" src="' + url + '"></iframe>')
-}
-
-function getTrailerError(err) {
-	console.log(err)
-}
-
-//function getTV() {
-//	i = 1;
-
-//	seasonsArr = [];
-//	$("#seasonsList").html("");
-//	$("#episode").html("");
-//	let name = $("#tvShowName").val();
-//	let method = "3/search/tv?";
-//	let api_key = "api_key=" + key;
-//	let moreParams = "&language=en-US&page=1&include_adult=false&";
-//	let query = "query=" + encodeURIComponent(name);
-//	let apiCall = url + method + api_key + moreParams + query;
-//	ajaxCall("GET", apiCall, "", getTVSuccessCB, getTVErrorCB);
-//}
-
-//function getTVSuccessCB(tv) {
-//	console.log(tv)
-//	Current_TV = tv.results[0];
-//	seasonsList = "";
-//	tvId = tv.results[0].id;
-//	let poster = imagePath + tv.results[0].poster_path;
-//	str = "<img src='" + poster + "'/>";
-//	$("#ph").html(str);
-//	$("#average").html(Current_TV.vote_average * 10 + "%");
-//	$("#overview").html(Current_TV.overview);
-//	$("#seriesDiv").show();
-//	let apiCall = url + method + tvId + "/season/" + i + "?" + api_key
-//	ajaxCall("GET", apiCall, "", getSeasonSuccessCB, getSeasonErrorCB)
-//}
-
-
-//function getTVErrorCB(err) {
-//	console.log(err);
-//}
-
 
 function getSeasonSuccessCB(season) {
+
 	seasonsArr.push(season);
 	seasonsList += "<div id=" + i + " class='card'> <img class='card-img-top' src='" + imagePath + season.poster_path + "'><div class='card-body'><h5>" + season.name + "</h5><p>" + season.air_date + "</p><p>" + season.overview + "</p></div></div>";
 	i++;
-	let apiCall = url + method + tvId + "/season/" + i + "?" + api_key;
+	let apiCall = url + method + mediaId + "/season/" + i + "?" + api_key;
 	ajaxCall("GET", apiCall, "", getSeasonSuccessCB, getSeasonErrorCB);
 }
 
-
 function getSeasonErrorCB(err) {
-	if (err.status == 404)
+	if (err.status == 404) {
 		$("#seasonsList").append(seasonsList);
+		$("#seasonsDiv").show();
+		renderDetails(Current_TV);
+	}
 	else console.log("Error");
-	let apiCall = url + method + Current_TV.id + "/credits?" + api_key;
-	ajaxCall("GET", apiCall, "", getCreditsSuccess, getCreditsError);
 }
 
-
-
-
-function getCreditsSuccess(credits) {
-	actors = credits.cast;
+function getCredits(actors) {
 	$("#actors").html("");
 	for (let i = 0; i < actors.length; i++) {
 		let actorCard = document.createElement("div");
@@ -128,26 +142,18 @@ function getCreditsSuccess(credits) {
 		actorCard.appendChild(cardBody);
 		$("#actors").append(actorCard);
 	}
-	let apiCall = url + method + Current_TV.id + "/recommendations?" + api_key + "&language=en-US&page=1";
-	ajaxCall("GET", apiCall, "", getSimilarSuccessCB, getSimilarErrorCB);
+	$("#actorsDiv").show();
 }
 
-function getCreditsError(err) {
-	console.log(err)
-}
-
-function getSimilarSuccessCB(similar) {
-	series = similar.results;
+function getSimilar(series) {
 	let recommendations = "";
-	for (let i = 0; i < series.length; i++) {
-		recommendations += "<div id=" + series[i].id + " class='card'> <img class='card-img-top' src='" + imagePath + series[i].poster_path + "'></div>";
+	if (series.length > 0) {
+		for (let i = 0; i < series.length; i++) {
+			recommendations += "<div id=" + series[i].id + " class='card recommended'> <img class='card-img-top' src='" + imagePath + series[i].poster_path + "'></div>";
+		}
+		$("#recommendations").html(recommendations);
+		$("#recommendationsDiv").show();
 	}
-	$("#recommendations").html(recommendations)
-	$("#seriesDiv").show();
-}
-
-function getSimilarErrorCB(err) {
-	console.log(err)
 }
 
 function postTV() {

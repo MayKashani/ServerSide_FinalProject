@@ -19,27 +19,26 @@
 		}
 
 		.cardsOL {
-/*			overflow-x: scroll;*/
+			/*			overflow-x: scroll;*/
 			overflow-y: hidden;
 			max-width: 100%;
 			display: inline-flex;
 			flex-direction: row;
-	/*		width: 100%;*/
+			/*		width: 100%;*/
 			margin: auto;
 			padding: 0px
 		}
 
-		 .cardsOL > .card {
-			height: 200px;
-			
-		}
+			.cardsOL > .card {
+				height: 200px;
+			}
 
 		#actors > .card {
 			height: 200px;
 			min-width: 100px;
 		}
 
-		#seriesDiv { 
+		#seriesDiv {
 			width: 100%;
 			margin: auto;
 		}
@@ -62,7 +61,6 @@
 
 		#recommendations img {
 			height: inherit;
-			
 		}
 
 		.card-body {
@@ -72,7 +70,6 @@
 		.card {
 			margin: 5px;
 		}
-
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -83,8 +80,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDX02F5Z4U83fevL63h0sIKVde5iqwDmr4"></script>
 	<script src="../Scripts/ajaxCalls.js"></script>
-	<script src="../Scripts/pagesScripts/index.js"></script>
 	<script src="../Scripts/pagesScripts/register.js"></script>
+	<script src="../Scripts/pagesScripts/index.js"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 	<link rel="stylesheet" href="../Stylesheets/jquery.notifyBar.css">
 	<script src="../Scripts/pagesScripts/alerts.js"></script>
@@ -118,11 +115,11 @@
 				<div id="overview"></div>
 			</div>
 		</div>
-		<div><h5>Actors</h5> <ol id="actors" class="cardsOL"></ol></div>
+		<div id="actorsDiv" style="display:none"><h5>Actors</h5> <ol id="actors" class="cardsOL"></ol></div>
 
-		<div><h5>Seasons</h5><ol id="seasonsList" class="cardsOL"></ol></div>
+		<div id="seasonsDiv" style="display:none"><h5>Seasons</h5><ol id="seasonsList" class="cardsOL"></ol></div>
 
-		<div><h5>Recommendations</h5><ol id="recommendations" class="cardsOL"></ol></div>
+		<div id="recommendationsDiv" style="display:none"><h5>Recommendations</h5><ol id="recommendations" class="cardsOL"></ol></div>
 	</div>
 		<div class="row">
 			<div class="row" id="watchTrailerDiv"></div>
