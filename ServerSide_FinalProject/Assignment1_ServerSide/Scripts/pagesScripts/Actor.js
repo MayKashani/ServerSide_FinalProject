@@ -36,7 +36,7 @@ $(document).ready(function () {
 
 
 function getActor() {
-    personId = JSON.parse(sessionStorage.getItem("mediaChoose")).id;
+    personId = JSON.parse(sessionStorage.getItem("personId"));
     method = "3/person/" + personId;
     api_key = "api_key=" + key;
     let apiCall = url + method + "?"+ api_key;
