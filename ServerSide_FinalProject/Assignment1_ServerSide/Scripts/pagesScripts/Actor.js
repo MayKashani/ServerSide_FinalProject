@@ -51,19 +51,16 @@ function getActorSuccessCB(actor) {
         getActorTvCredits();
         getActorMovieCredits();
     }
+    else 
+        $("#known_from").hide();
 }
 
 function getActorErrorCB(err) {
-    console.log(err)
+    console.log(err);
 }
 
 function renderActor(actor) {
-    if (actor.profile_path != null)
-        posterPath = imagePath + actor.profile_path;
-    else
-        posterPath = errorPng;
-    imageSrc = "<img src='" + posterPath + "'/>";
-
+    imageSrc = "<img src='" + imagePath + actor.profile_path + "' onerror=" + errorPng+">";
     var gender = "";
     if (actor.gender == '1')
         gender = "female";
@@ -118,7 +115,7 @@ function getActorTvCreditsSuccessCB(tv) {
         let str = "";
         for (let i = 0; i < castingArr.length; i++) {
             str += "<li id = '" + castingArr[i].id + "'class = 'card tv'>";
-            imageTv = "<img class='card-img-top' src='" +imagePath + castingArr[i].poster_path + "' onerror="+errorPng+"/>";
+            imageTv = "<img class='card-img-top' src='" +imagePath + castingArr[i].poster_path + "' onerror="+errorPng+">";
             cardBody = "<div class='card-body'><h5>" + castingArr[i].name + "</h5> <p class='card-text'>" + castingArr[i].character + "</p></div>";
             str += imageTv + cardBody + "<p class='goToPage'>Go to page</p></li> ";
         }
@@ -145,8 +142,8 @@ function getActorMovieCreditsSuccessCB(movie) {
     else {
         let str = "";
         for (let i = 0; i < castingArr.length; i++) {
-            str += "<li id = '" + castingArr[i].id + "'class = 'card tv'>";
-            imageTv = "<img class='card-img-top' src='" + imagePath + castingArr[i].poster_path + "' onerror=" + errorPng + "/>";
+            str += "<li id = '" + castingArr[i].id + "'class = 'card movie'>";
+            imageTv = "<img class='card-img-top' src='" + imagePath + castingArr[i].poster_path + "' onerror=" + errorPng + ">";
             cardBody = "<div class='card-body'><h5>" + castingArr[i].title + "</h5> <p class='card-text'>" + castingArr[i].character + "</p></div>";
             str += imageTv + cardBody + "<p class='goToPage'>Go to page</p></li> ";
         }

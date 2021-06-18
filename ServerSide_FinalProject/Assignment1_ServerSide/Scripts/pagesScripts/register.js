@@ -14,8 +14,6 @@ function checkLS() {
 }
 
 $(document).ready(function () {
-
-
     errorPng = 'this.src="..//Images//noImage.jpg"';
 
     key = "46ee229c787140412cbafa9f3aa03555";
@@ -80,7 +78,9 @@ $(document).ready(function () {
     })
 
     $("#getTV").click(searchByName);
-
+    $(".logo").click(function () {
+        window.location.replace("Homepage.html");
+    })
 });
 
 function searchByName() {
