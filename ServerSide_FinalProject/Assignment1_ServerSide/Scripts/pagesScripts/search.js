@@ -24,11 +24,7 @@ $(document).ready(function () {
         window.location.replace("index.html");
     });
     $(document).on("click", ".person", function () {
-        let method = {
-            id: this.id,
-            type: "person"
-        }
-        sessionStorage.setItem("mediaChoose", JSON.stringify(method));
+        sessionStorage.setItem("personId", JSON.stringify(this.id));
         window.location.replace("actor.html");
     });
 });
@@ -64,7 +60,6 @@ function getPersons() {
     let apiCall = getType("person");
     ajaxCall("GET", apiCall, "", getPersonsSuccessCB, getErrorCB);
 }
-
 
 function getPersonsSuccessCB(person) {
     console.log(person);
@@ -133,7 +128,6 @@ function renderSearchMovie(movie) {
         $("#results").html(str);
     }
 }
-
 
 function getErrorCB(err) {
     console.log(err);

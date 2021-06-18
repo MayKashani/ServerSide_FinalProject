@@ -75,6 +75,7 @@ $(document).ready(function () {
         localStorage.clear();
         $("#welcomeDiv").html("");
         toggleBar();
+        window.location.replace("Homepage.html");
     })
 
     $("#getTV").click(searchByName);
@@ -87,41 +88,6 @@ function searchByName() {
     sessionStorage.setItem("searchValue", $("#tvShowName").val());
     window.location.replace("Search.html");
 }
-
-//function getTV() {
-//    i = 1;
-
-//    seasonsArr = [];
-//    $("#seasonsList").html("");
-//    $("#episode").html("");
-//    let name = $("#tvShowName").val();
-//    let method = "3/search/multi?";
-//    let api_key = "api_key=" + key;
-//    let moreParams = "&language=en-US&page=1&include_adult=false&";
-//    let query = "query=" + encodeURIComponent(name);
-//    let apiCall = url + method + api_key + moreParams + query;
-//    ajaxCall("GET", apiCall, "", getTVSuccessCB, getTVErrorCB);
-//}
-
-//function getTVSuccessCB(tv) {
-//    console.log(tv)
-//    //Current_TV = tv.results[0];
-//    //seasonsList = "";
-//    //tvId = tv.results[0].id;
-//    //let poster = imagePath + tv.results[0].poster_path;
-//    //str = "<img src='" + poster + "'/>";
-//    //$("#ph").html(str);
-//    //$("#average").html(Current_TV.vote_average * 10 + "%");
-//    //$("#overview").html(Current_TV.overview);
-//    //$("#seriesDiv").show();
-//    //let apiCall = url + method + tvId + "/season/" + i + "?" + api_key
-//    //ajaxCall("GET", apiCall, "", getSeasonSuccessCB, getSeasonErrorCB)
-//}
-
-
-//function getTVErrorCB(err) {
-//    console.log(err);
-//}
 
 function toggleBar() {
     if (memberBar.style.display != "block") {
@@ -172,10 +138,10 @@ function postUserSuccessCB(num) {
     $("#registerForm").trigger("reset");
     successAlert("Registered Successfully");
 }
+
 function postUserErrorCB(err) {
     errorAlert("Error");
 }
-
 
 function getUserByData() {
     let api = "../api/Users?Mail=" + $("#loginMail").val() + "&Password=" + $("#loginPassword").val();
