@@ -69,7 +69,7 @@ function renderSearchTv(tv) {
         str += "<div class='row result'><div class='col-2'>'";
         name = tvArr[i].name;
         imageSrc = tvArr[i].poster_path;
-        description = "<div class='col-10'><h3>" + name + "</h3><p>" + tvArr[i].first_air_date + "</p><h6>" + tvArr[i].overview + "</h6></div>";
+        description = "<div class='col-8'><h3>" + name + "</h3><p>" + tvArr[i].first_air_date + "</p><h6>" + tvArr[i].overview + "</h6></div>";
         if (imageSrc == null)
             image = "<img class='imgResult' src = '" + errorPng + "'/></div>";
         else
