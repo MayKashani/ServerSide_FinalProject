@@ -5,6 +5,32 @@ $(document).ready(function () {
     $("#resultHeader").html("Result for: '" + searchVal + "'");
     getTv();
     $(".buttonType").click(function () { changeType(this.id) });
+
+    $(document).on("click", ".tv", function () {
+        let method = {
+            id: this.id,
+            type: "tv"
+        }
+        sessionStorage.setItem("mediaChoose", method);
+        window.location.replace("index.html");
+    });
+    $(document).on("click", ".movie", function () {
+        let method = {
+            id: this.id,
+            type: "movie"
+        }
+        sessionStorage.setItem("mediaChoose", method);
+        window.location.replace("index.html");
+
+    });
+    $(document).on("click", ".person", function () {
+        let method = {
+            id: this.id,
+            type: "person"
+        }
+        sessionStorage.setItem("mediaChoose", method);
+        window.location.replace("actor.html");
+    });
 });
 
 function getType(type) {
@@ -49,7 +75,7 @@ function renderSearchPerson(person) {
     let str = "";
     let personArr = person.results;
     for (let i = 0; i < personArr.length; i++) {
-        str += "<div class='row result'><div class='col-2'>";
+        str += "<div id='" + personArr[i].id + "' class='row result person'><div class='col-2'>";
         name = personArr[i].name;
         imageSrc = personArr[i].profile_path;
         description = "<div class='col-10'><h3>" + name + "</h3><p>" + personArr[i].known_for_department + "</p></div>";
@@ -66,7 +92,7 @@ function renderSearchTv(tv) {
     let str = "";
     let tvArr = tv.results;
     for (let i = 0; i < tvArr.length; i++) {
-        str += "<div class='row result'><div class='col-2'>'";
+        str += "<div id='" + tvArr[i].id + "' class='row result tv'><div class='col-2'>'";
         name = tvArr[i].name;
         imageSrc = tvArr[i].poster_path;
         description = "<div class='col-8'><h3>" + name + "</h3><p>" + tvArr[i].first_air_date + "</p><h6>" + tvArr[i].overview + "</h6></div>";
@@ -83,7 +109,7 @@ function renderSearchMovie(movie) {
     let str = "";
     let movieArr = movie.results;
     for (let i = 0; i < movieArr.length; i++) {
-        str += "<div class='row result'><div class = 'col-2'> ";
+        str += "<div id='" + movieArr[i].id + "' class='row result movie'><div class = 'col-2'> ";
         name = movieArr[i].title;
         imageSrc = movieArr[i].poster_path;
         description = "<div class='col-10'><h3>" + name + "</h3><p>" + movieArr[i].first_air_date + "</p><h6>" + movieArr[i].overview + "</h6></div>";
