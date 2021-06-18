@@ -27,7 +27,12 @@ $(document).ready(function () {
 
 		$(document).on('click', '.recommended', function () {
 			sessionStorage.setItem("mediaChoose", JSON.stringify({ id: this.id, type: chosenMedia.type }))
-			location.reload();
+			location.reload(); // if url not found - need to fix
+		})
+
+		$(document).on('click', '.actorCard', function () {
+			sessionStorage.setItem("personId",this.id);
+			window.location.replace('Actor.html')
 		})
 	}
 
@@ -81,7 +86,9 @@ function renderDetails(media) {
 }
 
 function getMediaError(err) {
+	window.history.go(-1);
 	console.log(err);
+	errorAlert("Page not found");
 }
 
 function viewEpisodes() {
@@ -102,9 +109,11 @@ function getTrailer(video) {
 }
 
 function getSeasonSuccessCB(season) {
-
+	if (season.poster_path == null)
+		poster = "..//Images//noImage.jpg";
+	else poster = imagePath + season.poster_path;
 	seasonsArr.push(season);
-	seasonsList += "<div id=" + i + " class='card'> <img class='card-img-top' src='" + imagePath + season.poster_path + "'><div class='card-body'><h5>" + season.name + "</h5><p>" + season.air_date + "</p><p>" + season.overview + "</p></div></div>";
+	seasonsList += "<div id=" + i + " class='card'> <img class='card-img-top' src='" + poster + "'><div class='card-body'><h5>" + season.name + "</h5><p>" + season.air_date + "</p><p>" + season.overview + "</p></div></div>";
 	i++;
 	let apiCall = url + method + mediaId + "/season/" + i + "?" + api_key;
 	ajaxCall("GET", apiCall, "", getSeasonSuccessCB, getSeasonErrorCB);
@@ -121,27 +130,15 @@ function getSeasonErrorCB(err) {
 
 function getCredits(actors) {
 	$("#actors").html("");
+	let str = "";
+	let profile = "";
 	for (let i = 0; i < actors.length; i++) {
-		let actorCard = document.createElement("div");
-		actorCard.className = "card";
-		let image = document.createElement("img");
-		image.className = "card-img-top";
 		if (actors[i].profile_path == null)
-			image.src = "..//Images//noImage.jpg"
-		else image.src = imagePath + actors[i].profile_path;
-		let cardBody = document.createElement("div");
-		cardBody.className = "card-body";
-		let cardTitle = document.createElement("h5")
-		cardTitle.innerText = actors[i].name;
-		let details = document.createElement("p");
-		details.className = "card-text";
-		details.innerText = actors[i].character;
-		cardBody.appendChild(cardTitle);
-		cardBody.appendChild(details);
-		actorCard.appendChild(image);
-		actorCard.appendChild(cardBody);
-		$("#actors").append(actorCard);
+			profile = "..//Images//noImage.jpg";
+		else profile = imagePath + actors[i].profile_path;
+		str += "<div id=" + actors[i].id + " class='card actorCard'> <img class='card-img-top' src='" +profile + "'><div class='card-body'><h5>" + actors[i].name + "</h5><p class='card-text'>" + actors[i].character + "</p></div></div>";
 	}
+	$("#actors").html(str);
 	$("#actorsDiv").show();
 }
 
@@ -149,7 +146,10 @@ function getSimilar(series) {
 	let recommendations = "";
 	if (series.length > 0) {
 		for (let i = 0; i < series.length; i++) {
-			recommendations += "<div id=" + series[i].id + " class='card recommended'> <img class='card-img-top' src='" + imagePath + series[i].poster_path + "'></div>";
+			if (series[i].poster_path == null)
+				poster = "..//Images//noImage.jpg";
+			else poster = imagePath + series[i].poster_path;
+			recommendations += "<div id=" + series[i].id + " class='card recommended'> <img class='card-img-top' src='" + poster + "'></div>";
 		}
 		$("#recommendations").html(recommendations);
 		$("#recommendationsDiv").show();

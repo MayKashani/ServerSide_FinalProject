@@ -36,7 +36,7 @@ $(document).ready(function () {
 
 
 function getActor() {
-    personId = JSON.parse(sessionStorage.getItem("mediaChoose")).id;
+    personId = JSON.parse(sessionStorage.getItem("personId"));
     method = "3/person/" + personId;
     api_key = "api_key=" + key;
     let apiCall = url + method + "?"+ api_key;
@@ -118,7 +118,7 @@ function getActorTvCreditsSuccessCB(tv) {
         let str = "";
         for (let i = 0; i < castingArr.length; i++) {
             str += "<li id = '" + castingArr[i].id + "'class = 'card tv'>";
-            imageTv = "<img class='card-img-top' src='" +imagePath + castingArr[i].poster_path + "' onerror="+errorPng+"/>";
+            imageTv = "<img class='card-img-top' src='" +imagePath + castingArr[i].poster_path + "' onerror="+errorPng+">";
             cardBody = "<div class='card-body'><h5>" + castingArr[i].name + "</h5> <p class='card-text'>" + castingArr[i].character + "</p></div>";
             str += imageTv + cardBody + "<p class='goToPage'>Go to page</p></li> ";
         }
@@ -146,7 +146,7 @@ function getActorMovieCreditsSuccessCB(movie) {
         let str = "";
         for (let i = 0; i < castingArr.length; i++) {
             str += "<li id = '" + castingArr[i].id + "'class = 'card tv'>";
-            imageTv = "<img class='card-img-top' src='" + imagePath + castingArr[i].poster_path + "' onerror=" + errorPng + "/>";
+            imageTv = "<img class='card-img-top' src='" + imagePath + castingArr[i].poster_path + "' onerror=" + errorPng + ">";
             cardBody = "<div class='card-body'><h5>" + castingArr[i].title + "</h5> <p class='card-text'>" + castingArr[i].character + "</p></div>";
             str += imageTv + cardBody + "<p class='goToPage'>Go to page</p></li> ";
         }
