@@ -117,7 +117,7 @@ function checkLS() {
         let name = $("#tvShowName").val();
         let method = "3/search/tv?";
         let api_key = "api_key=" + key;
-        let moreParams = "&language=en-US&page=1&include_adult=false&";
+        let moreParams = "&language=en-US&page=1&include_adult=false&"; 
         let query = "query=" + encodeURIComponent(name);
         let apiCall = url + method + api_key + moreParams + query;
         ajaxCall("GET", apiCall, "", getTVSuccessCB, getTVErrorCB);
