@@ -21,13 +21,13 @@ $(document).ready(function () {
 
 		$(document).on('click', '.recommended', function () {
 			sessionStorage.setItem("mediaChoose", JSON.stringify({ id: this.id, type: chosenMedia.type }))
-			window.location.replace('index.html'); 
+			window.location.href='index.html'; 
 		})
 
 		$(document).on('click', '.actorCard', function () {
-			sessionStorage.setItem("personId",this.id);
-			window.location.replace('Actor.html')
-		})
+			sessionStorage.setItem("personId", this.id);
+			window.location.href = 'Actor.html';
+		});
 
 	}
 
@@ -94,7 +94,7 @@ function viewEpisodes() {
 	sessionStorage.setItem("currentTV", JSON.stringify(Current_TV));
 	sessionStorage.setItem("season", id);
 	sessionStorage.setItem("episodes", JSON.stringify(seasonsArr[id-1].episodes))
-	window.location.replace("Episodes.html")
+	window.location.href = "Episodes.html";
 }
 
 function getTrailer(video) {

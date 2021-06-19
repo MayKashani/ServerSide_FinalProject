@@ -12,7 +12,7 @@ $(document).ready(function () {
             type: "tv"
         }
         sessionStorage.setItem("mediaChoose", JSON.stringify(method));
-        window.location.replace("index.html");
+        window.location.href = "index.html";
     });
     $(document).on("click", ".movie", function () {
         let method = {
@@ -21,11 +21,11 @@ $(document).ready(function () {
             
         }
         sessionStorage.setItem("mediaChoose", JSON.stringify(method));
-        window.location.replace("index.html");
+        window.location.href = "index.html";
     });
     $(document).on("click", ".person", function () {
         sessionStorage.setItem("personId", JSON.stringify(this.id));
-        window.location.replace("actor.html");
+        window.location.href="actor.html";
     });
 });
 
