@@ -29,59 +29,8 @@
     <script src="../Scripts/jquery.notifyBar.js"></script>
     <link rel="stylesheet" href="../Stylesheets/chat.css" />
     <link href="../Stylesheets/StyleSheet.css" rel="stylesheet" />
-    <style>
-
-        #mainDiv{
-            display:grid;
-            height:100%;
-            width:100%;
-            max-widt:100%;
-            grid-template-columns: auto 1fr;
-        }
-
-		#fanClub {
-			grid-column: 1/2;
-			border-right: 1px solid white;
-			width:auto
-		}
-
-        ol {
-            padding: 5px;
-
-        }
-
-        #center {
-            grid-column: 2/3
-        }
-
-
-		.joinChatBtn {
-			width: auto;
-			height: fit-content;
-			margin: 5px auto;
-			padding: 5px;
-		}
-
-		#chatList p {
-			margin: 5px auto;
-            width:inherit
-		}
-
-		#chatList li {
-			grid-template-columns: 1fr auto;
-			display: grid;
-			border-top: 2px solid white;
-			border-bottom: 2px solid white;
-			padding: 5px;
-			list-style-type: none;
-            font-size:15px;
-		}
-
-
-    </style>
 </head>
 <body>
-
     <div class="nav">
         <div class="logo" onclick="window.location.href='Homepage.html'"><i class="fa fa-film"></i>The movie DB </div>
         <div id="welcomeDiv"></div>
@@ -98,29 +47,29 @@
             <button id="loginBtn"><i class="fa fa-sign-in"></i>Login</button>
         </div>
     </div>
-    <div id="mainDiv">
-        <div id="fanClub">
-            <h3>Join chat</h3>
-            <ol id="chatList" style="list-style-type:none">
-            </ol>
-        </div>
-        <div id="center" class="container">
-            <h1 style="text-align:center">The MovieDB</h1>
-            <div id="recommend" style="visibility:hidden"></div>
-            <div id="popular">
-                <h4>So Popular...</h4>
-                <button id="showTvPopular" class="popularButton">Tv Shows</button>
-                <button id="showMoviePopular" class="popularButton">Movies</button>
-                <div id="popularTV">
-                    <ol id="anyShowType" class="orderList"></ol>
-                </div>
-                <div id="popularMovie">
-                    <ol id="anyMovieType" class="orderList"></ol>
-                </div>
+    <div class="container">
+        <h1 style="text-align:center">The MovieDB</h1>
+        <div id="recommend" style="visibility:hidden"></div>
+        <div id="popular">
+            <h4>So Popular...</h4>
+            <button id="showTvPopular" class="popularButton">Tv Shows</button>
+            <button id="showMoviePopular" class="popularButton">Movies</button>
+            <div id="popularTV">
+                <ol id="anyShowType" class="orderList"></ol>
+            </div>
+            <div id="popularMovie">
+                <ol id="anyMovieType" class="orderList"></ol>
             </div>
         </div>
 
-        <div id="chatWindow" class="card mt-5" style="visibility:hidden">
+        <div id="fanClub">
+            <h3>Join chat</h3>
+            <ol id="chatList" style="list-style-type:none">
+
+            </ol>
+        </div>
+
+        <div id ="chatWindow"class="card mt-5" style="visibility:hidden">
             <div class="d-flex flex-row justify-content-between p-3 adiv text-white"> <i class="fas fa-chevron-left"></i> <span id="chatName" class="pb-3"></span> <i onclick="$('#chatWindow').css('visibility','hidden')" class="fa fa-times"></i> </div>
             <div id="messages">
             </div>
@@ -204,6 +153,5 @@
             </div>
         </form>
     </div>
-
 </body>
 </html>
