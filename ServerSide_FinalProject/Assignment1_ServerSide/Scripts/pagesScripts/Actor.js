@@ -74,11 +74,13 @@ function renderActor(actor) {
         death = actor.deathday;
         strInfo += "<p>Date of death: " + death + "</p>";
     }
-
+    
     strName = "<h1>" + actor.name + "</h1>";
+    let strImg = imageSrc + strName;
+    $("#actorImg").append(strImg);
     actorBio = "<p>Bio: <br>" + actor.biography + "</p>";
-    str = imageSrc + strName + strInfo + actorBio;
-    $("#ph").html(str);
+    str =  strInfo + actorBio;
+    $("#info").html(str);
 }
 
 function toggleCredits() {
@@ -163,6 +165,18 @@ function getActorLinks() {
 
 function getLinksSuccessCB(links) {
     console.log(links);
+    if (links.facebook_id != null) {
+        strLink = "<a class='icon' href= 'https://www.facebook.com/" + links.facebook_id + "/'><img src='../Icons/facebook.png' /> </a><br/ >";
+        $("#facebookIcon").html(strLink);
+    }
+    if (links.instagram_id != null) {
+        strLink = "<a class='icon' href= 'https://www.instagram.com/" + links.instagram_id + "/'><img src='../Icons/instagram.png' /> </a><br/ >";
+        $("#instagramIcon").html(strLink);
+    }
+    if (links.twitter_id != null) {
+        strLink = "<a class='icon' href= 'https://www.twitter.com/" + links.twitter_id + "/'><img src='../Icons/twitter.png' /> </a><br/ >";
+        $("#twitterIcon").html(strLink);
+    }
 }
 
 function getLinksErrorCB(err) {
