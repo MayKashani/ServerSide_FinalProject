@@ -55,7 +55,8 @@
 
 		#seriesDiv {
 			width: 100%;
-			margin: auto;
+			margin: 0px;
+			padding: 0px
 		}
 
 
@@ -73,6 +74,14 @@
 
 		.onImageText {
 			position: absolute;
+		}
+
+		#header {
+			border-bottom: 1px solid var(--primaryColor);
+			background-position: right -200px top;
+			background-size: cover;
+			background-repeat: no-repeat;
+			width:100%;
 		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -110,7 +119,7 @@
 			<button id="loginBtn"><i class="fa fa-sign-in"></i>Login</button>
 		</div>
 	</div>
-	<div id="seriesDiv" class="container" style="display:none">
+	<div id="seriesDiv"  style="display:none">
 		<h3 id="seriesName"></h3>
 		<div class="row" id="header">
 			<div id="ph" class="col-5"></div>

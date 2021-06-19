@@ -51,6 +51,7 @@ function getMediaSuccess(media) {
 	console.log(media)
 	let poster = Current_TV.poster_path ? (imagePath + Current_TV.poster_path) : "..//Images//noImage.jpg" ;
 	str = "<img src='" + poster + "'/>";
+	$('#header').css("background-image", "url("+imagePath+Current_TV.backdrop_path+")");  
 	$("#seriesName").html(Current_TV.name)
 	$("#ph").html(str);
 	$("#average").html(Current_TV.vote_average * 10 + "%");
