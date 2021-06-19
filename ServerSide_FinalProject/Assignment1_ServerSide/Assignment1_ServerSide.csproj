@@ -181,6 +181,7 @@
     <Content Include="Images\background.jpg" />
     <Content Include="Images\noImage.jpg" />
     <Content Include="Images\Presentation11.png" />
+    <Content Include="Images\userPng.jpeg" />
     <Content Include="img\bg.png" />
     <Content Include="img\jq-notify-bar-icons.svg" />
     <Content Include="NotInUse\Register.html" />
@@ -218,6 +219,8 @@
     <Content Include="Scripts\pagesScripts\Actor.js" />
     <Content Include="Scripts\pagesScripts\admin.js" />
     <Content Include="Scripts\pagesScripts\alerts.js" />
+    <Content Include="Scripts\pagesScripts\chat.js" />
+    <Content Include="Scripts\pagesScripts\firebase.js" />
     <Content Include="Scripts\pagesScripts\Homepage.js" />
     <Content Include="Scripts\pagesScripts\index.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -228,6 +231,7 @@
     <Content Include="Scripts\pagesScripts\register.js" />
     <Content Include="Scripts\pagesScripts\search.js" />
     <Content Include="Scripts\pagesScripts\view.js" />
+    <Content Include="Stylesheets\chat.css" />
     <Content Include="Stylesheets\jquery.notifyBar.css" />
     <Content Include="Stylesheets\StyleSheet.css" />
     <Content Include="Web.config" />
