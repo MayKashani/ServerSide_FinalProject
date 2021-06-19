@@ -70,6 +70,10 @@
 		.card {
 			margin: 5px;
 		}
+
+		.onImageText {
+			position: absolute;
+		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -113,6 +117,7 @@
 			<div id="details" class="col-7">
 				<div id="average"></div>
 				<button id="watchTrailerBtn"> watch trailer </button>
+				<div class="row" id="watchTrailerDiv"></div>
 				<div id="overview"></div>
 			</div>
 		</div>
@@ -123,7 +128,6 @@
 		<div id="recommendationsDiv" style="display:none"><h5>Recommendations</h5><ol id="recommendations" class="cardsOL"></ol></div>
 	</div>
 		<div class="row">
-			<div class="row" id="watchTrailerDiv"></div>
 		<div id="episode"></div>
 	</div>
 

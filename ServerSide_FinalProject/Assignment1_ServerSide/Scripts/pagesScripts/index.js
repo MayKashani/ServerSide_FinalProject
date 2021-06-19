@@ -21,12 +21,12 @@ $(document).ready(function () {
 
 		$(document).on('click', '.recommended', function () {
 			sessionStorage.setItem("mediaChoose", JSON.stringify({ id: this.id, type: chosenMedia.type }))
-			window.location.replace('index.html'); 
+			window.location.href = 'index.html'; 
 		})
 
 		$(document).on('click', '.actorCard', function () {
 			sessionStorage.setItem("personId",this.id);
-			window.location.replace('Actor.html')
+			window.location.href = 'Actor.html';
 		})
 
 	}
@@ -34,7 +34,7 @@ $(document).ready(function () {
 });
 
 function watchTrailer() {
-	$("#watchTrailerDiv").html('<iframe width="420" height="315" src="' + trailerUrl + '"></iframe>')
+	$("#watchTrailerDiv").html('<iframe width="420" height="315" src="' + trailerUrl + '?autoplay=1" allow="autoplay" allowfullscreen></iframe>')
 }
 
 function getMedia() {
@@ -94,7 +94,7 @@ function viewEpisodes() {
 	sessionStorage.setItem("currentTV", JSON.stringify(Current_TV));
 	sessionStorage.setItem("season", id);
 	sessionStorage.setItem("episodes", JSON.stringify(seasonsArr[id-1].episodes))
-	window.location.replace("Episodes.html")
+	window.location.href = "Episodes.html";
 }
 
 function getTrailer(video) {
@@ -146,8 +146,8 @@ function getSimilar(series) {
 		for (let i = 0; i < series.length; i++) {
 			if (series[i].poster_path == null)
 				poster = "..//Images//noImage.jpg";
-			else poster = imagePath + series[i].poster_path;
-			recommendations += "<div id=" + series[i].id + " class='card recommended'> <img class='card-img-top' src='" + poster + "'></div>";
+			else poster = imagePath + series[i].backdrop_path;
+			recommendations += "<div id=" + series[i].id + " class='card recommended'> <img class='card-img-top' src='" + poster + "'><p class='onImageText'>" + series[i].name +"</p></div>";
 		}
 		$("#recommendations").html(recommendations);
 		$("#recommendationsDiv").show();
