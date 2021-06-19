@@ -12,10 +12,14 @@ $(document).ready(function () {
     getPopularTv();
     getPopularMovie();
 
+    if (mode == "member")
+        getChats();
+
     $(".popularButton").click(function () {
         if ($(this).css("background-color") != "aqua")
             togglePopular();
     });
+
     $(document).on("click", ".tv", function () {
         let method = {
             id: this.id,
@@ -24,6 +28,7 @@ $(document).ready(function () {
         sessionStorage.setItem("mediaChoose", JSON.stringify(method));
         window.location.href= 'index.html' ;
     });
+
     $(document).on("click", ".movie", function () {
         let method = {
             id: this.id,
@@ -33,7 +38,19 @@ $(document).ready(function () {
         window.location.href= 'index.html' ;
     });
 
+    $(document).on("click", ".joinChatBtn", function () { 
+        ref = firebase.database().ref("messages/" + this.id);
+        $("#chatName").html(this.parentElement.firstElementChild.innerText);
+        $("#chatWindow").css("visibility", "visible");
+        $("#messages").html("");
+        listenToNewMessages();
+    });
+
 });
+
+function exit(e) {
+    e.pa.style.display = "none";
+}
 
 function getPopularTv()
 {
@@ -97,5 +114,56 @@ function togglePopular() {
         $("#showTvPopular").css("background-color", "aqua");
         popularMode = "tv";
     }
+}
+
+function getChats() {
+    let api = "../api/Seriess?mail=" + JSON.parse(localStorage["User"]).Mail;
+    ajaxCall("GET", api, "", getChatsSuccess, getChatsError);
+}
+
+function getChatsSuccess(series) {
+    let str = "";
+    for (let i = 0; i < series.length; i++) {
+        str+= "<li><p>"+series[i].Name+"</p><button class='joinChatBtn' id="+series[i].Id+">Join</button></li>"
+    }
+    $("#chatList").html(str);
+}
+
+function getChatsError(err) {
+    console.log(err);
+}
+
+function printMessage(msg) {
+    type = "";
+    imageSrc = '<img src="../../Images/userPng.jpeg" width="30" height="30">'
+
+    if (msg.mail != user)
+        type = "chat ml-2";
+    else
+        type = "bg-white mr-2"
+    str = '<div class="d-flex flex-row p-3">' + imageSrc +'<div class="' + type + ' p-3">' + "<h6><u>" + msg.name + '</u></h3>' + msg.content + '</div>'
+
+    $("#messages").append(str);
+    $("#msgTB").val("");
+}
+
+function listenToNewMessages() {
+    ref.on("child_added", snapshot => {
+        msg = {
+            name: snapshot.val().name,
+            content: snapshot.val().msg,
+            mail: snapshot.val().mail
+        }
+        printMessage(msg);
+    })
+}
+
+
+function AddMSG() {
+    let msg = document.getElementById("msgTB").value;
+    let user = JSON.parse(localStorage["User"])
+    let name = user.FirstName;
+    let mail = user.Mail;
+    ref.push().set({ "msg": msg, "name": name,"mail":mail });
 }
 
