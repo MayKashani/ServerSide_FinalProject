@@ -60,7 +60,8 @@ function getActorErrorCB(err) {
 }
 
 function renderActor(actor) {
-    imageSrc = "<img src='" + imagePath + actor.profile_path + "' onerror=" + errorPng+">";
+    imageSrc = "<img src='" + imagePath + actor.profile_path + "' onerror=" + errorPng + ">";
+    getActorLinks();
     var gender = "";
     if (actor.gender == '1')
         gender = "female";
@@ -155,5 +156,17 @@ function getActorMovieCreditsErrorCB(err) {
     console.log(err);
 }
 
+function getActorLinks() {
+    let apiCall = url + method + "/external_ids?" + api_key;
+    ajaxCall("GET", apiCall, "", getLinksSuccessCB, getLinksErrorCB);
+}
+
+function getLinksSuccessCB(links) {
+    console.log(links);
+}
+
+function getLinksErrorCB(err) {
+    console.log(err);
+}
 
 
