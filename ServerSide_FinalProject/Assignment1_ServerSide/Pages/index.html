@@ -19,12 +19,12 @@
 		}
 
 		.cardsOL {
-			/*			overflow-x: scroll;*/
+						overflow-x: scroll;
 			overflow-y: hidden;
 			max-width: 100%;
 			display: inline-flex;
 			flex-direction: row;
-			/*		width: 100%;*/
+					width: 100%;
 			margin: auto;
 			padding: 0px
 		}
@@ -43,6 +43,12 @@
 			margin: auto;
 		}
 
+		#seasonsList > .card {
+			height: 200px;
+			min-width: 100px;
+			max-width: 100px
+		}
+
 		#recommendations > .card {
 			height: 200px;
 			min-width: auto;
@@ -53,11 +59,6 @@
 			font-size: 15px
 		}
 
-		#seriesDiv {
-			width: 100%;
-			margin: 0px;
-			padding: 0px
-		}
 
 
 		#recommendations img {
@@ -119,11 +120,11 @@
 			<button id="loginBtn"><i class="fa fa-sign-in"></i>Login</button>
 		</div>
 	</div>
-	<div id="seriesDiv"  style="display:none">
-		<h3 id="seriesName"></h3>
+	<div id="seriesDiv" class="container" style="display:none">
 		<div class="row" id="header">
 			<div id="ph" class="col-5"></div>
 			<div id="details" class="col-7">
+				<h3 id="seriesName"></h3>
 				<div id="average"></div>
 				<button id="watchTrailerBtn"> watch trailer </button>
 				<div class="row" id="watchTrailerDiv"></div>

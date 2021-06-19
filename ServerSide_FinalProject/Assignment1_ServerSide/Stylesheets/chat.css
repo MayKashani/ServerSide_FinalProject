@@ -1,10 +1,10 @@
 ﻿#chatWindow {
     width: 300px;
     border: none;
-    border-radius: 15px; 
-    height: 300px;
-    position:fixed;
-    bottom:10px;
+    border-radius: 15px;
+    height: 400px;
+    position: fixed;
+    bottom: 10px;
     left: 50px;
 }
 
@@ -23,8 +23,8 @@
     border-radius: 15px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-    font-size: 12px;
-    height: 46px
+    font-size: 18px;
+    height: 46px;
 }
 
 .chat {
@@ -61,10 +61,10 @@
         box-shadow: none
     }
 
-    .form-control::placeholder {
-        font-size: 12px;
-        color: #C4C4C4
-    }
+.form-control::placeholder {
+    font-size: 14px;
+    color: dimgray
+}
 
 #messages {
 /*    max-height: 500px;*/
