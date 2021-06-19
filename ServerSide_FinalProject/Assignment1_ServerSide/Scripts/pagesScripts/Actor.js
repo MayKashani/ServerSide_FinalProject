@@ -21,7 +21,7 @@ $(document).ready(function () {
             type: "tv"
         }
         sessionStorage.setItem("mediaChoose", JSON.stringify(method));
-        window.location.replace("index.html");
+        window.location.href="index.html";
     });
 
     $(document).on("click", ".movie", function () {
@@ -30,7 +30,7 @@ $(document).ready(function () {
             type: "movie"
         }
         sessionStorage.setItem("mediaChoose", JSON.stringify(method));
-        window.location.replace("index.html");
+        window.location.href = "index.html";
     });
 })
 

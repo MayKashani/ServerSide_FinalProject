@@ -75,18 +75,18 @@ $(document).ready(function () {
         localStorage.clear();
         $("#welcomeDiv").html("");
         toggleBar();
-        window.location.replace("Homepage.html");
+        window.location.href="Homepage.html";
     })
 
     $("#getTV").click(searchByName);
     $(".logo").click(function () {
-        window.location.replace("Homepage.html");
+        window.location.href="Homepage.html";
     })
 });
 
 function searchByName() {
     sessionStorage.setItem("searchValue", $("#tvShowName").val());
-    window.location.replace("Search.html");
+    window.location.href="Search.html";
 }
 
 function toggleBar() {

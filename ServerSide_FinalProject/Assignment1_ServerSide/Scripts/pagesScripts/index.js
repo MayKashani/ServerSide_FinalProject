@@ -21,13 +21,13 @@ $(document).ready(function () {
 
 		$(document).on('click', '.recommended', function () {
 			sessionStorage.setItem("mediaChoose", JSON.stringify({ id: this.id, type: chosenMedia.type }))
-			window.location.href = 'index.html'; 
+			window.location.href='index.html'; 
 		})
 
 		$(document).on('click', '.actorCard', function () {
-			sessionStorage.setItem("personId",this.id);
+			sessionStorage.setItem("personId", this.id);
 			window.location.href = 'Actor.html';
-		})
+		});
 
 	}
 
