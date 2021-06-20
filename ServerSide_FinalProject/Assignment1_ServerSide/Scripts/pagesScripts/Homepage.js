@@ -9,6 +9,7 @@ $(document).ready(function () {
     movieMethod = "3/movie/";
     api_key = "api_key=" + key;
 
+
     getPopularTv();
     getPopularMovie();
 
@@ -28,7 +29,7 @@ $(document).ready(function () {
             type: "tv"
         }
         sessionStorage.setItem("mediaChoose", JSON.stringify(method));
-        window.location.href= 'index.html' ;
+        window.location.href = 'index.html';
     });
 
     $(document).on("click", ".movie", function () {
@@ -37,10 +38,10 @@ $(document).ready(function () {
             type: "movie"
         }
         sessionStorage.setItem("mediaChoose", JSON.stringify(method));
-        window.location.href= 'index.html' ;
+        window.location.href = 'index.html';
     });
 
-    $(document).on("click", ".joinChatBtn", function () { 
+    $(document).on("click", ".joinChatBtn", function () {
         ref = firebase.database().ref("messages/" + this.id);
         $("#chatName").html(this.parentElement.firstElementChild.innerText);
         $("#chatWindow").css("visibility", "visible");
@@ -56,7 +57,18 @@ function getRecBySimilarUsers() {
 }
 
 function getRecSuccess(rec) {
-    console.log(rec)
+    console.log(rec);
+    if (rec.length > 0) {
+        $("#recommend").css("visibility", "visible");
+        let str = "";
+        for (let i = 0; i < rec.length; i++) {
+            str += "<li id = '" + rec[i].Id + "'class = 'card tv'>";
+            image = "<img class='card-img-top' src = '" + imagePath + rec[i].Poster_Path + "'";
+            cardBody = "<div class='card-body'><h5>" + rec[i].Name + "</h5> <p class='card-text'>" + rec[i].Original_Language + "</p></div>";
+            str += image + cardBody + "<p class='goToPage'>Go to page</p></li> ";
+        }
+        $("#recommendList").html(str);
+    }
 }
 
 function getRecError(err) {
@@ -67,14 +79,13 @@ function exit(e) {
     e.pa.style.display = "none";
 }
 
-function getPopularTv()
-{
+function getPopularTv() {
     let apiCall = url + tvMethod + "popular?" + api_key + "&language=en-US&page=1";
     ajaxCall("GET", apiCall, "", getTopShowSuccessCB, getTopShowErrorCB);
 };
 
 function getTopShowSuccessCB(topTv) {
-    
+
     popularShows = topTv.results;
     let str = "";
     for (let i = 0; i < popularShows.length; i++) {
@@ -115,7 +126,7 @@ function getTopMovieErrorCB(err) {
 }
 
 function togglePopular() {
-    if (popularMode=="tv") {
+    if (popularMode == "tv") {
         $("#popularMovie").show();
         $("#popularTV").hide();
         $("#showTvPopular").css("background-color", "white");
@@ -132,7 +143,7 @@ function togglePopular() {
 }
 
 function getChats() {
-   
+
     let api = "../api/Seriess?mail=" + JSON.parse(localStorage["User"]).Mail + "&mode=Favorites";
     ajaxCall("GET", api, "", getChatsSuccess, getChatsError);
 }
@@ -140,7 +151,7 @@ function getChats() {
 function getChatsSuccess(series) {
     let str = "";
     for (let i = 0; i < series.length; i++) {
-        str+= "<li><p>"+series[i].Name+"</p><button class='joinChatBtn' id="+series[i].Id+">Join</button></li>"
+        str += "<li><p>" + series[i].Name + "</p><button class='joinChatBtn' id=" + series[i].Id + ">Join</button></li>"
     }
     $("#chatList").html(str);
 }
@@ -157,7 +168,7 @@ function printMessage(msg) {
         type = "chat ml-2";
     else
         type = "bg-white mr-2"
-    str = '<div class="d-flex flex-row p-3">' + imageSrc +'<div class="' + type + ' p-3">' + "<h6><u>" + msg.name + '</u></h3>' + msg.content + '</div>'
+    str = '<div class="d-flex flex-row p-3">' + imageSrc + '<div class="' + type + ' p-3">' + "<h6><u>" + msg.name + '</u></h3>' + msg.content + '</div>'
 
     $("#messages").append(str);
     $("#msgTB").val("");
@@ -180,6 +191,6 @@ function AddMSG() {
     let user = JSON.parse(localStorage["User"])
     let name = user.FirstName;
     let mail = user.Mail;
-    ref.push().set({ "msg": msg, "name": name,"mail":mail });
+    ref.push().set({ "msg": msg, "name": name, "mail": mail });
 }
 

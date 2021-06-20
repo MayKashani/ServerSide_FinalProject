@@ -633,15 +633,16 @@ namespace Assignment1_ServerSide.Models.DAL
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    int index = 0;
                     Series s = new Series();
-                    s.Id = reader;
-                    s.First_Air_Date = reader["First_Air_Date"].ToString();
-                    s.Name = reader["Name"].ToString();
-                    s.Origin_Country = reader["Origin_Country"].ToString();
-                    s.Original_Language = reader["Original_Language"].ToString();
-                    s.Overview = reader["Overview"].ToString();
-                    s.Popularity = reader["Popularity"]
-
+                    s.Id = reader.GetInt32(index++);
+                    s.First_Air_Date = reader.GetString(index++);
+                    s.Name = reader.GetString(index++);
+                    s.Origin_Country = reader.GetString(index++);
+                    s.Original_Language = reader.GetString(index++);
+                    s.Overview = reader.GetString(index++);
+                    s.Popularity = reader.GetDouble(index++);
+                    s.Poster_Path = reader.GetString(index++);
                     sList.Add(s);
                 }
                 return sList;
