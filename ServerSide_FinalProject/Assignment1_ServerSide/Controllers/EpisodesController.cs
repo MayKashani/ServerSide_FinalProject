@@ -12,7 +12,7 @@ namespace Assignment1_ServerSide.Controllers
     public class EpisodesController : ApiController
     {
         [HttpGet]
-        public List<Episode> get(int seriesID,string mail)
+        public List<Episode> Get(int seriesID,string mail)
         {
             Episode e = new Episode();
             List<Episode> eList = e.Get(seriesID,mail);

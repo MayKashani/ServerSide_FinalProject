@@ -12,8 +12,10 @@ $(document).ready(function () {
     getPopularTv();
     getPopularMovie();
 
-    if (mode == "member")
+    if (mode == "member") {
         getChats();
+        getRecBySimilarUsers();
+    }
 
     $(".popularButton").click(function () {
         if ($(this).css("background-color") != "aqua")
@@ -47,6 +49,19 @@ $(document).ready(function () {
     });
 
 });
+
+function getRecBySimilarUsers() {
+    let api = "../api/Seriess?mail=" + JSON.parse(localStorage["User"]).Mail + "&mode=Recommended";
+    ajaxCall("GET", api, "", getRecSuccess, getRecError);
+}
+
+function getRecSuccess(rec) {
+    console.log(rec)
+}
+
+function getRecError(err) {
+    console.log(err)
+}
 
 function exit(e) {
     e.pa.style.display = "none";
@@ -117,7 +132,8 @@ function togglePopular() {
 }
 
 function getChats() {
-    let api = "../api/Seriess?mail=" + JSON.parse(localStorage["User"]).Mail;
+   
+    let api = "../api/Seriess?mail=" + JSON.parse(localStorage["User"]).Mail + "&mode=Favorites";
     ajaxCall("GET", api, "", getChatsSuccess, getChatsError);
 }
 

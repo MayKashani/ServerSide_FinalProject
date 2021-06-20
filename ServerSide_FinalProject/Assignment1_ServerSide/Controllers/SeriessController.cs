@@ -15,10 +15,10 @@ namespace Assignment1_ServerSide.Controllers
 
         // GET api/<controller>/5
         [HttpGet]
-        public List<Series> Get(string mail)
+        public List<Series> Get(string mail,string mode)
         {
             Series s = new Series();
-            return s.Get(mail);
+            return s.Get(mail,mode);
         }
 
         [HttpGet]

@@ -11,7 +11,7 @@
 })
 
 function getTVNames() {
-    let api = "../api/Seriess?mail=" + userMail;
+    let api = "../api/Seriess?mail=" + userMail +"&mode=Favorites";
     ajaxCall("GET", api, "", getTVNamesSuccessCB, getTVNamesErrorCB);
 }
 

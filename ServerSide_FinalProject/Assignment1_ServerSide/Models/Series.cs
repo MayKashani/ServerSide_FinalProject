@@ -51,10 +51,12 @@ namespace Assignment1_ServerSide.Models
             return ds.Insert(this);
         }
 
-        public List<Series> Get(string mail)
+        public List<Series> Get(string mail,string mode)
         {
             DataServices ds = new DataServices();
-            return ds.Get(mail);
+            if(mode.Equals("Favorites"))
+                return ds.Get(mail);
+            return ds.GetRecommendations(mail);
         }
 
         public DataSet GetLikedShows()
