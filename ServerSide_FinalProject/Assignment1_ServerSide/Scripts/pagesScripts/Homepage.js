@@ -16,6 +16,7 @@ $(document).ready(function () {
     if (mode == "member") {
         getChats();
         getRecBySimilarUsers();
+        /*getRecMovieBySimilarUsers();*/
     }
 
     $(".popularButton").click(function () {
@@ -67,7 +68,8 @@ function getRecSuccess(rec) {
             cardBody = "<div class='card-body'><h5>" + rec[i].Name + "</h5> <p class='card-text'>" + rec[i].Original_Language + "</p></div>";
             str += image + cardBody + "<p class='goToPage'>Go to page</p></li> ";
         }
-        $("#recommendList").html(str);
+        $("#recommendTvList").html(str);
+        $("#showTvRecommend").css("background-color", "aqua");
     }
 }
 
@@ -75,6 +77,17 @@ function getRecError(err) {
     console.log(err)
 }
 
+function getRecMovieBySimilarUsers() {
+    let api = "../api/Movies?mail=" + user + "&mode=Recommended";
+    ajaxCall("GET", api, "", getMovieRecSuccessCB, getMovieRecErrorCB);
+}
+
+function getMovieRecSuccessCB(movies) {
+
+}
+function getMovieRecErrorCB(err) {
+    console.log(err);
+}
 function exit(e) {
     e.pa.style.display = "none";
 }

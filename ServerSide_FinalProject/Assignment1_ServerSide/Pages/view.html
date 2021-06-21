@@ -11,10 +11,12 @@
     <script src="../Scripts/ajaxCalls.js"></script>
     <script src="../Scripts/pagesScripts/view.js"></script>
     <link rel="stylesheet" href="../Stylesheets/jquery.notifyBar.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDX02F5Z4U83fevL63h0sIKVde5iqwDmr4"></script>
     <script src="../Scripts/pagesScripts/alerts.js"></script>
     <script src="../Scripts/jquery.notifyBar.js"></script>
     <script src="../Scripts/pagesScripts/register.js"></script>
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="../Stylesheets/StyleSheet.css" rel="stylesheet" />
     <style>
         body {
@@ -43,12 +45,23 @@
 
     <div>
         <h1> My List </h1>
-        <div>
-            <select id="tvShows"></select>
+        <button id="showTvFavorites" class="favoriteButton">Tv Shows</button>
+        <button id="showMovieFavorites" class="favoriteButton">Movies</button>
+        <div id="favoritesTv">
+            <div>
+                <select id="tvShows"></select>
+            </div>
+            <h3 id="tvName"> </h3>
+            <div id="seriesEpisodes">
+            </div>
         </div>
-        <h3 id="tvName"> </h3>
-        <div id="seriesEpisodes">
+        <div id="favoritesMovies">
+            <h3>Favorites Movies </h3>
+            <div id="favoritesMovies">
+            </div>
         </div>
+
+
     </div>
 
     <div id="registerModal" class="modal">

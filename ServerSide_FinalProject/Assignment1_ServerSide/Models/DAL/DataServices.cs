@@ -160,7 +160,6 @@ namespace Assignment1_ServerSide.Models.DAL
             SqlConnection con;
             SqlCommand cmd;
 
-
             try
             {
                 con = connect("ConnectionDB"); // create the connection
@@ -227,14 +226,14 @@ namespace Assignment1_ServerSide.Models.DAL
             try
             {
                 int numEffected = cmd.ExecuteNonQuery(); // execute the command
-                return numEffected + InsertToFavorites(episode, mail);
+                return numEffected + InsertToFavorites(episode);
             }
 
             catch (SqlException ex)
             {
                 // write to log
                 if (ex.Number == 2627)
-                    return InsertToFavorites(episode, mail);
+                    return InsertToFavorites(episode);
                 throw ex;
             }
             catch (Exception ex)
@@ -252,7 +251,53 @@ namespace Assignment1_ServerSide.Models.DAL
                 }
             }
         }
-        public int InsertToFavorites(Episode episode, string mail)
+
+        public int Insert(Movie movie,string mail)
+        {
+            SqlConnection con;
+            SqlCommand cmd;
+            current_UserID = GetUserID(mail);
+            try
+            {
+                con = connect("ConnectionDB"); // create the connection
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            String cStr = BuildInsertCommand(movie);      // helper method to build the insert string
+            cmd = CreateCommand(cStr, con);             // create the command
+
+            try
+            {
+                int numEffected = cmd.ExecuteNonQuery(); // execute the command
+                return numEffected + InsertToMovieFavorites(movie);
+            }
+            catch (SqlException ex)
+            {
+                // write to log
+                if (ex.Number == 2627)
+                    return InsertToMovieFavorites(movie);
+                throw ex;
+
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    // close the db connection
+                    con.Close();
+                }
+            }
+        }
+
+        public int InsertToFavorites(Episode episode)
         {
             SqlConnection con;
             SqlCommand cmd;
@@ -270,6 +315,55 @@ namespace Assignment1_ServerSide.Models.DAL
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("Values ({0},{1},{2})", current_UserID, episode.Id, current_SeriesID);
             String prefix = "INSERT INTO Favorites" + "([User_ID],[Episode_ID],[Series_ID])";
+            String cStr = prefix + sb.ToString();
+            cmd = CreateCommand(cStr, con);
+
+            try
+            {
+                int numEffected = cmd.ExecuteNonQuery();
+                return numEffected;
+            }
+            catch (SqlException ex)
+            {
+                // write to log
+                if (ex.Number == 2627)
+                    return 0;
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    // close the db connection
+                    con.Close();
+                }
+            }
+
+        }
+
+        public int InsertToMovieFavorites(Movie movie)
+        {
+            SqlConnection con;
+            SqlCommand cmd;
+
+            try
+            {
+                con = connect("ConnectionDB"); // create the connection
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("Values ({0},{1})", movie.Id , current_UserID);
+            String prefix = "INSERT INTO favoriteMovies" + "([Movie_ID],[User_ID])";
             String cStr = prefix + sb.ToString();
             cmd = CreateCommand(cStr, con);
 
@@ -472,7 +566,18 @@ namespace Assignment1_ServerSide.Models.DAL
                             prefix = "INSERT INTO Episodes " + "([Series_ID], [ID], [Season_Number], [Episode_Name],[ImageURL], [Overview], [Air_Date]) ";
                         }
                         break;
-
+                    }
+                case "Movie":
+                    {
+                        Movie movie= (Movie)obj;
+                        if (movie != null)
+                        {
+                            string movieTitle = movie.Title.Replace("'", "");
+                            string movieOverview = movie.Overview.Replace("'", "");
+                            sb.AppendFormat("Values({0}, '{1}', '{2}','{3}','{4}',{5},'{6}','{7}','{8}')", movie.Id,movieTitle,movie.Release_Date, movie.Original_Language, movieOverview, movie.Popularity, movie.Backdrop_Path, movie.Status,movie.Tagline);
+                            prefix = "INSERT INTO Movies " + "([ID], [Title], [Release_Date], [Original_Language], [Overview], [Popularity], [Backdrop_Path],[Status],[Tagline]) ";
+                        }
+                        break;
                     }
             }
             command = prefix + sb.ToString();
@@ -576,6 +681,56 @@ namespace Assignment1_ServerSide.Models.DAL
 			}
         }
 
+        public List<Movie> GetMovies(string mail)
+        {
+            SqlConnection con;
+            SqlCommand cmd;
+            List<Movie> mList = new List<Movie>();
+            try
+            {
+                con = connect("connectionDB");
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            try
+            {
+                String cStr = "SELECT distinct m.* FROM favoriteMovies F inner join Movies m on F.Movie_ID = m.ID  inner join UsersTBL u on u.ID = F.User_ID where u.Mail='" + mail + "'";
+                cmd = CreateCommand(cStr, con);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    int index = 0;
+                    Movie m = new Movie();
+                    m.Id = reader.GetInt32(index++);
+                    m.Title = reader.GetString(index++);
+                    m.Release_Date = reader.GetString(index++);
+                    m.Original_Language = reader.GetString(index++);
+                    m.Overview = reader.GetString(index++);
+                    m.Popularity = reader.GetDouble(index++);
+                    m.Backdrop_Path = reader.GetString(index++);
+                    m.Status = reader.GetString(index++);
+                    m.Tagline = reader.GetString(index++);
+                    mList.Add(m);
+                }
+                return mList;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+        }
+
         public List<Episode> Get(int seriesID, string mail)
         {
             SqlConnection con;
@@ -646,6 +801,56 @@ namespace Assignment1_ServerSide.Models.DAL
                     sList.Add(s);
                 }
                 return sList;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
+        }
+        public List<Movie> GetMovieRecommendations(string mail)
+        {
+            SqlConnection con;
+            SqlCommand cmd;
+            List<Movie> mList = new List<Movie>();
+            try
+            {
+                con = connect("connectionDB");
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            try
+            {
+                int userId = GetUserID(mail);
+                String cStr = "select distinct s.* from favoriteMovies fav inner join Movie m on fav.Movie_ID = m.ID where fav.User_ID in (select f2.User_ID from favoriteMovies f1 inner join favoriteMovies f2 on f1.Movie_ID = f2.Movie_ID inner join favoriteMovies f3 on f2.User_ID = f3.User_ID inner join favoriteMovies f4  on f4.User_ID = f1.User_ID where f1.User_ID = " + userId + " and f2.User_ID != " + userId + " group by f1.User_ID, f2.User_ID having ROUND(CAST(count(distinct f2.Movie_ID) AS float) / CAST(count(distinct f3.Movie_ID) AS float), 2) * ROUND(CAST(count(distinct f1.Movie_ID) AS float) / CAST(count(distinct f4.Movie_ID) AS float), 2) > 0.5) and fav.Movie_ID not in (select distinct favorite.Movie_ID from favoriteMovies favorite where favorite.User_ID = " + userId + ")";
+                cmd = CreateCommand(cStr, con);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    int index = 0;
+                    Movie m = new Movie();
+                    m.Id = reader.GetInt32(index++);
+                    m.Title = reader.GetString(index++);
+                    m.Release_Date = reader.GetString(index++);
+                    m.Original_Language = reader.GetString(index++);
+                    m.Overview = reader.GetString(index++);
+                    m.Popularity = reader.GetDouble(index++);
+                    m.Backdrop_Path = reader.GetString(index++);
+                    m.Status = reader.GetString(index++);
+                    m.Tagline = reader.GetString(index++);
+                    mList.Add(m);
+                }
+                return mList;
             }
             catch (Exception ex)
             {

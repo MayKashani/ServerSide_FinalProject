@@ -3,6 +3,7 @@
 $(document).ready(function () {
 	//var Current_TV;
 	//var Current_ep;
+
 	var i = 1;
 	trailerUrl = "";
 	$("#watchTrailerBtn").hide();
@@ -29,9 +30,35 @@ $(document).ready(function () {
 			window.location.href = 'Actor.html';
 		});
 
+		$("#movieLikeBtn").click(postMovie);
+
 	}
 
 });
+
+function postMovie() {
+	let movie = {
+		Id: Current_TV.id,
+		Release_Date: Current_TV.release_date,
+		Title: Current_TV.title,
+		Original_Language: Current_TV.original_language,
+		Overview: Current_TV.overview,
+		Popularity: Current_TV.popularity,
+		Backdrop_Path: Current_TV.backdrop_path,
+		Status: Current_TV.status,
+		Tagline: Current_TV.tagline
+	}
+	ajaxCall("POST", "../api/Movies?mail="+user, JSON.stringify(movie), postMovieSuccessCB, postMovieErrorCB)
+	return false;
+}
+
+function postMovieSuccessCB(num) {
+	console.log("success");
+}
+
+function postMovieErrorCB(err) {
+	console.log(err)
+}
 
 function watchTrailer() {
 	$("#watchTrailerDiv").html('<iframe width="420" height="315" src="' + trailerUrl + '?autoplay=1" allow="autoplay" allowfullscreen></iframe>')
@@ -61,6 +88,7 @@ function getMediaSuccess(media) {
 	switch (chosenMedia.type) {
 		case "movie": {
 			$("#seriesName").html(Current_TV.title)
+			$("#movieLikeBtn").show();
 			renderDetails(Current_TV);
 			break;
 		}
