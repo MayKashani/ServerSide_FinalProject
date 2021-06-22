@@ -7,11 +7,14 @@ $(document).ready(function () {
     getPopularTv();
     getPopularMovie();
 
+    recommendMode = "tv";
+
     //If User logged in, render User options to Homepage
     if (mode == "member") {
         getChats();
         getRecBySimilarUsers();
         getRecMovieBySimilarUsers();
+
     }
 
     //Toggle TVShows/Movies
@@ -61,7 +64,6 @@ $(document).ready(function () {
         $("#fanClub").toggle("fast")
 	})
 
-
 });
 
 //Get TVShows Recommendations according to similar Users.
@@ -83,7 +85,10 @@ function getRecSuccess(rec) {
         $("#recommendTvList").html(str);
         $("#showTvRecommend").css("background-color", "aqua");
         $("#recommendTv").show();
-        recommendMode = "tv";
+    }
+    else {
+        $("#showTvRecommend").hide();
+        recommendMode = "movie";
     }
 }
 function getRecError(err) {
