@@ -78,7 +78,7 @@ function getMediaSuccess(media) {
 	console.log(media)
 	let poster = Current_TV.poster_path ? (imagePath + Current_TV.poster_path) : "..//Images//noImage.jpg" ;
 	str = "<img src='" + poster + "'/>";
-	$('#header').css("background-image", "url("+imagePath+Current_TV.backdrop_path+")");  
+	$('#headerBackground').attr("src", imagePath+Current_TV.backdrop_path);  
 	$("#seriesName").html(Current_TV.name)
 	$("#ph").html(str);
 	$("#average").html(Current_TV.vote_average * 10 + "%");
@@ -178,7 +178,7 @@ function getSimilar(series) {
 			}
 			else 
 				poster = imagePath + series[i].backdrop_path;
-			if (chosenMedia = "movie")
+			if (chosenMedia.type == "movie")
 				name = series[i].title;
 			else name = series[i].name;
 			recommendations += "<div id=" + series[i].id + " class='card recommended'> <img class='card-img-top' src='" + poster + "'><p class='onImageText'>" + name +"</p></div>";

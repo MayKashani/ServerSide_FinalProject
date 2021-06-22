@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+﻿ 
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <title></title>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous">
@@ -75,7 +75,6 @@
             list-style-type: none;
             font-size: 15px;
         }
-
     </style>
 </head>
 <body>
@@ -96,6 +95,9 @@
             <button id="loginBtn"><i class="fa fa-sign-in"></i>Login</button>
         </div>
     </div>
+
+
+
     <div id="mainDiv">
         <div id="fanClub" style="display:none">
             <h3>Join chat</h3>
@@ -110,13 +112,13 @@
                 <button id="showMoviePopular" class="popularButton">Movies</button>
                 <div id="popularTV">
                     <button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
-                    <ol id="anyShowType" class="orderList"></ol>
+                    <ol id="anyShowType" class="cardsOL"></ol>
                     <button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
                 </div>
                 <div id="popularMovie">
                     <button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
-                    <ol id="anyMovieType" class="orderList"></ol>
-                    <button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
+                    <ol id="anyMovieType" class="cardsOL"></ol>
+                    <button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
                 </div>
             </div>
 
@@ -125,12 +127,16 @@
                 <button id="showTvRecommend" class="recommendButton">Tv Shows</button>
                 <button id="showMovieRecommend" class="recommendButton">Movies</button>
                 <div id="recommendTV">
-                    <ol id="recommendTvList" class="orderList"></ol>
+                    <button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
+                    <ol id="recommendTvList" class="cardsOL"></ol>
+                    <button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
                 </div>
                 <div id="recommendMovie">
-                    <ol id="recommendMovieList" class="orderList"></ol>
+                    <button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
+                    <ol id="recommendMovieList" class="cardsOL"></ol>
+                    <button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
                 </div>
-                
+
             </div>
         </div>
 

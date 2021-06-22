@@ -176,6 +176,7 @@ i {
 
 /* nav-bar */
 .nav {
+    margin-top: 0px;
     display: grid;
     grid-template-columns: 20% 1fr 1fr 15% 10%;
     min-height: 10vh;
@@ -288,7 +289,7 @@ i {
 /*Homepage CSS*/
 
 
-.orderList > .card {
+.cardsOL > .card {
     height: 300px;
     min-width: inherit;
     padding: 10px;
@@ -315,13 +316,13 @@ i {
     width: auto;
 }
 
-.orderList {
+.cardsOL {
     overflow-x: scroll;
     overflow-y: hidden;
     max-width: 90%;
     display: inline-flex;
     flex-direction: row;
-    width:90%;
+    padding: 0px
 }
 
 h4 {
@@ -330,26 +331,9 @@ h4 {
     color: white
 }
 
-/*Search CSS */
-.result{
-    width:80%;
-    height:50px;
-    border:1px solid white;
-    border-radius:15px 15px;
-    float:left;
-}
 
-.result > div {
-    height:100%;
-}
-
-div>img
-{
-    height:100%;
-    width:100%;
-}
-
-.chosen
-{
-    background-color:aqua;
+/* General */
+div > img {
+    height: 100%;
+    width: 100%;
 }

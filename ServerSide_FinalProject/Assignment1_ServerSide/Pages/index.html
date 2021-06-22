@@ -9,6 +9,7 @@
 		#ph > img {
 			height: 300px;
 			border-radius: 25px;
+			width:auto;
 		}
 
 		#checking:hover {
@@ -18,16 +19,6 @@
 			background: linear-gradient(to left, #370606,#701c1c,#370606)
 		}
 
-		.cardsOL {
-						overflow-x: scroll;
-			overflow-y: hidden;
-			max-width: 100%;
-			display: inline-flex;
-			flex-direction: row;
-					width: 100%;
-			margin: auto;
-			padding: 0px
-		}
 
 			.cardsOL > .card {
 				height: 200px;
@@ -77,13 +68,36 @@
 			position: absolute;
 		}
 
-		#header {
-			border-bottom: 1px solid var(--primaryColor);
-			background-position: right -200px top;
-			background-size: cover;
-			background-repeat: no-repeat;
-			width:100%;
+
+		#head {
+			position: relative;
+			border-bottom:1px solid white;
 		}
+
+		#headerBackground {
+			opacity: 0.6;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+		}
+
+		#headerInfo {
+			position:relative;
+			margin:0 auto;
+		}
+
+	#details { 
+		margin-top: 30px;
+	}
+
+	 .container div {
+		margin-top:30px;
+	}
+
+	 .leftScrollBtn, .rightScrollBtn {
+		 
+	 }
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -120,23 +134,51 @@
 			<button id="loginBtn"><i class="fa fa-sign-in"></i>Login</button>
 		</div>
 	</div>
-	<div id="seriesDiv" class="container" style="display:none">
-		<div class="row" id="header">
-			<div id="ph" class="col-5"></div>
-			<div id="details" class="col-7">
-				<h3 id="seriesName"></h3>
-				<div id="average"></div>
-				<button id="watchTrailerBtn"> watch trailer </button>
-				<div class="row" id="watchTrailerDiv"></div>
-				<div id="overview"></div>
+	<div id="seriesDiv" style="display:none">
+		<div id="head">
+			<img id="headerBackground"/>
+			<div class="row" id="headerInfo">
+				<div id="ph" class="col-5"></div>
+				<div id="details" class="col-7">
+					<h3 id="seriesName"></h3>
+					<div id="average"></div>
+					<button id="watchTrailerBtn"> watch trailer </button>
+					<div class="row" id="watchTrailerDiv"></div>
+					<div id="overview"></div>
+				</div>
+				<button id="movieLikeBtn" style="display:none"><i class="fa fa-thumbs-up"></i></button>
 			</div>
-			<button id="movieLikeBtn"  style="display:none"><i class="fa fa-thumbs-up"></i></button>
 		</div>
-		<div id="actorsDiv" style="display:none"><h5>Actors</h5> <ol id="actors" class="cardsOL"></ol></div>
+		<div class="container">
+			<div id="actorsDiv" style="display:none">
+				<h5>Actors</h5>
+				<div>
+					<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
+					<ol id="actors" class="cardsOL"></ol>
+					<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
+				</div>
+			</div>
 
-		<div id="seasonsDiv" style="display:none"><h5>Seasons</h5><ol id="seasonsList" class="cardsOL"></ol></div>
+			<div id="seasonsDiv" style="display:none">
+				<h5>Seasons</h5>
+				<div>
+					<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
+					<ol id="seasonsList" class="cardsOL"></ol>
+					<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
+				</div>
+			</div>
 
-		<div id="recommendationsDiv" style="display:none"><h5>Recommendations</h5><ol id="recommendations" class="cardsOL"></ol></div>
+			<div id="recommendationsDiv" style="display:none">
+				<h5>Recommendations</h5>
+				<div>
+					<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
+					<ol id="recommendations" class="cardsOL"></ol>
+					<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
+				</div>
+			</div>
+		</div>
+
+
 	</div>
 		<div class="row">
 		<div id="episode"></div>

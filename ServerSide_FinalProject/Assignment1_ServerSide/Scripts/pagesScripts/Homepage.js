@@ -7,6 +7,7 @@ $(document).ready(function () {
     getPopularTv();
     getPopularMovie();
 
+
     recommendMode = "tv";
 
     //If User logged in, render User options to Homepage
