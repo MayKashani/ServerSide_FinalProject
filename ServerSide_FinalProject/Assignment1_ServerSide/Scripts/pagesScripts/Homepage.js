@@ -2,7 +2,7 @@
 var popularMode = "";
 
 $(document).ready(function () {
-
+    chatListBtn = document.getElementById("openChatListBtn");
     //Get Popular According to TMBD
     getPopularTv();
     getPopularMovie();
@@ -46,7 +46,7 @@ $(document).ready(function () {
     $(document).on("click", ".joinChatBtn", function () {
         ref = firebase.database().ref("messages/" + this.id);
         $("#chatName").html(this.parentElement.firstElementChild.innerText);
-        $("#chatWindow").css("visibility", "visible");
+        $("#chatWindow").css("visibility","visible")
         $("#messages").html("");
         listenToNewMessages();
     });
@@ -56,6 +56,11 @@ $(document).ready(function () {
         if (event.keyCode === 13)
             AddMSG();
     })
+
+    $(chatListBtn).click(function () {
+        $("#fanClub").toggle("fast")
+	})
+
 
 });
 
@@ -109,7 +114,7 @@ function getMovieRecErrorCB(err) {
 }
 
 function exit(e) {
-    e.pa.style.display = "none";
+    e.pa.style.visibility = "hidden"
 }
 
 //Get Popular TvShows
