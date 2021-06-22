@@ -16,13 +16,17 @@ $(document).ready(function () {
     if (mode == "member") {
         getChats();
         getRecBySimilarUsers();
-        /*getRecMovieBySimilarUsers();*/
+        getRecMovieBySimilarUsers();
     }
 
     $(".popularButton").click(function () {
         if ($(this).css("background-color") != "aqua")
             togglePopular();
     });
+    $(".recommendButton").click(function () {
+        if ($(this).css("background-color") != "aqua")
+            toggleRecommend();
+    })
 
     $(document).on("click", ".tv", function () {
         let method = {
@@ -50,6 +54,11 @@ $(document).ready(function () {
         listenToNewMessages();
     });
 
+    $("#msgTB").keypress(function (event) {
+        if (event.keyCode === 13)
+            AddMSG();
+    })
+
 });
 
 function getRecBySimilarUsers() {
@@ -70,6 +79,8 @@ function getRecSuccess(rec) {
         }
         $("#recommendTvList").html(str);
         $("#showTvRecommend").css("background-color", "aqua");
+        $("#recommendTv").show();
+        recommendMode = "tv";
     }
 }
 
@@ -83,7 +94,18 @@ function getRecMovieBySimilarUsers() {
 }
 
 function getMovieRecSuccessCB(movies) {
-
+    if (movies.length > 0) {
+        $("#recommend").css("visibility", "visible");
+        let str = "";
+        for (let i = 0; i < movies.length; i++) {
+            str += "<li id = '" + movies[i].Id + "'class = 'card movie'>";
+            image = "<img class='card-img-top' src = '" + imagePath + movies[i].Backdrop_Path + "'";
+            cardBody = "<div class='card-body'><h5>" + movies[i].Title + "</h5> <p class='card-text'>" + movies[i].Original_Language + "</p></div>";
+            str += image + cardBody + "<p class='goToPage'>Go to page</p></li> ";
+        }
+        $("#recommendMovieList").html(str);
+        $("#recommendMovie").hide();
+    }
 }
 function getMovieRecErrorCB(err) {
     console.log(err);
@@ -95,7 +117,7 @@ function exit(e) {
 function getPopularTv() {
     let apiCall = url + tvMethod + "popular?" + api_key + "&language=en-US&page=1";
     ajaxCall("GET", apiCall, "", getTopShowSuccessCB, getTopShowErrorCB);
-};
+}
 
 function getTopShowSuccessCB(topTv) {
 
@@ -154,6 +176,23 @@ function togglePopular() {
         popularMode = "tv";
     }
 }
+function toggleRecommend() {
+    if (recommendMode == "tv") {
+        $("#recommendMovie").show();
+        $("#recommendTV").hide();
+        $("#showTvRecommend").css("background-color", "white");
+        $("#showMovieRecommend").css("background-color", "aqua");
+        recommendMode = "movie";
+    }
+    else {
+        $("#recommendTV").show();
+        $("#recommendMovie").hide();
+        $("#showMovieRecommend").css("background-color", "white");
+        $("#showTvRecommend").css("background-color", "aqua");
+        recommendMode = "tv";
+    }
+}
+
 
 function getChats() {
 
@@ -206,4 +245,3 @@ function AddMSG() {
     let mail = user.Mail;
     ref.push().set({ "msg": msg, "name": name, "mail": mail });
 }
-

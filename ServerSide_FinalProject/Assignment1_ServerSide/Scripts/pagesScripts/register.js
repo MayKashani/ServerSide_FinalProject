@@ -79,6 +79,10 @@ $(document).ready(function () {
     })
 
     $("#getTV").click(searchByName);
+    $("#tvShowName").keypress(function (event) {
+        if (event.keyCode === 13)
+            searchByName();
+    })
     $(".logo").click(function () {
         window.location.href="Homepage.html";
     })
