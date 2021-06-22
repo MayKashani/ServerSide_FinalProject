@@ -162,19 +162,19 @@ function getActorLinks() {
     let apiCall = url + method + "/external_ids?" + api_key;
     ajaxCall("GET", apiCall, "", getLinksSuccessCB, getLinksErrorCB);
 }
-
+//<img src='../Icons/facebook.png' />
 function getLinksSuccessCB(links) {
     console.log(links);
     if (links.facebook_id != null) {
-        strLink = "<a class='icon' href= 'https://www.facebook.com/" + links.facebook_id + "/'><img src='../Icons/facebook.png' /> </a><br/ >";
+        strLink = "<a  href= 'https://www.facebook.com/" + links.facebook_id +"/'><i class='fa fa-facebook'></i></a>";
         $("#facebookIcon").html(strLink);
     }
     if (links.instagram_id != null) {
-        strLink = "<a class='icon' href= 'https://www.instagram.com/" + links.instagram_id + "/'><img src='../Icons/instagram.png' /> </a><br/ >";
+        strLink = "<a  href= 'https://www.instagram.com/" + links.instagram_id + "/'><i class='fa fa-instagram'></i> </a>";
         $("#instagramIcon").html(strLink);
     }
     if (links.twitter_id != null) {
-        strLink = "<a class='icon' href= 'https://www.twitter.com/" + links.twitter_id + "/'><img src='../Icons/twitter.png' /> </a><br/ >";
+        strLink = "<a  href= 'https://www.twitter.com/" + links.twitter_id + "/'><i class='fa fa-twitter'></i></a>";
         $("#twitterIcon").html(strLink);
     }
 }
