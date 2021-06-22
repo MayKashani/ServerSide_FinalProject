@@ -4,7 +4,7 @@ $(document).ready(function () {
     getActor();
    
     $(".knownButton").click(function () {
-        if ($(this).css("background-color") != "aqua")
+        if ($(this).css("background-color") != "rgb(0, 255, 255)")
             toggleCredits();
     });
 
@@ -68,10 +68,10 @@ function renderActor(actor) {
     }
     
     strName = "<h1>" + actor.name + "</h1>";
-    let strImg = imageSrc + strName;
+    let strImg = imageSrc;
     $("#actorImg").append(strImg);
     actorBio = "<p>Bio: <br>" + actor.biography + "</p>";
-    str =  strInfo + actorBio;
+    str = strName+ strInfo + actorBio;
     $("#info").html(str);
 }
 
@@ -150,29 +150,26 @@ function getActorMovieCreditsErrorCB(err) {
     console.log(err);
 }
 
+//Get actor external links (Facebook,twitter,Instagram)
 function getActorLinks() {
     let apiCall = url + method + "/external_ids?" + api_key;
     ajaxCall("GET", apiCall, "", getLinksSuccessCB, getLinksErrorCB);
 }
-//<img src='../Icons/facebook.png' />
 function getLinksSuccessCB(links) {
     console.log(links);
-    if (links.facebook_id != null) {
-        strLink = "<a  href= 'https://www.facebook.com/" + links.facebook_id +"/'><i class='fa fa-facebook'></i></a>";
-        $("#facebookIcon").html(strLink);
+    let strLink = "";
+    if (links.facebook_id != null) 
+        strLink += "<a  href= 'https://www.facebook.com/" + links.facebook_id +"/'><i class='fa fa-facebook'></i></a>";
+    if (links.instagram_id != null) 
+        strLink+= "<a  href= 'https://www.instagram.com/" + links.instagram_id + "/'><i class='fa fa-instagram'></i> </a>";
+    if (links.twitter_id != null) 
+        strLink += "<a  href= 'https://www.twitter.com/" + links.twitter_id + "/'><i class='fa fa-twitter'></i></a>";
+        $("#externalLinks").html(strLink);
     }
-    if (links.instagram_id != null) {
-        strLink = "<a  href= 'https://www.instagram.com/" + links.instagram_id + "/'><i class='fa fa-instagram'></i> </a>";
-        $("#instagramIcon").html(strLink);
-    }
-    if (links.twitter_id != null) {
-        strLink = "<a  href= 'https://www.twitter.com/" + links.twitter_id + "/'><i class='fa fa-twitter'></i></a>";
-        $("#twitterIcon").html(strLink);
-    }
-}
-
 function getLinksErrorCB(err) {
     console.log(err);
 }
+
+
 
 

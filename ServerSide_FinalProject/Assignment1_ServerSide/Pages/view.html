@@ -9,18 +9,74 @@
             crossorigin="anonymous">
     </script>
     <script src="../Scripts/ajaxCalls.js"></script>
+    <script src="../Scripts/pagesScripts/register.js"></script>
     <script src="../Scripts/pagesScripts/view.js"></script>
     <link rel="stylesheet" href="../Stylesheets/jquery.notifyBar.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDX02F5Z4U83fevL63h0sIKVde5iqwDmr4"></script>
     <script src="../Scripts/pagesScripts/alerts.js"></script>
     <script src="../Scripts/jquery.notifyBar.js"></script>
-    <script src="../Scripts/pagesScripts/register.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-analytics.js"></script>
+    <!--**** Remember to add the database script ***-->
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
+
+    <!--Your web app's Firebase configuration-->
+    <script src="../Scripts/pagesScripts/firebase.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../Stylesheets/chat.css" />
     <link href="../Stylesheets/StyleSheet.css" rel="stylesheet" />
     <style>
         body {
             background: linear-gradient(to left, #370606,#701c1c,#370606)
+        }
+
+        #mainDiv {
+            display: grid;
+            height: 100%;
+            width: 100%;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        #fanClub {
+            grid-column: 1/2;
+            border-right: 1px solid white;
+            width: auto
+        }
+
+        ol {
+            padding: 5px;
+        }
+
+        #center {
+            grid-column: 2/3
+        }
+
+
+        .joinChatBtn {
+            width: auto;
+            height: fit-content;
+            margin: 5px auto;
+            padding: 5px;
+        }
+
+        #chatList p {
+            margin: 5px auto;
+            width: inherit
+        }
+
+        #chatList li {
+            grid-template-columns: 1fr auto;
+            display: grid;
+            border-top: 2px solid white;
+            border-bottom: 2px solid white;
+            padding: 5px;
+            list-style-type: none;
+            font-size: 15px;
         }
     </style>
 </head>
@@ -36,6 +92,8 @@
         <div id="memberBar">
             <button id="linkBtn" onclick="window.location.href='Homepage.html'"> <i class="fa fa-heart"></i> My Favorites </button>
             <button id='logoutBtn'><i class="fa fa-sign-out"></i>Logout</button>
+            <button id="openChatListBtn"><i class="fa fa-comments">Chat</i></button>
+
         </div>
         <div id="guestBar">
             <button id="registerBtn"><i class="fa fa-user-plus"></i>Register</button>
@@ -43,26 +101,43 @@
         </div>
     </div>
 
-    <div>
-        <h1> My List </h1>
-        <button id="showTvFavorites" class="favoriteButton">Tv Shows</button>
-        <button id="showMovieFavorites" class="favoriteButton">Movies</button>
-        <div id="favoritesTv">
-            <div>
-                <select id="tvShows"></select>
-            </div>
-            <h3 id="tvName"> </h3>
-            <div id="seriesEpisodes">
-            </div>
+    <div id="mainDiv">
+        <div id="fanClub" style="display:none">
+            <h3>Join chat</h3>
+            <ol id="chatList" style="list-style-type:none">
+            </ol>
         </div>
-        <div id="favoritesMovies">
-            <h3>Favorites Movies </h3>
+        <div id="center">
+            <h1> My List </h1>
+            <button id="showTvFavorites" class="favoriteButton">Tv Shows</button>
+            <button id="showMovieFavorites" class="favoriteButton">Movies</button>
+            <div id="favoritesTv">
+                <div>
+                    <select id="tvShows"></select>
+                </div>
+                <h3 id="tvName"> </h3>
+                <div id="seriesEpisodes">
+                </div>
+            </div>
             <div id="favoritesMovies">
+                <h3>Favorites Movies </h3>
+                <div id="favoritesMovies">
+                </div>
             </div>
         </div>
-
+        <div id="chatWindow" class="card mt-5" style="visibility:hidden">
+            <div class="d-flex flex-row justify-content-between p-3 adiv text-white"> <i class="fas fa-chevron-left"></i> <span id="chatName" class="pb-3"></span> <i onclick="$('#chatWindow').css('visibility','hidden')" class="fa fa-times"></i> </div>
+            <div id="messages">
+            </div>
+            <div class="form-group px-3">
+                <textarea id="msgTB" class="form-control" rows="2" placeholder="Type your message"></textarea>
+                <button onclick="AddMSG()">Add Message</button>
+            </div>
+        </div>
 
     </div>
+
+
 
     <div id="registerModal" class="modal">
         <form id="registerForm" class="modal-content">

@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    userMail = JSON.parse(localStorage["User"]).Mail;
+    
     errorPng = 'this.src="..//Images//noImage.jpg"';
     imagePath = "https://image.tmdb.org/t/p/w500/";
 
@@ -9,7 +9,7 @@
 
 
     $(".favoriteButton").click(function () {
-        if ($(this).css("background-color") != "aqua")
+        if ($(this).css("background-color") != "rgb(0, 255, 255)")
             toggleFavorites();
     });
 
@@ -18,12 +18,12 @@
 })
 
 function getTVNames() {
-    let api = "../api/Seriess?mail=" + userMail +"&mode=Favorites";
+    let api = "../api/Seriess?mail=" + user.Mail +"&mode=Favorites";
     ajaxCall("GET", api, "", getTVNamesSuccessCB, getTVNamesErrorCB);
 }
 
 function getMovies() {
-    let api = "../api/Movies?mail=" + userMail + "&mode=Favorites";
+    let api = "../api/Movies?mail=" + user.Mail + "&mode=Favorites";
     ajaxCall("GET", api, "", getMovieSuccessCB, getMovieErrorCB);
 }
 function getTVNamesSuccessCB(series) {
@@ -64,7 +64,7 @@ function getEpisodes() {
         $("#tvName").html("");
         $("#seriesEpisodes").html("")
     }
-    let api = "../api/Episodes?seriesID=" + $(this).children(":selected").attr("id") + "&mail=" + userMail;
+    let api = "../api/Episodes?seriesID=" + $(this).children(":selected").attr("id") + "&mail=" + user.Mail;
     ajaxCall("GET", api, "", getEpisodesSuccessCB, getEpisodesErrorCB);
 
 
