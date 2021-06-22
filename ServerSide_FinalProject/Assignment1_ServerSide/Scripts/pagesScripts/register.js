@@ -86,6 +86,25 @@ $(document).ready(function () {
     $(".logo").click(function () {
         window.location.href="Homepage.html";
     })
+
+    //scroll with button
+    $('.rightScrollBtn').click(function () {
+        element = this.parentElement.children[1];
+        position = $(element).scrollLeft()
+        width = $(element).width();
+        $(element).animate({ //animate element that has scroll
+            scrollLeft: position + width //for scrolling
+        }, 1000);
+    });
+
+    $('.leftScrollBtn').click(function () {
+        element = this.parentElement.children[1];
+        position = $(element).scrollLeft()
+        width = $(element).width();
+        $(element).animate({ //animate element that has scroll
+            scrollLeft: position - width //for scrolling
+        }, 1000);
+    });
 });
 
 function searchByName() {

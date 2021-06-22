@@ -173,10 +173,15 @@ function getSimilar(series) {
 	let recommendations = "";
 	if (series.length > 0) {
 		for (let i = 0; i < series.length; i++) {
-			if (series[i].poster_path == null)
+			if (series[i].poster_path == null) {
 				poster = "..//Images//noImage.jpg";
-			else poster = imagePath + series[i].backdrop_path;
-			recommendations += "<div id=" + series[i].id + " class='card recommended'> <img class='card-img-top' src='" + poster + "'><p class='onImageText'>" + series[i].name +"</p></div>";
+			}
+			else 
+				poster = imagePath + series[i].backdrop_path;
+			if (chosenMedia = "movie")
+				name = series[i].title;
+			else name = series[i].name;
+			recommendations += "<div id=" + series[i].id + " class='card recommended'> <img class='card-img-top' src='" + poster + "'><p class='onImageText'>" + name +"</p></div>";
 		}
 		$("#recommendations").html(recommendations);
 		$("#recommendationsDiv").show();

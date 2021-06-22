@@ -287,12 +287,13 @@ i {
 
 /*Homepage CSS*/
 
+
 .orderList > .card {
     height: 300px;
     min-width: inherit;
     padding: 10px;
+    margin: 0 3px;
 }
-
 
 .card:hover {
     background-color: grey;
@@ -317,10 +318,10 @@ i {
 .orderList {
     overflow-x: scroll;
     overflow-y: hidden;
-    max-width: 100%;
+    max-width: 90%;
     display: inline-flex;
     flex-direction: row;
-    width: 100%;
+    width:90%;
 }
 
 h4 {
