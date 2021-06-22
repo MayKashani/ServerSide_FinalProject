@@ -4,8 +4,6 @@ function checkLS() {
     if (localStorage["User"] != null) {
         user = JSON.parse(localStorage["User"]);
         $("#welcomeDiv").html("<h3>Welcome back, " + user.FirstName + " " + user.LastName + "</h3>");
-        toggleBar();
-        user = JSON.parse(localStorage["User"]).Mail;
         mode = "member";
     }
     else {
@@ -19,12 +17,12 @@ $(document).ready(function () {
     key = "46ee229c787140412cbafa9f3aa03555";
     url = "https://api.themoviedb.org/";
     imagePath = "https://image.tmdb.org/t/p/w500/";
-    method = "3/tv/";
+    tvMethod = "3/tv/";
+    movieMethod = "3/movie/";
     api_key = "api_key=" + key;
 
     var memberBar = document.getElementById("memberBar");
     var guestBar = document.getElementById("guestBar");
-    var user;
 
     guestBar.style.display = "block";
     memberBar.style.display = "none";

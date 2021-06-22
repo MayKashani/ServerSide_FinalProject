@@ -89,7 +89,7 @@
 				AirDate: ep.air_date
 			}
 
-			let api = "../api/Episodes?mail=" + user;
+			let api = "../api/Episodes?mail=" + user.Mail;
 			ajaxCall("POST", api, JSON.stringify(episode), postEpisodeSuccessCB, postEpisodeErrorCB)
 		}
 

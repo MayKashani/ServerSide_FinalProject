@@ -1,20 +1,14 @@
 ﻿var creditMode = "";
 $(document).ready(function () {
 
-
-    key = "46ee229c787140412cbafa9f3aa03555";
-    url = "https://api.themoviedb.org/";
-    imagePath = "https://image.tmdb.org/t/p/w500/";
-    method = "3/person/";
-    api_key = "api_key=" + key;
     getActor();
    
-
     $(".knownButton").click(function () {
         if ($(this).css("background-color") != "aqua")
             toggleCredits();
     });
 
+    //move to requested page.
     $(document).on("click", ".tv", function () {
         let method = {
             id: this.id,
@@ -23,7 +17,6 @@ $(document).ready(function () {
         sessionStorage.setItem("mediaChoose", JSON.stringify(method));
         window.location.href="index.html";
     });
-
     $(document).on("click", ".movie", function () {
         let method = {
             id: this.id,
@@ -42,7 +35,6 @@ function getActor() {
     let apiCall = url + method + "?"+ api_key;
     ajaxCall("GET", apiCall, "", getActorSuccessCB, getActorErrorCB);
 }
-
 function getActorSuccessCB(actor) {
     console.log(actor)
     renderActor(actor);
@@ -54,11 +46,11 @@ function getActorSuccessCB(actor) {
     else 
         $("#known_from").hide();
 }
-
 function getActorErrorCB(err) {
     console.log(err);
 }
 
+//Render Actor details.
 function renderActor(actor) {
     imageSrc = "<img src='" + imagePath + actor.profile_path + "' onerror=" + errorPng + ">";
     getActorLinks();
@@ -83,6 +75,7 @@ function renderActor(actor) {
     $("#info").html(str);
 }
 
+//toggle by credit type
 function toggleCredits() {
     if (creditMode == "tv") {
         $("#knownMovieList").show();
@@ -100,11 +93,12 @@ function toggleCredits() {
     }
 }
 
+
+//get Actor TV Known from, from TMDB
 function getActorTvCredits() {
     let apiCall = url + method + "/tv_credits?" + api_key;
     ajaxCall("GET", apiCall, "", getActorTvCreditsSuccessCB, getActorTvCreditsErrorCB);
 }
-
 function getActorTvCreditsSuccessCB(tv) {
     console.log(tv);
     castingArr = tv.cast;
@@ -126,16 +120,15 @@ function getActorTvCreditsSuccessCB(tv) {
         $("#knownMovieList").hide();
     }
 }
-
 function getActorTvCreditsErrorCB(err) {
     console.log(err);
 }
 
+//get Actor Movie Known from, from TMDB
 function getActorMovieCredits() {
     let apiCall = url + method + "/movie_credits?" + api_key;
     ajaxCall("GET", apiCall, "", getActorMovieCreditsSuccessCB, getActorMovieCreditsErrorCB);
 }
-
 function getActorMovieCreditsSuccessCB(movie) {
     console.log(movie);
     castingArr = movie.cast;
@@ -153,7 +146,6 @@ function getActorMovieCreditsSuccessCB(movie) {
         $("#anyMovieKnown").html(str);
     }
 }
-
 function getActorMovieCreditsErrorCB(err) {
     console.log(err);
 }

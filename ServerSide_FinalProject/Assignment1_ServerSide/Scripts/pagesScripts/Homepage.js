@@ -2,23 +2,19 @@
 var popularMode = "";
 
 $(document).ready(function () {
-    key = "46ee229c787140412cbafa9f3aa03555";
-    url = "https://api.themoviedb.org/";
-    imagePath = "https://image.tmdb.org/t/p/w500/";
-    tvMethod = "3/tv/";
-    movieMethod = "3/movie/";
-    api_key = "api_key=" + key;
 
-
+    //Get Popular According to TMBD
     getPopularTv();
     getPopularMovie();
 
+    //If User logged in, render User options to Homepage
     if (mode == "member") {
         getChats();
         getRecBySimilarUsers();
         getRecMovieBySimilarUsers();
     }
 
+    //Toggle TVShows/Movies
     $(".popularButton").click(function () {
         if ($(this).css("background-color") != "aqua")
             togglePopular();
@@ -28,6 +24,7 @@ $(document).ready(function () {
             toggleRecommend();
     })
 
+    //get TVShow/Movie selected Page.
     $(document).on("click", ".tv", function () {
         let method = {
             id: this.id,
@@ -36,7 +33,6 @@ $(document).ready(function () {
         sessionStorage.setItem("mediaChoose", JSON.stringify(method));
         window.location.href = 'index.html';
     });
-
     $(document).on("click", ".movie", function () {
         let method = {
             id: this.id,
@@ -46,6 +42,7 @@ $(document).ready(function () {
         window.location.href = 'index.html';
     });
 
+    //Join selected Chat.
     $(document).on("click", ".joinChatBtn", function () {
         ref = firebase.database().ref("messages/" + this.id);
         $("#chatName").html(this.parentElement.firstElementChild.innerText);
@@ -54,6 +51,7 @@ $(document).ready(function () {
         listenToNewMessages();
     });
 
+    //'Enter' keypress event for send message in chat
     $("#msgTB").keypress(function (event) {
         if (event.keyCode === 13)
             AddMSG();
@@ -61,11 +59,11 @@ $(document).ready(function () {
 
 });
 
+//Get TVShows Recommendations according to similar Users.
 function getRecBySimilarUsers() {
-    let api = "../api/Seriess?mail=" + JSON.parse(localStorage["User"]).Mail + "&mode=Recommended";
+    let api = "../api/Seriess?mail=" + user.Mail + "&mode=Recommended";
     ajaxCall("GET", api, "", getRecSuccess, getRecError);
 }
-
 function getRecSuccess(rec) {
     console.log(rec);
     if (rec.length > 0) {
@@ -83,16 +81,15 @@ function getRecSuccess(rec) {
         recommendMode = "tv";
     }
 }
-
 function getRecError(err) {
     console.log(err)
 }
 
+//Get Movie Recommendations according to similar Users.
 function getRecMovieBySimilarUsers() {
-    let api = "../api/Movies?mail=" + user + "&mode=Recommended";
+    let api = "../api/Movies?mail=" + user.Mail + "&mode=Recommended";
     ajaxCall("GET", api, "", getMovieRecSuccessCB, getMovieRecErrorCB);
 }
-
 function getMovieRecSuccessCB(movies) {
     if (movies.length > 0) {
         $("#recommend").css("visibility", "visible");
@@ -110,15 +107,16 @@ function getMovieRecSuccessCB(movies) {
 function getMovieRecErrorCB(err) {
     console.log(err);
 }
+
 function exit(e) {
     e.pa.style.display = "none";
 }
 
+//Get Popular TvShows
 function getPopularTv() {
     let apiCall = url + tvMethod + "popular?" + api_key + "&language=en-US&page=1";
     ajaxCall("GET", apiCall, "", getTopShowSuccessCB, getTopShowErrorCB);
 }
-
 function getTopShowSuccessCB(topTv) {
 
     popularShows = topTv.results;
@@ -132,16 +130,15 @@ function getTopShowSuccessCB(topTv) {
     $("#anyShowType").html(str);
     $("#showTvPopular").css("background-color", "aqua");
 }
-
 function getTopShowErrorCB(err) {
     console.log(err);
 }
 
+//Get Popular Movies
 function getPopularMovie() {
     let apiCall = url + movieMethod + "popular?" + api_key + "&language=en-US&page=1";
     ajaxCall("GET", apiCall, "", getTopMovieSuccessCB, getTopMovieErrorCB);
 };
-
 function getTopMovieSuccessCB(movies) {
     console.log(movies);
     popularMovies = movies.results;
@@ -160,6 +157,7 @@ function getTopMovieErrorCB(err) {
     console.log(err);
 }
 
+//Toggle Functions
 function togglePopular() {
     if (popularMode == "tv") {
         $("#popularMovie").show();
@@ -193,13 +191,11 @@ function toggleRecommend() {
     }
 }
 
-
+//Get Chats from every prefered Series and his initiate functions
 function getChats() {
-
-    let api = "../api/Seriess?mail=" + JSON.parse(localStorage["User"]).Mail + "&mode=Favorites";
+    let api = "../api/Seriess?mail=" + user.Mail + "&mode=Favorites";
     ajaxCall("GET", api, "", getChatsSuccess, getChatsError);
 }
-
 function getChatsSuccess(series) {
     let str = "";
     for (let i = 0; i < series.length; i++) {
@@ -207,16 +203,14 @@ function getChatsSuccess(series) {
     }
     $("#chatList").html(str);
 }
-
 function getChatsError(err) {
     console.log(err);
 }
-
 function printMessage(msg) {
     type = "";
     imageSrc = '<img src="../../Images/userPng.jpeg" width="30" height="30">'
 
-    if (msg.mail != user)
+    if (msg.mail != user.Mail)
         type = "chat ml-2";
     else
         type = "bg-white mr-2"
@@ -225,7 +219,6 @@ function printMessage(msg) {
     $("#messages").append(str);
     $("#msgTB").val("");
 }
-
 function listenToNewMessages() {
     ref.on("child_added", snapshot => {
         msg = {
@@ -236,11 +229,8 @@ function listenToNewMessages() {
         printMessage(msg);
     })
 }
-
-
 function AddMSG() {
     let msg = document.getElementById("msgTB").value;
-    let user = JSON.parse(localStorage["User"])
     let name = user.FirstName;
     let mail = user.Mail;
     ref.push().set({ "msg": msg, "name": name, "mail": mail });

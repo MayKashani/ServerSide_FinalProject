@@ -1,11 +1,14 @@
-﻿errorPng = "..//Images//noImage.jpg";
-
+﻿
 $(document).ready(function () {
-    searchVal = sessionStorage.getItem("searchValue");
+
+    searchVal = sessionStorage.getItem("tvShowName");
     $("#resultHeader").html("Result for: '" + searchVal + "'");
     getTv();
+
+    //Get each requested search (TVShows/Movies/People). each call separetally according to request for quicker load.
     $(".buttonType").click(function () { changeType(this.id) });
 
+    //Get to each requested Page
     $(document).on("click", ".tv", function () {
         let method = {
             id: this.id,
@@ -29,6 +32,7 @@ $(document).ready(function () {
     });
 });
 
+
 function getType(type) {
     let method = "3/search/"+type+"?"
     let query = "query=" + encodeURIComponent(searchVal);
@@ -40,7 +44,6 @@ function getTv() {
     let apiCall = getType("tv");
     ajaxCall("GET", apiCall, "", getTVSuccessCB, getErrorCB);
 }
-
 function getTVSuccessCB(tv) {
     console.log(tv);
     renderSearchTv(tv);
@@ -50,7 +53,6 @@ function getMovies() {
     let apiCall = getType("movie");
     ajaxCall("GET", apiCall, "", getMoviesSuccessCB, getErrorCB);
 }
-
 function getMoviesSuccessCB(movie) {
     console.log(movie);
     renderSearchMovie(movie);
@@ -60,12 +62,12 @@ function getPersons() {
     let apiCall = getType("person");
     ajaxCall("GET", apiCall, "", getPersonsSuccessCB, getErrorCB);
 }
-
 function getPersonsSuccessCB(person) {
     console.log(person);
     renderSearchPerson(person);
 }
 
+//Render Each Div by requested option
 function renderSearchPerson(person) {
     let str = "";
     let personArr = person.results;
@@ -86,7 +88,6 @@ function renderSearchPerson(person) {
         $("#results").html(str);
     }
 }
-
 function renderSearchTv(tv) {
     let str = "";
     let tvArr = tv.results;
@@ -107,7 +108,6 @@ function renderSearchTv(tv) {
         $("#results").html(str);
     }
 }
-
 function renderSearchMovie(movie) {
     let str = "";
     let movieArr = movie.results;
@@ -129,6 +129,7 @@ function renderSearchMovie(movie) {
     }
 }
 
+//Same error for all requested options
 function getErrorCB(err) {
     console.log(err);
 }

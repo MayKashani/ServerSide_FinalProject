@@ -142,7 +142,7 @@ function getSeasonSuccessCB(season) {
 	seasonsArr.push(season);
 	seasonsList += "<div id=" + i + " class='card'> <img class='card-img-top' src='" + poster + "'><div class='card-body'><h5>" + season.name + "</h5><p>" + season.air_date + "</p><p>" + season.overview + "</p></div></div>";
 	i++;
-	let apiCall = url + method + mediaId + "/season/" + i + "?" + api_key;
+	let apiCall = url + tvMethod + mediaId + "/season/" + i + "?" + api_key;
 	ajaxCall("GET", apiCall, "", getSeasonSuccessCB, getSeasonErrorCB);
 }
 
