@@ -42,6 +42,8 @@ $(document).ready(function () {
 
     var loginModal = document.getElementById("loginModal");
     var registerModal = document.getElementById("registerModal");
+    var trailerModal = document.getElementById("trailerModal");
+ 
 
     var loginBtn = document.getElementById("loginBtn");
     var registerBtn = document.getElementById("registerBtn");
@@ -64,6 +66,11 @@ $(document).ready(function () {
         if (event.target == registerModal) {
             registerModal.style.display = "none";
             $("#registerForm").trigger("reset");
+        }
+        if (event.target == trailerModal) {
+            trailerModal.style.display = "none";
+            $('#trailerModal').html("")
+           
         }
     }
 

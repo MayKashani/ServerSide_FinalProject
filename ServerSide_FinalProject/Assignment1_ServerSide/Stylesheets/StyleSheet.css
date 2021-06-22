@@ -48,7 +48,7 @@ div {
     text-align: left;
 }
 
-button, input[type=submit] {
+/*button, input[type=submit] {
     border: 2px solid black;
     font-family: 'Berlin Sans FB';
     font-size: 18px;
@@ -61,7 +61,7 @@ button, input[type=submit] {
         background-color: black;
         border: 1px solid white;
         color: white;
-    }
+    }*/
 
 .card {
     color: black;

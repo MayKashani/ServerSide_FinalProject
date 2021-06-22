@@ -3,6 +3,7 @@
 $(document).ready(function () {
 	var i = 1;
 	trailerUrl = "";
+
 	$("#watchTrailerBtn").hide();
 	chosenMedia = sessionStorage.getItem("mediaChoose");
 
@@ -30,6 +31,8 @@ $(document).ready(function () {
 		$("#movieLikeBtn").click(postMovie);
 	}
 
+
+
 });
 
 function postMovie() {
@@ -54,8 +57,10 @@ function postMovieErrorCB(err) {
 	console.log(err)
 }
 
-function watchTrailer() {
-	$("#watchTrailerDiv").html('<iframe width="420" height="315" src="' + trailerUrl + '?autoplay=1" allow="autoplay" allowfullscreen></iframe>')
+function watchTrailer(pageName, elmnt) {
+	$("#trailerModal").html('<iframe width="420" height="315" id="trailerFrame" class="modal-content" src="' + trailerUrl + '?autoplay=1" allow="autoplay" allowfullscreen></iframe>')
+	$("#trailerModal").show();
+
 }
 
 function getMedia() {
@@ -143,7 +148,7 @@ function getSeasonSuccessCB(season) {
 function getSeasonErrorCB(err) {
 	if (err.status == 404) {
 		$("#seasonsList").append(seasonsList);
-		$("#seasonsDiv").show();
+		//$("#seasonsDiv").show();
 		renderDetails(Current_TV);
 	}
 	else console.log("Error");
@@ -160,7 +165,7 @@ function getCredits(actors) {
 		str += "<div id=" + actors[i].id + " class='card actorCard'> <img class='card-img-top' src='" +profile + "'><div class='card-body'><h5>" + actors[i].name + "</h5><p class='card-text'>" + actors[i].character + "</p></div></div>";
 	}
 	$("#actors").html(str);
-	$("#actorsDiv").show();
+	//$("#actorsDiv").show();
 }
 
 function getSimilar(series) {
@@ -178,6 +183,6 @@ function getSimilar(series) {
 			recommendations += "<div id=" + series[i].id + " class='card recommended'> <img class='card-img-top' src='" + poster + "'><p class='onImageText'>" + name +"</p></div>";
 		}
 		$("#recommendations").html(recommendations);
-		$("#recommendationsDiv").show();
+		//$("#recommendationsDiv").show();
 	}
 }
