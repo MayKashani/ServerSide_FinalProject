@@ -1,9 +1,6 @@
 ﻿
 
 $(document).ready(function () {
-	//var Current_TV;
-	//var Current_ep;
-
 	var i = 1;
 	trailerUrl = "";
 	$("#watchTrailerBtn").hide();
@@ -31,7 +28,6 @@ $(document).ready(function () {
 		});
 
 		$("#movieLikeBtn").click(postMovie);
-
 	}
 
 });
@@ -51,11 +47,9 @@ function postMovie() {
 	ajaxCall("POST", "../api/Movies?mail="+user, JSON.stringify(movie), postMovieSuccessCB, postMovieErrorCB)
 	return false;
 }
-
 function postMovieSuccessCB(num) {
 	console.log("success");
 }
-
 function postMovieErrorCB(err) {
 	console.log(err)
 }

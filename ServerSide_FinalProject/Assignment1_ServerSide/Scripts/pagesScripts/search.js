@@ -1,7 +1,7 @@
 ﻿
 $(document).ready(function () {
 
-    searchVal = sessionStorage.getItem("tvShowName");
+    searchVal = sessionStorage.getItem("searchValue");
     $("#resultHeader").html("Result for: '" + searchVal + "'");
     getTv();
 

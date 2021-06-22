@@ -6,6 +6,7 @@ function checkLS() {
         $("#welcomeDiv").html("<h3>Welcome back, " + user.FirstName + " " + user.LastName + "</h3>");
         toggleBar();
         mode = "member";
+        getChats();
     }
     else {
         mode = "guest";
@@ -13,7 +14,7 @@ function checkLS() {
 }
 
 $(document).ready(function () {
-    errorPng = 'this.src="..//Images//noImage.jpg"';
+    errorPng = "..//Images//noImage.jpg";
     mode = "";
     key = "46ee229c787140412cbafa9f3aa03555";
     url = "https://api.themoviedb.org/";
@@ -104,6 +105,26 @@ $(document).ready(function () {
             scrollLeft: position - width //for scrolling
         }, 1000);
     });
+
+    //'Enter' keypress event for send message in chat
+    $("#msgTB").keypress(function (event) {
+        if (event.keyCode === 13)
+            AddMSG();
+    })
+
+    chatListBtn = document.getElementById("openChatListBtn");
+    $(chatListBtn).click(function () {
+        $("#fanClub").toggle("fast")
+    })
+
+    //Join selected Chat.
+    $(document).on("click", ".joinChatBtn", function () {
+        ref = firebase.database().ref("messages/" + this.id);
+        $("#chatName").html(this.parentElement.firstElementChild.innerText);
+        $("#chatWindow").css("visibility", "visible")
+        $("#messages").html("");
+        listenToNewMessages();
+    });
 });
 
 function searchByName() {
@@ -180,5 +201,50 @@ function getUserSuccessCB(user) {
 
 function getUserErrorCB(err) {
     errorAlert(err.responseJSON.Message);
+}
+
+//Get Chats from every prefered Series and his initiate functions
+function getChats() {
+    let api = "../api/Seriess?mail=" + user.Mail + "&mode=Favorites";
+    ajaxCall("GET", api, "", getChatsSuccess, getChatsError);
+}
+function getChatsSuccess(series) {
+    let str = "";
+    for (let i = 0; i < series.length; i++) {
+        str += "<li><p>" + series[i].Name + "</p><button class='joinChatBtn' id=" + series[i].Id + ">Join</button></li>"
+    }
+    $("#chatList").html(str);
+}
+function getChatsError(err) {
+    console.log(err);
+}
+function printMessage(msg) {
+    type = "";
+    imageSrc = '<img src="../../Images/userPng.jpeg" width="30" height="30">'
+
+    if (msg.mail != user.Mail)
+        type = "chat ml-2";
+    else
+        type = "bg-white mr-2"
+    str = '<div class="d-flex flex-row p-3">' + imageSrc + '<div class="' + type + ' p-3">' + "<h6><u>" + msg.name + '</u></h3>' + msg.content + '</div>'
+
+    $("#messages").append(str);
+    $("#msgTB").val("");
+}
+function listenToNewMessages() {
+    ref.on("child_added", snapshot => {
+        msg = {
+            name: snapshot.val().name,
+            content: snapshot.val().msg,
+            mail: snapshot.val().mail
+        }
+        printMessage(msg);
+    })
+}
+function AddMSG() {
+    let msg = document.getElementById("msgTB").value;
+    let name = user.FirstName;
+    let mail = user.Mail;
+    ref.push().set({ "msg": msg, "name": name, "mail": mail });
 }
 

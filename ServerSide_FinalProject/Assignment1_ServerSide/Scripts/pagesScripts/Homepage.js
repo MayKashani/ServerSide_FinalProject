@@ -2,7 +2,7 @@
 var popularMode = "";
 
 $(document).ready(function () {
-    chatListBtn = document.getElementById("openChatListBtn");
+    
     //Get Popular According to TMBD
     getPopularTv();
     getPopularMovie();
@@ -11,7 +11,6 @@ $(document).ready(function () {
 
     //If User logged in, render User options to Homepage
     if (mode == "member") {
-        getChats();
         getRecBySimilarUsers();
         getRecMovieBySimilarUsers();
 
@@ -19,11 +18,11 @@ $(document).ready(function () {
 
     //Toggle TVShows/Movies
     $(".popularButton").click(function () {
-        if ($(this).css("background-color") != "aqua")
+        if($(this).css("background-color") != "rgb(0, 255, 255)")
             togglePopular();
     });
     $(".recommendButton").click(function () {
-        if ($(this).css("background-color") != "aqua")
+        if ($(this).css("background-color") != "rgb(0, 255, 255)")
             toggleRecommend();
     })
 
@@ -45,24 +44,9 @@ $(document).ready(function () {
         window.location.href = 'index.html';
     });
 
-    //Join selected Chat.
-    $(document).on("click", ".joinChatBtn", function () {
-        ref = firebase.database().ref("messages/" + this.id);
-        $("#chatName").html(this.parentElement.firstElementChild.innerText);
-        $("#chatWindow").css("visibility","visible")
-        $("#messages").html("");
-        listenToNewMessages();
-    });
 
-    //'Enter' keypress event for send message in chat
-    $("#msgTB").keypress(function (event) {
-        if (event.keyCode === 13)
-            AddMSG();
-    })
 
-    $(chatListBtn).click(function () {
-        $("#fanClub").toggle("fast")
-	})
+
 
 });
 
@@ -84,10 +68,11 @@ function getRecSuccess(rec) {
         }
         $("#recommendTvList").html(str);
         $("#showTvRecommend").css("background-color", "aqua");
-        $("#recommendTv").show();
+        
     }
     else {
         $("#showTvRecommend").hide();
+        $("#recommendTv").hide();
         recommendMode = "movie";
     }
 }
@@ -111,7 +96,10 @@ function getMovieRecSuccessCB(movies) {
             str += image + cardBody + "<p class='goToPage'>Go to page</p></li> ";
         }
         $("#recommendMovieList").html(str);
-        $("#recommendMovie").hide();
+        if (recommendMode = "movie") 
+            $("#showMovieRecommend").css("background-color", "aqua");
+        else
+            $("#recommendMovie").hide();
     }
 }
 function getMovieRecErrorCB(err) {
@@ -201,47 +189,4 @@ function toggleRecommend() {
     }
 }
 
-//Get Chats from every prefered Series and his initiate functions
-function getChats() {
-    let api = "../api/Seriess?mail=" + user.Mail + "&mode=Favorites";
-    ajaxCall("GET", api, "", getChatsSuccess, getChatsError);
-}
-function getChatsSuccess(series) {
-    let str = "";
-    for (let i = 0; i < series.length; i++) {
-        str += "<li><p>" + series[i].Name + "</p><button class='joinChatBtn' id=" + series[i].Id + ">Join</button></li>"
-    }
-    $("#chatList").html(str);
-}
-function getChatsError(err) {
-    console.log(err);
-}
-function printMessage(msg) {
-    type = "";
-    imageSrc = '<img src="../../Images/userPng.jpeg" width="30" height="30">'
 
-    if (msg.mail != user.Mail)
-        type = "chat ml-2";
-    else
-        type = "bg-white mr-2"
-    str = '<div class="d-flex flex-row p-3">' + imageSrc + '<div class="' + type + ' p-3">' + "<h6><u>" + msg.name + '</u></h3>' + msg.content + '</div>'
-
-    $("#messages").append(str);
-    $("#msgTB").val("");
-}
-function listenToNewMessages() {
-    ref.on("child_added", snapshot => {
-        msg = {
-            name: snapshot.val().name,
-            content: snapshot.val().msg,
-            mail: snapshot.val().mail
-        }
-        printMessage(msg);
-    })
-}
-function AddMSG() {
-    let msg = document.getElementById("msgTB").value;
-    let name = user.FirstName;
-    let mail = user.Mail;
-    ref.push().set({ "msg": msg, "name": name, "mail": mail });
-}
