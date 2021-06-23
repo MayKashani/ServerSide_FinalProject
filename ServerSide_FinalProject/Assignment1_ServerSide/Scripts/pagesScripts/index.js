@@ -9,9 +9,11 @@ $(document).ready(function () {
 
 	if (chosenMedia != null) {
 		chosenMedia = JSON.parse(sessionStorage.getItem("mediaChoose"));
+
 		getMedia();
 		seasonsList = "";
 		seasonsArr = [];
+		
 
 		$(document).on('click', '#seasonsList > .card', viewEpisodes)
 
@@ -29,6 +31,9 @@ $(document).ready(function () {
 		});
 
 		$("#movieLikeBtn").click(postMovie);
+
+		
+
 	}
 
 
@@ -110,6 +115,7 @@ function renderDetails(media) {
 	getCredits(credits);
 	getSimilar(recommendations);
 	getTrailer(video);
+	getExternalLinks();
 	$("#seriesDiv").show();
 }
 
@@ -187,4 +193,26 @@ function getSimilar(series) {
 		$("#recommendations").html(recommendations);
 		//$("#recommendationsDiv").show();
 	}
+}
+
+function getExternalLinks() {
+	let apiCall = url + mediaType + chosenMedia.id + "/external_ids?" + api_key;
+	ajaxCall("GET", apiCall, "", getExternalLinksSuccessCB, getExternalLinksErrorCB);
+}
+
+function getExternalLinksSuccessCB(links) {
+	console.log(links);
+	let str = "<div>";
+	if (links.facebook_id != null)
+		str += "<a  href= 'https://www.facebook.com/" + links.facebook_id + "/'><i class='fa fa-facebook'></i></a>";
+	if (links.instagram_id != null)
+		str += "<a  href= 'https://www.instagram.com/" + links.instagram_id + "/'><i class='fa fa-instagram'></i> </a>";
+	if (links.twitter_id != null)
+		str += "<a  href= 'https://www.twitter.com/" + links.twitter_id + "/'><i class='fa fa-twitter'></i></a>";
+	str+="</div>"
+	$("#ph").append(str);
+}
+
+function getExternalLinksErrorCB(err) {
+	console.log(err);
 }
