@@ -9,7 +9,7 @@
 		#ph > img {
 			height: 300px;
 			border-radius: 25px;
-			width:auto;
+			width: auto;
 		}
 
 		#checking:hover {
@@ -20,9 +20,9 @@
 		}
 
 
-			.cardsOL > .card {
-				height: 200px;
-			}
+		.cardsOL > .card {
+			height: 200px;
+		}
 
 		#actors > .card {
 			height: 200px;
@@ -71,7 +71,6 @@
 
 		#head {
 			position: relative;
-
 		}
 
 		#headerBackground {
@@ -82,55 +81,54 @@
 			width: 100%;
 			height: -webkit-fill-available;
 		}
-		
-		#watchTrailerBtn{
-			margin-top:30px;
+
+		#watchTrailerBtn {
+			margin-top: 30px;
 		}
 
 		#headerInfo::before {
-			content:"";
-			height:50vh;
+			content: "";
+			height: 50vh;
 			background-color: black;
 			opacity: 0.2;
-			position:absolute;
-				width:100%
-
+			position: absolute;
+			width: 100%
 		}
 
 		#headerInfo {
-			position:relative;
-			margin:0 auto;
-			height:50vh
+			position: relative;
+			margin: 0 auto;
+			height: 50vh
 		}
 
-	#details { 
-		margin-top: 30px;
-	}
+		#details {
+			margin-top: 30px;
+		}
 
-	#details> div { 
-		margin-top:20px;
-	}
+			#details > div {
+				margin-top: 20px;
+			}
 
-	 .container div {
-		margin-top:30px;
-	}
+		.container div {
+			margin-top: 30px;
+		}
 
 		.leftScrollBtn, .rightScrollBtn {
 			border: none;
 			background: transparent;
-	 }
+		}
 
-			.leftScrollBtn:hover, .rightScrollBtn:hover{
-				font-size:larger;
+			.leftScrollBtn:hover, .rightScrollBtn:hover {
+				font-size: larger;
 			}
 
-			#trailerModal > .modal-content {
-				height: 50%;
-				width: 50%;
-				border: none;
-				border-radius: 0px;
-				opacity: 1;
-			}
+		#trailerModal > .modal-content {
+			height: 50%;
+			width: 50%;
+			border: none;
+			border-radius: 0px;
+			opacity: 1;
+		}
 
 
 
@@ -166,13 +164,10 @@
 		#optionsDiv {
 			position: relative;
 			bottom: 0px;
-			width:100%;
-			height:40vh;
-			bottom:0px;
+			width: 100%;
+			height: 40vh;
+			bottom: 0px;
 		}
-
-
-
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -189,8 +184,14 @@
 	<link rel="stylesheet" href="../Stylesheets/jquery.notifyBar.css">
 	<script src="../Scripts/pagesScripts/alerts.js"></script>
 	<script src="../Scripts/jquery.notifyBar.js"></script>
-	<link href="../Stylesheets/circle.css" rel="stylesheet"/>
+	<link href="../Stylesheets/circle.css" rel="stylesheet" />
 	<link href="../Stylesheets/StyleSheet.css" rel="stylesheet" />
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-analytics.js"></script>
+	<!--**** Remember to add the database script ***-->
+	<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-storage.js"></script>
 
 	<script>
 		$(document).ready(function () {

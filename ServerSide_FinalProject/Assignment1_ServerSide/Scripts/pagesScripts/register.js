@@ -7,6 +7,7 @@ function checkLS() {
         toggleBar();
         mode = "member";
         getChats();
+        getProfilePicture();
     }
     else {
         mode = "guest";
@@ -185,8 +186,40 @@ function postUserSuccessCB(num) {
         errorAlert("Mail already taken. Please try different Mail.");
         return;
     }
+    uploadImage();
     $("#registerForm").trigger("reset");
     successAlert("Registered Successfully");
+}
+
+function uploadImage() {
+    const ref = firebase.storage().ref();
+    const file = document.querySelector("#profileFile").files[0];
+    const name = $("#mailTB").val();
+    const metadata = {
+        contentType: file.type
+    }
+    const task = ref.child(name).put(file, metadata);
+    task
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
+            console.log(url)
+            alert("Image Upload Successfully");
+        })
+}
+function getProfilePicture() {
+    const ref = firebase.storage().ref();
+    ref.child(user.Mail).getDownloadURL()
+        .then(url => {
+            console.log(url);
+            alert("image here!");
+            profileSrc = url;
+        })
+     .catch ((error) => {
+        // Handle any errors
+         if (error.code == "storage/object-not-found")
+            profileSrc = "";
+    });
+
 }
 
 function postUserErrorCB(err) {
@@ -227,7 +260,11 @@ function getChatsError(err) {
 }
 function printMessage(msg) {
     type = "";
-    imageSrc = '<img src="../../Images/userPng.jpeg" width="30" height="30">'
+    if (profileSrc == "")
+        chatPhotoSrc = "../../Images/userPng.jpeg";
+    else
+        chatPhotoSrc = profileSrc;
+    imageSrc = '<img src=' + chatPhotoSrc + ' width="30" height="30">'
 
     if (msg.mail != user.Mail)
         type = "chat ml-2";
