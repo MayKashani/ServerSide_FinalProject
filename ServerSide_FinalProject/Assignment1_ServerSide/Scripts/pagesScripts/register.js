@@ -7,7 +7,9 @@ function checkLS() {
         toggleBar();
         mode = "member";
         getChats();
-        getProfilePicture();
+        if (localStorage['profileSrc'] != null) {
+            profileSrc = localStorage['profileSrc'];
+		}
     }
     else {
         mode = "guest";
@@ -83,6 +85,7 @@ $(document).ready(function () {
         localStorage.clear();
         $("#welcomeDiv").html("");
         toggleBar();
+        localStorage.removeItem("profileSrc");
         window.location.href="Homepage.html";
     })
 
@@ -206,18 +209,19 @@ function uploadImage() {
             alert("Image Upload Successfully");
         })
 }
-function getProfilePicture() {
+
+function getProfilePicture(user) {
     const ref = firebase.storage().ref();
     ref.child(user.Mail).getDownloadURL()
         .then(url => {
             console.log(url);
             alert("image here!");
-            profileSrc = url;
+            localStorage['profileSrc'] = url;
         })
      .catch ((error) => {
         // Handle any errors
          if (error.code == "storage/object-not-found")
-            profileSrc = "";
+            localStorage['profileSrc'] = "";
     });
 
 }
@@ -235,8 +239,10 @@ function getUserByData() {
 function getUserSuccessCB(user) {
     delete user["Password"];
     localStorage["User"] = JSON.stringify(user);
-    loginModal.style.display = "none";
+    getProfilePicture(user);
     checkLS();
+    loginModal.style.display = "none";
+   
 }
 
 function getUserErrorCB(err) {

@@ -173,10 +173,13 @@ function getCredits(actors) {
 		if (actors[i].profile_path == null)
 			profile = "..//Images//noImage.jpg";
 		else profile = imagePath + actors[i].profile_path;
-		str += "<div id=" + actors[i].id + " class='card actorCard'> <img class='card-img-top' src='" +profile + "'><div class='card-body'><h5>" + actors[i].name + "</h5><p class='card-text'>" + actors[i].character + "</p></div></div>";
+		image = "<li id=" + actors[i].id + " class='card actorCard'> <img class='card-img-top' src='" + profile + "'>"
+		cardBody = "<div class='card-body'><h6>" + actors[i].name + "</h6><p class='card-text'>" + actors[i].character + "</p></div ></li > ";
+		str += image + "<div class='goToPage'>Go to page" + cardBody + "</div></li>";
 	}
 	$("#actors").html(str);
 	//$("#actorsDiv").show();
+
 }
 
 function getSimilar(series) {
@@ -211,12 +214,12 @@ function getExternalLinks() {
 function getExternalLinksSuccessCB(links) {
 	console.log(links);
 	let str = "<div>";
-	if (links.facebook_id != null)
-		str += "<a  href= 'https://www.facebook.com/" + links.facebook_id + "/'><i class='fa fa-facebook'></i></a>";
-	if (links.instagram_id != null)
-		str += "<a  href= 'https://www.instagram.com/" + links.instagram_id + "/'><i class='fa fa-instagram'></i> </a>";
 	if (links.twitter_id != null)
-		str += "<a  href= 'https://www.twitter.com/" + links.twitter_id + "/'><i class='fa fa-twitter'></i></a>";
+		str += "<a class='linkIcons' href= 'https://www.twitter.com/" + links.twitter_id + "/'><i class='fa fa-twitter'></i></a>";
+	if (links.facebook_id != null)
+		str += "<a class='linkIcons' href= 'https://www.facebook.com/" + links.facebook_id + "/'><i class='fa fa-facebook'></i></a>";
+	if (links.instagram_id != null)
+		str += "<a class='linkIcons' href= 'https://www.instagram.com/" + links.instagram_id + "/'><i class='fa fa-instagram'></i> </a>";
 	str+="</div>"
 	$("#ph").append(str);
 }

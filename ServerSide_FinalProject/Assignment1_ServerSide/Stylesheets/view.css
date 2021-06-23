@@ -1,0 +1,72 @@
+﻿.chapterImg {
+	border-radius: 20px;
+}
+
+.episodeCard p {
+	text-align: left;
+}
+
+.episodeCard > div {
+	float: left;
+	height: 100%;
+	margin: 15px;
+}
+
+.episodeCard {
+	width: 100%;
+	height: auto;
+	flex-direction: row;
+	background-color: transparent;
+}
+
+.info {
+	width: 70%;
+}
+
+
+/*heart*/
+
+
+.heart {
+	background-color: transparent;
+	color: white;
+	border: none;
+}
+
+.heart:hover {
+	font-size: 25px;
+	color: red;
+	animation: beat .2s infinite alternate;
+	transform-origin: center;
+	border: none;
+	background-color: transparent;
+}
+
+	.heart:hover > i {
+		animation: pulse 2s;
+	}
+/* Heart beat animation*/
+@keyframes beat {
+	to {
+		transform: scale(1.4);
+	}
+}
+
+.red-heart, .red-heart:hover {
+	background-color: transparent;
+	color: red;
+	font-size: 25px;
+	border: none;
+}
+
+
+
+@keyframes pulse {
+	0% {
+		color: white;
+	}
+
+	100% {
+		color: #FF4136;
+	}
+}

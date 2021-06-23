@@ -26,6 +26,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-storage.js"></script>
     <!--Your web app's Firebase configuration-->
     <script src="../Scripts/pagesScripts/firebase.js"></script>
+    <link rel="stylesheet" href="../Stylesheets/chat.css" />
     <script>
         $(document).ready(function () {
             key = "46ee229c787140412cbafa9f3aa03555";
@@ -123,13 +124,31 @@
         <div id="memberBar">
             <button id="linkBtn" onclick="window.location.href='view.html'"> <i class="fa fa-heart"></i> My Favorites </button>
             <button id='logoutBtn'><i class="fa fa-sign-out"></i>Logout</button>
+            <button id="openChatListBtn"><i class="fa fa-comments">Chat</i></button>
         </div>
         <div id="guestBar">
             <button id="registerBtn"><i class="fa fa-user-plus"></i>Register</button>
             <button id="loginBtn"><i class="fa fa-sign-in"></i>Login</button>
         </div>
     </div>
-    <div id="episodes"></div>
+    <div id="mainDiv">
+        <div id="fanClub" style="display:none">
+            <h3>Join chat</h3>
+            <ol id="chatList" style="list-style-type:none">
+            </ol>
+        </div>
+        <div class="center" id="episodes"></div>
+        <div id="chatWindow" class="card mt-5" style="visibility:hidden">
+            <div class="d-flex flex-row justify-content-between p-3 adiv text-white"> <i class="fas fa-chevron-left"></i> <span id="chatName" class="pb-3"></span> <i onclick="$('#chatWindow').css('visibility','hidden')" class="fa fa-times"></i> </div>
+            <div id="messages">
+            </div>
+            <div class="form-group px-3">
+                <textarea id="msgTB" class="form-control" rows="2" placeholder="Type your message"></textarea>
+                <button onclick="AddMSG()">Add Message</button>
+            </div>
+        </div>
+
+    </div>
 
     <div id="registerModal" class="modal">
         <form id="registerForm" class="modal-content">

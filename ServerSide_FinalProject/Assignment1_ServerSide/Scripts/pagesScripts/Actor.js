@@ -113,11 +113,13 @@ function getActorTvCreditsSuccessCB(tv) {
         for (let i = 0; i < castingArr.length; i++) {
             str += "<li id = '" + castingArr[i].id + "'class = 'card tv'>";
             imageTv = "<img class='card-img-top' src='" +imagePath + castingArr[i].poster_path + "' onerror="+errorPng+">";
-            cardBody = "<div class='card-body'><h5>" + castingArr[i].name + "</h5> <p class='card-text'>" + castingArr[i].character + "</p></div>";
-            str += imageTv + cardBody + "<p class='goToPage'>Go to page</p></li> ";
+            cardBody = "<div class='card-body'><h6>" + castingArr[i].name + "</h6> <p class='card-text'>" + castingArr[i].character + "</p></div>";
+            str += imageTv + "<div class='goToPage'>Go to page"+ cardBody+"</div></li> ";
         }
         $("#anyTvKnown").html(str);
         $("#knownMovieList").hide();
+
+
     }
 }
 function getActorTvCreditsErrorCB(err) {
@@ -140,10 +142,12 @@ function getActorMovieCreditsSuccessCB(movie) {
         for (let i = 0; i < castingArr.length; i++) {
             str += "<li id = '" + castingArr[i].id + "'class = 'card movie'>";
             imageTv = "<img class='card-img-top' src='" + imagePath + castingArr[i].poster_path + "' onerror=" + errorPng + ">";
-            cardBody = "<div class='card-body'><h5>" + castingArr[i].title + "</h5> <p class='card-text'>" + castingArr[i].character + "</p></div>";
-            str += imageTv + cardBody + "<p class='goToPage'>Go to page</p></li> ";
+            cardBody = "<div class='card-body'><h6>" + castingArr[i].title + "</h6> <p class='card-text'>" + castingArr[i].character + "</p></div>";
+            str += imageTv + "<div class='goToPage'>Go to page" + cardBody + "</div></li> ";
         }
         $("#anyMovieKnown").html(str);
+
+
     }
 }
 function getActorMovieCreditsErrorCB(err) {
