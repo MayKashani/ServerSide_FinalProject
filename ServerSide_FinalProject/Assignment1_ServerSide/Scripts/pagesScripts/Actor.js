@@ -156,7 +156,6 @@ function getActorLinks() {
     ajaxCall("GET", apiCall, "", getLinksSuccessCB, getLinksErrorCB);
 }
 function getLinksSuccessCB(links) {
-    console.log(links);
     let strLink = "";
     if (links.facebook_id != null) 
         strLink += "<a  href= 'https://www.facebook.com/" + links.facebook_id +"/'><i class='fa fa-facebook'></i></a>";
