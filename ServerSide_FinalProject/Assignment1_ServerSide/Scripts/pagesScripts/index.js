@@ -65,13 +65,13 @@ function watchTrailer(pageName, elmnt) {
 
 function getMedia() {
 	mediaType = "3/" + chosenMedia.type + "/";
-	i = 1;
 	apiCall = url + mediaType + chosenMedia.id + "?" + api_key + "&append_to_response=credits,videos,recommendations";
 	ajaxCall("GET", apiCall, "", getMediaSuccess, getMediaError);
 }
 
 function getMediaSuccess(media) {
 	seasonsList = "";
+	i = 1;
 	mediaId = media.id;
 	Current_TV = media;
 	console.log(media)
@@ -141,10 +141,13 @@ function getSeasonSuccessCB(season) {
 		poster = "..//Images//noImage.jpg";
 	else poster = imagePath + season.poster_path;
 	seasonsArr.push(season);
-	seasonsList += "<div id=" + i + " class='card'> <img class='card-img-top' src='" + poster + "'><div class='card-body'><h5>" + season.name + "</h5><p>" + season.air_date + "</p><p>" + season.overview + "</p></div></div>";
+	image = "<li id=" + i + " class='card'> <img class='card-img-top' src='" + poster + "'/>";
+	cardBody = "<div class='card-body' ><h6>" + season.name + "</h6><p>" + season.air_date + "</p></div> "; 
+	seasonsList += image + "<div class='goToPage'>Go to page" + cardBody + "</div></li>";
 	i++;
 	let apiCall = url + tvMethod + mediaId + "/season/" + i + "?" + api_key;
 	ajaxCall("GET", apiCall, "", getSeasonSuccessCB, getSeasonErrorCB);
+
 }
 
 function getSeasonErrorCB(err) {
@@ -182,9 +185,14 @@ function getSimilar(series) {
 			if (chosenMedia.type == "movie")
 				name = series[i].title;
 			else name = series[i].name;
-			recommendations += "<div id=" + series[i].id + " class='card recommended'> <img class='card-img-top' src='" + poster + "'><p class='onImageText'>" + name +"</p></div>";
+			image = "<li id=" + series[i].id + " class='card recommended'> <img class='card-img-top' src='" + poster + "'/>";
+			cardBody = "<div class='card-body'><h6>" + name + "</h6> <p class='card-text'>" + series[i].original_language + "</p></div>";
+			recommendations += image + "<div class='goToPage'>Go to page" + cardBody + "</div></li>";
 		}
 		$("#recommendations").html(recommendations);
 		//$("#recommendationsDiv").show();
+
+
+
 	}
 }

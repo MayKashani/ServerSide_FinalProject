@@ -37,6 +37,8 @@
             width: 100%;
             max-width: 100%;
             grid-template-columns: auto 1fr;
+            margin: 30px auto;
+
         }
 
         #fanClub {
@@ -50,7 +52,9 @@
         }
 
         #center {
-            grid-column: 2/3
+            grid-column: 2/3;
+            padding: 0px;
+
         }
 
 
@@ -74,6 +78,10 @@
             padding: 5px;
             list-style-type: none;
             font-size: 15px;
+        }
+
+       .card > img {
+            height:100%
         }
     </style>
 </head>
@@ -105,7 +113,6 @@
             </ol>
         </div>
         <div id="center" class="container">
-            <h1 style="text-align:center">The MovieDB</h1>
             <div id="popular">
                 <h4>So Popular...</h4>
                 <button id="showTvPopular" class="popularButton">Tv Shows</button>

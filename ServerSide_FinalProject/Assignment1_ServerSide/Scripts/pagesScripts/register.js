@@ -3,7 +3,7 @@ var searchInput = 'addressTB';
 function checkLS() {
     if (localStorage["User"] != null) {
         user = JSON.parse(localStorage["User"]);
-        $("#welcomeDiv").html("<h3>Welcome back, " + user.FirstName + " " + user.LastName + "</h3>");
+        $("#welcomeDiv").html("Welcome back, " + user.FirstName + " " + user.LastName);
         toggleBar();
         mode = "member";
         getChats();
