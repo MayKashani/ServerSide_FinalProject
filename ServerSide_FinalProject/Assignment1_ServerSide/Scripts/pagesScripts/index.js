@@ -80,7 +80,9 @@ function getMediaSuccess(media) {
 	$('#headerBackground').attr("src", imagePath+Current_TV.backdrop_path);  
 	$("#seriesName").html(Current_TV.name)
 	$("#ph").html(str);
-	$("#average").html(Current_TV.vote_average * 10 + "%");
+	avg = Current_TV.vote_average*10;
+	$("#average").addClass("c100 p" + avg +' small '+ (avg>50 ? "green" : "orange"))
+	$("#average").html('<span>' + avg + '%</span><div class="slice"><div class="bar"></div><div class="fill"></div></div>');
 	$("#overview").html(Current_TV.overview);
 	$("#seriesDiv").show();
 
