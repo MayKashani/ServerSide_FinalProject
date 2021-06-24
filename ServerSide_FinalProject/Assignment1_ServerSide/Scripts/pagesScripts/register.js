@@ -132,15 +132,18 @@ $(document).ready(function () {
         $("#fanClub").toggle("fast");
         chatDetails = {
             id: this.id,
-            name: this.parentElement.firstElementChild.innerText
+            name: this.parentElement.firstElementChild.innerText,
+            bottom:'0px'
         }
         sessionStorage.setItem("chat", JSON.stringify(chatDetails));
         setChat();
     });
-
-
-
     $("#chatHeader").click(toggleChat);
+
+    //Menu toggle
+    $("#openMenuBtn").click(function () {
+        $("#menuContent").slideToggle('fast');
+    })
 });
 
 function searchByName() {
@@ -255,7 +258,7 @@ function setChat() {
         chatDetails = JSON.parse(sessionStorage.getItem("chat"));
         ref = firebase.database().ref("messages/" + chatDetails.id);
         $("#chatName").html(chatDetails.name);
-        $("#chatWindow").css("visibility", "visible")
+        $("#chatWindow").css({ "visibility": "visible", "bottom": chatDetails.bottom })
         $("#messages").html("");
         listenToNewMessages();
     }
@@ -312,9 +315,10 @@ function AddMSG() {
 }
 function toggleChat() {
     if ($("#chatWindow").css('bottom') == '0px')
-        $("#chatWindow").animate({ bottom: "-350px" });
+        bottomValue = "-350px";
     else
-        $("#chatWindow").animate({ bottom: '0px' });
+        bottomValue = "0px";
+    $("#chatWindow").animate({ bottom: bottomValue });
 }
 function deleteChat() {
     $("#chatWindow").css("visibility", "hidden");

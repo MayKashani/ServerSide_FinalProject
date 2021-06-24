@@ -121,15 +121,8 @@
             <input type="text" id="tvShowName" placeholder="Look for Tv Show/Movie/Person" />
             <button id="getTV"><i class="fa fa-search"></i>Search</button>
         </div>
-        <div id="memberBar">
-            <button id="linkBtn" onclick="window.location.href='view.html'"> <i class="fa fa-heart"></i> My Favorites </button>
-            <button id='logoutBtn'><i class="fa fa-sign-out"></i>Logout</button>
-            <button id="openChatListBtn"><i class="fa fa-comments">Chat</i></button>
-        </div>
-        <div id="guestBar">
-            <button id="registerBtn"><i class="fa fa-user-plus"></i>Register</button>
-            <button id="loginBtn"><i class="fa fa-sign-in"></i>Login</button>
-        </div>
+        <button id="openMenuBtn"><i class="fa fa-bars"> </i></button>
+
     </div>
     <div id="mainDiv">
         <div id="fanClub" style="display:none">
@@ -138,6 +131,18 @@
             </ol>
         </div>
         <div class="center" id="episodes"></div>
+        <div id="menuContent">
+            <ul id="memberBar">
+                <li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='view.html'"> <i class="fa fa-heart"></i>Favorites </button></li>
+                <li> <button id='logoutBtn' class="menuBtn"><i class="fa fa-sign-out"></i>Logout</button></li>
+                <li> <button id="openChatListBtn" class="menuBtn"><i class="fa fa-comments">Chat</i></button></li>
+            </ul>
+            <ul id="guestBar">
+                <li> <button id="registerBtn" class="menuBtn"><i class="fa fa-user-plus"></i>Register</button></li>
+                <li> <button id="loginBtn" class="menuBtn"><i class="fa fa-sign-in"></i>Login</button></li>
+            </ul>
+
+        </div>
         <div id="chatWindow" class="card mt-5" style="visibility:hidden">
             <div id="chatHeader" class="d-flex flex-row justify-content-between p-3 adiv text-white"><span id="chatName" class="pb-3"></span> <i onclick="deleteChat()" class="fa fa-times"></i> </div>
             <div id="messages">
