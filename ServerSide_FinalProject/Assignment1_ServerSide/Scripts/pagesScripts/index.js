@@ -173,7 +173,7 @@ function getCredits(actors) {
 		if (actors[i].profile_path == null)
 			profile = "..//Images//noImage.jpg";
 		else profile = imagePath + actors[i].profile_path;
-		image = "<li id=" + actors[i].id + " class='card actorCard'> <img class='card-img-top' src='" + profile + "'>"
+		image = "<li id=" + actors[i].id + " class='card actorCard'> <img class='card-img-top actorImg' src='" + profile + "'>"
 		cardBody = "<div class='card-body'><h6>" + actors[i].name + "</h6><p class='card-text'>" + actors[i].character + "</p></div ></li > ";
 		str += image + "<div class='goToPage'>Go to page" + cardBody + "</div></li>";
 	}

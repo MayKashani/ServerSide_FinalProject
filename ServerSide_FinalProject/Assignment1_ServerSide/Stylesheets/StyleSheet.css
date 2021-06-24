@@ -79,9 +79,6 @@ div > img {
 }
 
 
-.card > img {
-	height: 100%
-}
 
 
 .leftScrollBtn, .rightScrollBtn {
@@ -127,11 +124,6 @@ div > img {
         color: white;
     }*/
 
-
-
-.card > img {
-	height:100%
-}
 
 
 #ph > img {
@@ -277,9 +269,10 @@ i {
 	max-width: 90%;
 	display: inline-flex;
 	flex-direction: row;
-	padding: 0px ;
+	padding: 0px;
+	list-style-type: none;
+	margin: 30px 0;
 }
-
 .cardsOL > .card {
 	height: 200px;
 	min-width: 15%;
@@ -327,10 +320,18 @@ i {
 	position: inherit;
 }
 
-.card > img {
+.card > .card-img-top {
 	height: 100%;
+	max-width: 400px;
+}
+
+.center {
+	grid-column:2/3
 }
 
 
 
 
+.cardsOL::-webkit-scrollbar {
+	display: none;
+}

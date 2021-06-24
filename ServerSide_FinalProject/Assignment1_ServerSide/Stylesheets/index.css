@@ -1,0 +1,171 @@
+﻿#ph > img {
+	height: 300px;
+	border-radius: 25px;
+	width: auto;
+}
+
+
+
+
+.cardsOL > .card {
+	height: 200px;
+}
+
+
+
+#actors p {
+	font-size: 15px
+}
+
+#recommendations {
+	height: 100%
+}
+
+	#recommendations .card {
+		height: 100%
+	}
+
+
+	#recommendations img {
+		width: 100%;
+		height: inherit;
+	}
+
+.card-body {
+	padding: 0px;
+}
+
+.card {
+	margin: 5px;
+}
+
+#head {
+	position: relative;
+}
+
+#headerBackground {
+	opacity: 0.6;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: -webkit-fill-available;
+}
+
+.headIconsBtn {
+	margin-top: 30px;
+	background: none;
+	border: none;
+	font-size: 30px;
+}
+
+#headerInfo::before {
+	content: "";
+	height: 50vh;
+	background-color: black;
+	opacity: 0.2;
+	position: absolute;
+	width: 100%
+}
+
+#headerInfo {
+	position: relative;
+	margin: auto;
+	height: 50vh
+}
+
+#details {
+	margin-top: 30px;
+}
+
+	#details > div {
+		margin-top: 20px;
+	}
+
+#ph > img {
+	height: 300px;
+	border-radius: 25px;
+	width: auto;
+	box-shadow: black 0px 0px 18px 2px;
+	padding:0px;
+	margin:30px
+}
+
+
+#trailerModal > .modal-content {
+	height: 50%;
+	width: 50%;
+	border: none;
+	border-radius: 0px;
+	opacity: 1;
+}
+
+
+#seriesDiv {
+	width: 100%;
+	margin: 0px;
+	max-width: 100%;
+	padding: 0px;
+	grid-column: 2/3;
+
+}
+
+body {
+	height: 100vh;
+	margin: 0
+}
+
+.tablink {
+	background-color: #555;
+	color: white;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	font-size: 20px;
+	width: 25%;
+}
+
+	.tablink:hover {
+		background-color: #777;
+	}
+
+.tabcontent {
+	display: none;
+	padding: 100px 20px;
+	height: 100%;
+	background-color: lightgray;
+}
+
+#optionsDiv {
+	position: relative;
+	bottom: 0px;
+	width: 100%;
+	height: 40vh;
+	bottom: 0px;
+}
+
+
+.linkIcons {
+	font-size: 25px;
+	background: black;
+	margin: 10px;
+	border-radius: 50px;
+	padding: 5px;
+}
+
+.card > .actorImg {
+	height: 150px;
+	border-radius: 50px 50px;
+	margin: 5px;
+}
+
+
+
+.cardsOL > .actorCard {
+	background: transparent;
+	border: none;
+	min-width: 10%;
+}
+

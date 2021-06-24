@@ -39,7 +39,6 @@ function getActorSuccessCB(actor) {
     console.log(actor)
     renderActor(actor);
     if (actor.known_for_department == "Acting") {
-        $("#known_from").prepend("<h4>Movies/Tv Shows Participations:</h4>");
         getActorTvCredits();
         getActorMovieCredits();
     }
@@ -71,8 +70,8 @@ function renderActor(actor) {
     let strImg = imageSrc;
     $("#actorImg").append(strImg);
     actorBio = "<p>Bio: <br>" + actor.biography + "</p>";
-    str = strName+ strInfo + actorBio;
-    $("#info").html(str);
+    $("#headerInfo").html(strName + strInfo) 
+    $("#info").html(actorBio)
 }
 
 //toggle by credit type

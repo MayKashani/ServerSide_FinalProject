@@ -32,5 +32,11 @@ div > img {
 }
 
 .resultText {
-	z-index:2
+	z-index:2;
+	width:100%
+}
+
+.imgResult {
+	height: 300px;
+	width: auto;
 }

@@ -25,6 +25,8 @@ $(document).ready(function () {
     tvMethod = "3/tv/";
     movieMethod = "3/movie/";
     api_key = "api_key=" + key;
+    profileSrc = "";
+
 
     var memberBar = document.getElementById("memberBar");
     var guestBar = document.getElementById("guestBar");
@@ -266,6 +268,7 @@ function getChatsError(err) {
 }
 function printMessage(msg) {
     type = "";
+    profileSrc = localStorage['profileSrc'];
     if (profileSrc == "")
         chatPhotoSrc = "../../Images/userPng.jpeg";
     else
