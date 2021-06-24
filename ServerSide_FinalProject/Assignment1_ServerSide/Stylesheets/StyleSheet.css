@@ -42,7 +42,7 @@ div > img {
 	display: grid;
 	width: 100%;
 	max-width: 100%;
-	grid-template-columns: auto 1fr;
+	grid-template-columns: auto 1fr auto;
 }
 
 #fanClub {
@@ -107,18 +107,28 @@ div > img {
 	font-size: 20px;
 }
 
+/*
 
-
-/*button, input[type=submit] {
+button, input[type=submit] {
     border: 2px solid black;
     font-family: 'Berlin Sans FB';
     font-size: 18px;
     margin: 15px auto;
     border-radius: 20px;
     color: black;
+}*/
+
+
+.menuBtn {
+	border: 2px solid black;
+	font-family: 'Berlin Sans FB';
+	font-size: 18px;
+	margin: 15px auto;
+	border-radius: 20px;
+	color: black;
 }
 
-    button:hover, input[type=submit]:hover {
+    /*button:hover, input[type=submit]:hover {
         background-color: black;
         border: 1px solid white;
         color: white;
@@ -138,25 +148,34 @@ div > img {
 	padding: 0px 5px;
 }
 
+#tvShowName {
+	width: 50%;
+	border: 1px solid black;
+	border-radius: 20px;
+	padding: 0px 5px;
+}
+
+
 i {
 	padding: 0px 2px;
 }
 
-.form-group {
-	margin: 5px auto;
-}
+
 
 	.form-group > label {
 		float: left;
-		width: 50%;
 		text-align: left;
+		margin-right: 10px;
+		margin-left: 10%;
 	}
 
 	.form-group > input {
-		width: 40%;
+		width: 50%;
 		border-radius: 15px;
 		padding: 5px;
 		font-size: 16px;
+		float: right;
+		margin-right: 10%;
 	}
 
 
@@ -211,7 +230,7 @@ i {
 .nav {
 	margin-top: 0px;
 	display: grid;
-	grid-template-columns: 20% 1fr 1fr 15% 10%;
+	grid-template-columns: 20% 25% auto 10%;
 	min-height: 10vh;
 	background-color: black;
 	align-items: center;
