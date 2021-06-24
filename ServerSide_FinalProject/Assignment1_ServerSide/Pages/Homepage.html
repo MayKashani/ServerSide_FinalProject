@@ -58,12 +58,16 @@
 		#menuContent ul {
 			display: block;
 			height: 40vh;
-			padding: 0px;
 			list-style-type: none;
+			margin: 0px;
+			padding: 0px
 		}
 
+		#menuContent li {
+			width:100%;
+		}
 
-		#menuBtn {
+		#openMenuBtn {
 			border: none;
 			font-size: 35px;
 			margin: 0 30px;
@@ -78,11 +82,13 @@
 			height: 90vh;
 			width: 10vw;
 		}
+
+		
 	</style>
 	<script>
 
 		$(document).ready(function () {
-			$("#menuBtn").click(function () {
+			$("#openMenuBtn").click(function () {
 				$("#menuContent").slideToggle('fast');
 			})
 		})
@@ -97,7 +103,7 @@
 			<input type="text" id="tvShowName" />
 			<button id="getTV"><i class="fa fa-search"></i>Search</button>
 		</div>
-		<button id="menuBtn"><i class="fa fa-bars"> </i></button>
+		<button id="openMenuBtn"><i class="fa fa-bars"> </i></button>
 	</div>
 
 
@@ -145,13 +151,13 @@
 
 		<div id="menuContent">
 			<ul id="memberBar">
-				<li> <button id="linkBtn" onclick="window.location.href='view.html'"> <i class="fa fa-heart"></i>Favorites </button></li>
-				<li> <button id='logoutBtn'><i class="fa fa-sign-out"></i>Logout</button></li>
-				<li> <button id="openChatListBtn"><i class="fa fa-comments">Chat</i></button></li>
+				<li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='view.html'"> <i class="fa fa-heart"></i>Favorites </button></li>
+				<li> <button id='logoutBtn' class="menuBtn"><i class="fa fa-sign-out"></i>Logout</button></li>
+				<li> <button id="openChatListBtn" class="menuBtn"><i class="fa fa-comments">Chat</i></button></li>
 			</ul>
 			<ul id="guestBar">
-				<li> <button id="registerBtn"><i class="fa fa-user-plus"></i>Register</button></li>
-				<li> <button id="loginBtn"><i class="fa fa-sign-in"></i>Login</button></li>
+				<li> <button id="registerBtn" class="menuBtn"><i class="fa fa-user-plus"></i>Register</button></li>
+				<li> <button id="loginBtn" class="menuBtn"><i class="fa fa-sign-in"></i>Login</button></li>
 			</ul>
 
 		</div>
