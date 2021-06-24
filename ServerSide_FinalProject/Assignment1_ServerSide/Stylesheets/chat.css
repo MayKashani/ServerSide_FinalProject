@@ -4,8 +4,7 @@
     border-radius: 15px;
     height: 400px;
     position: fixed;
-    bottom: 10px;
-    left: 50px;
+    bottom:0px;
 }
 
     #chatWindow img {

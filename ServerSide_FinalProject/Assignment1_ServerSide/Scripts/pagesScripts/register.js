@@ -7,6 +7,7 @@ function checkLS() {
         toggleBar();
         mode = "member";
         getChats();
+        setChat();
     }
     else {
         mode = "guest";
@@ -52,7 +53,6 @@ $(document).ready(function () {
     loginBtn.onclick = function () {
         loginModal.style.display = "block";
     }
-
     registerBtn.onclick = function () {
         registerModal.style.display = "block";
     }
@@ -147,7 +147,6 @@ function searchByName() {
     sessionStorage.setItem("searchValue", $("#tvShowName").val());
     window.location.href = "Search.html";
 }
-
 function toggleBar() {
     if (memberBar.style.display != "block") {
         memberBar.style.display = "block";
@@ -158,7 +157,6 @@ function toggleBar() {
         guestBar.style.display = "block";
     }
 }
-
 function toggleModal() {
     if (loginModal.style.display != "block") {
         loginModal.style.display = "block";
@@ -170,6 +168,7 @@ function toggleModal() {
     }
 }
 
+//Register Functions
 function insertUser() {
     registerModal.style.display = "none";
     let user = {
@@ -188,7 +187,6 @@ function insertUser() {
     ajaxCall("POST", api, JSON.stringify(user), postUserSuccessCB, postUserErrorCB)
     return false;
 }
-
 function postUserSuccessCB(num) {
     if (num == 0) {
         errorAlert("Mail already taken. Please try different Mail.");
@@ -198,7 +196,11 @@ function postUserSuccessCB(num) {
     $("#registerForm").trigger("reset");
     successAlert("Registered Successfully");
 }
+function postUserErrorCB(err) {
+    errorAlert("Error");
+}
 
+//Profile picture functions
 function uploadImage() {
     const ref = firebase.storage().ref();
     const file = document.querySelector("#profileFile").files[0];
@@ -214,7 +216,6 @@ function uploadImage() {
             alert("Image Upload Successfully");
         })
 }
-
 function getProfilePicture(user) {
     const ref = firebase.storage().ref();
     ref.child(user.Mail).getDownloadURL()
@@ -229,16 +230,13 @@ function getProfilePicture(user) {
 
 }
 
-function postUserErrorCB(err) {
-    errorAlert("Error");
-}
 
+//login Get
 function getUserByData() {
     let api = "../api/Users?Mail=" + $("#loginMail").val() + "&Password=" + $("#loginPassword").val();
     ajaxCall("GET", api, " ", getUserSuccessCB, getUserErrorCB);
     return false;
 }
-
 function getUserSuccessCB(user) {
     delete user["Password"];
     localStorage["User"] = JSON.stringify(user);
@@ -247,13 +245,11 @@ function getUserSuccessCB(user) {
     location.reload();
    
 }
-
 function getUserErrorCB(err) {
     errorAlert(err.responseJSON.Message);
 }
 
 //Get Chats from every prefered Series and his initiate functions
-
 function setChat() {
     if (sessionStorage['chat'] != null) {
         chatDetails = JSON.parse(sessionStorage.getItem("chat"));
@@ -315,10 +311,10 @@ function AddMSG() {
     ref.push().set({ "msg": msg, "name": name, "mail": mail, "profileSrc": profileSrc });
 }
 function toggleChat() {
-    if ($("#chatWindow").css('bottom') == '10px')
-        $("#chatWindow").animate({ bottom: "-360px" });
+    if ($("#chatWindow").css('bottom') == '0px')
+        $("#chatWindow").animate({ bottom: "-350px" });
     else
-        $("#chatWindow").animate({ bottom: '10px' });
+        $("#chatWindow").animate({ bottom: '0px' });
 }
 function deleteChat() {
     $("#chatWindow").css("visibility", "hidden");
