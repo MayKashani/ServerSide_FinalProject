@@ -86,7 +86,8 @@ $(document).ready(function () {
         $("#welcomeDiv").html("");
         toggleBar();
         localStorage.removeItem("profileSrc");
-        window.location.href="Homepage.html";
+        deleteChat();
+        window.location.href = "Homepage.html";
     })
 
     $("#getTV").click(searchByName);
@@ -95,7 +96,7 @@ $(document).ready(function () {
             searchByName();
     })
     $(".logo").click(function () {
-        window.location.href="Homepage.html";
+        window.location.href = "Homepage.html";
     })
 
     //scroll with button
@@ -130,17 +131,23 @@ $(document).ready(function () {
 
     //Join selected Chat.
     $(document).on("click", ".joinChatBtn", function () {
-        ref = firebase.database().ref("messages/" + this.id);
-        $("#chatName").html(this.parentElement.firstElementChild.innerText);
-        $("#chatWindow").css("visibility", "visible")
-        $("#messages").html("");
-        listenToNewMessages();
+        $("#fanClub").toggle("fast");
+        chatDetails = {
+            id: this.id,
+            name: this.parentElement.firstElementChild.innerText
+        }
+        sessionStorage.setItem("chat", JSON.stringify(chatDetails));
+        setChat();
     });
+
+
+
+    $("#chatHeader").click(toggleChat);
 });
 
 function searchByName() {
     sessionStorage.setItem("searchValue", $("#tvShowName").val());
-    window.location.href="Search.html";
+    window.location.href = "Search.html";
 }
 
 function toggleBar() {
@@ -250,6 +257,17 @@ function getUserErrorCB(err) {
 }
 
 //Get Chats from every prefered Series and his initiate functions
+
+function setChat() {
+    if (sessionStorage['chat'] != null) {
+        chatDetails = JSON.parse(sessionStorage.getItem("chat"));
+        ref = firebase.database().ref("messages/" + chatDetails.id);
+        $("#chatName").html(chatDetails.name);
+        $("#chatWindow").css("visibility", "visible")
+        $("#messages").html("");
+        listenToNewMessages();
+    }
+}
 function getChats() {
     let api = "../api/Seriess?mail=" + user.Mail + "&mode=Favorites";
     ajaxCall("GET", api, "", getChatsSuccess, getChatsError);
@@ -296,5 +314,15 @@ function AddMSG() {
     let name = user.FirstName;
     let mail = user.Mail;
     ref.push().set({ "msg": msg, "name": name, "mail": mail });
+}
+function toggleChat() {
+    if ($("#chatWindow").css('bottom') == '10px')
+        $("#chatWindow").animate({ bottom: "-360px" });
+    else
+        $("#chatWindow").animate({ bottom: '10px' });
+}
+function deleteChat() {
+    $("#chatWindow").css("visibility", "hidden");
+    sessionStorage.removeItem("chat");
 }
 
