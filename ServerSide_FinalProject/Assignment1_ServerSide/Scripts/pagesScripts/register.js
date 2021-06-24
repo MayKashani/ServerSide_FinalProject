@@ -7,9 +7,6 @@ function checkLS() {
         toggleBar();
         mode = "member";
         getChats();
-        if (localStorage['profileSrc'] != null) {
-            profileSrc = localStorage['profileSrc'];
-		}
     }
     else {
         mode = "guest";
@@ -25,7 +22,6 @@ $(document).ready(function () {
     tvMethod = "3/tv/";
     movieMethod = "3/movie/";
     api_key = "api_key=" + key;
-    profileSrc = "";
 
 
     var memberBar = document.getElementById("memberBar");
@@ -223,8 +219,6 @@ function getProfilePicture(user) {
     const ref = firebase.storage().ref();
     ref.child(user.Mail).getDownloadURL()
         .then(url => {
-            console.log(url);
-            alert("image here!");
             localStorage['profileSrc'] = url;
         })
      .catch ((error) => {
@@ -249,8 +243,8 @@ function getUserSuccessCB(user) {
     delete user["Password"];
     localStorage["User"] = JSON.stringify(user);
     getProfilePicture(user);
-    checkLS();
     loginModal.style.display = "none";
+    location.reload();
    
 }
 
@@ -286,7 +280,7 @@ function getChatsError(err) {
 }
 function printMessage(msg) {
     type = "";
-    profileSrc = localStorage['profileSrc'];
+    profileSrc = msg.profileSrc;
     if (profileSrc == "")
         chatPhotoSrc = "../../Images/userPng.jpeg";
     else
@@ -307,7 +301,8 @@ function listenToNewMessages() {
         msg = {
             name: snapshot.val().name,
             content: snapshot.val().msg,
-            mail: snapshot.val().mail
+            mail: snapshot.val().mail,
+            profileSrc: snapshot.val().profileSrc
         }
         printMessage(msg);
     })
@@ -316,7 +311,8 @@ function AddMSG() {
     let msg = document.getElementById("msgTB").value;
     let name = user.FirstName;
     let mail = user.Mail;
-    ref.push().set({ "msg": msg, "name": name, "mail": mail });
+    let profileSrc = localStorage.profileSrc;
+    ref.push().set({ "msg": msg, "name": name, "mail": mail, "profileSrc": profileSrc });
 }
 function toggleChat() {
     if ($("#chatWindow").css('bottom') == '10px')
