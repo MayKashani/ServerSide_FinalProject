@@ -67,7 +67,7 @@
 		<div class="logo" onclick="window.location.href='Homepage.html'"><i class="fa fa-film"></i>The movie DB </div>
 		<div id="welcomeDiv"></div>
 		<div id="searchDiv">
-			<input type="text" id="tvShowName" />
+			<input type="text" id="tvShowName" placeholder="Look for Tv Show/Movie/Person" />
 			<button id="getTV"><i class="fa fa-search"></i>Search</button>
 		</div>
 		<div id="memberBar">
@@ -175,8 +175,8 @@
 			</div>
 			<div class="form-group">
 				<label for="gender"><span class="red-star">★ </span> Gender: </label>
-				Male <input type="radio" class="form-control" name="gender" value="M" required />
-				Female<input type="radio" class="form-control" name="gender" value="F" />
+				<div><label style="margin: 5px 0px 0px 100px; float: left;">Male </label><input type="radio" style="float: left; width: 20px; margin-left:5px" class="form-control" name="gender" value="M" required=""></div>
+				<div><label style="margin: 5px 0px 0px 20px; float: left;">Female </label><input type="radio" style="float: left; width: 20px; margin-left:5px" class="form-control" name="gender" value="F"></div>
 			</div>
 			<div class="form-group">
 				<label for="birthYear"><span class="red-star">★ </span> Birth year </label>
@@ -189,7 +189,10 @@
 			<div class="form-group">
 				<label for="addressTB">  <span class="red-star">★ </span> Address</label>
 				<input type="text" class="form-control" id="addressTB" placeholder="Enter address" />
-
+			</div>
+			<div class="form-group">
+				<label for="profileTB"> Profile Image </label>
+				<input type="file" class="form-control" id="profileFile" placeholder="Add Profile Picture" />
 			</div>
 			<input type="submit" value="Register" />
 			<hr />
