@@ -77,12 +77,9 @@ function renderSearchPerson(person) {
         for (let i = 0; i < personArr.length; i++) {
             str += "<div id='" + personArr[i].id + "' class='row result person'><div class='resultText row'><div class='col-4'>";
             name = personArr[i].name;
-            imageSrc = personArr[i].profile_path;
+            imageSrc = checkPhotos(personArr[i].profile_path);
+            image = "<img class='imgResult' src = '" + imageSrc + "'/></div>";
             description = "<div class='col-8'><h3>" + name + "</h3><p>" + personArr[i].known_for_department + "</p></div>";
-            if (imageSrc == null)
-                image = "<img class='imgResult' src = '..//Images//noImage.jpg'/></div>";
-            else
-                image = "<img class='imgResult' src = '" + imagePath + imageSrc + "'/></div>";
             str += image + description + "</div></div>";
         }
         $("#results").html(str);
@@ -97,14 +94,11 @@ function renderSearchTv(tv) {
         $("#results").html("<h3>No Tv Shows results found!");
     else {
         for (let i = 0; i < tvArr.length; i++) {
-            str += "<div id='" + tvArr[i].id + "' class='row result tv' style='background:url(" + imagePath + tvArr[i].backdrop_path + "); background-size:cover; background-repeat:no-repeat'><div class='resultText row'><div class='col-4'>";
+            str += "<div id='" + tvArr[i].id + "' class='row result tv' style='background:url(" + checkPhotos(tvArr[i].backdrop_path) + "); background-size:cover; background-repeat:no-repeat'><div class='resultText row'><div class='col-4'>";
             name = tvArr[i].name;
-            imageSrc = tvArr[i].poster_path;
+            imageSrc = checkPhotos(tvArr[i].poster_path);
             description = "<div class='col-8'><h3>" + name + "</h3><p>" + tvArr[i].first_air_date + "</p><h6>" + tvArr[i].overview + "</h6></div>";
-            if (imageSrc == null)
-                image = "<img class='imgResult' src = '..//Images//noImage.jpg'/></div>";
-            else
-                image = "<img class='imgResult' src = '" + imagePath + imageSrc + "'/></div>";
+            image = "<img class='imgResult' src = '" +  imageSrc + "'/></div>";
             str += image + description + "</div></div>";
         }
         $("#results").html(str);
@@ -117,14 +111,11 @@ function renderSearchMovie(movie) {
         $("#results").html("<h3>No movie results found!");
     else {
         for (let i = 0; i < movieArr.length; i++) {
-            str += "<div id='" + movieArr[i].id + "' class='row result movie' style='background:url(" + imagePath + movieArr[i].backdrop_path + "); background-size:cover; background-repeat:no-repeat'><div class='resultText row'><div class='col-4'>";
+            str += "<div id='" + movieArr[i].id + "' class='row result movie' style='background:url(" + checkPhotos(movieArr[i].backdrop_path) + "); background-size:cover; background-repeat:no-repeat'><div class='resultText row'><div class='col-4'>";
             name = movieArr[i].title;
-            imageSrc = movieArr[i].poster_path;
+            imageSrc = checkPhotos(movieArr[i].poster_path);
             description = "<div class='col-8'><h3>" + name + "</h3><p>" + movieArr[i].release_date + "</p><h6>" + movieArr[i].overview + "</h6></div>";
-            if (imageSrc == null)
-                image = "<img class='imgResult'src = '..//Images//noImage.jpg'/></div>";
-            else
-                image = "<img class='imgResult' src = '" + imagePath + imageSrc + "'/></div>";
+            image = "<img class='imgResult' src = '" + imageSrc + "'/></div>";
             str += image + description + "</div></div>";
         }
         $("#results").html(str);

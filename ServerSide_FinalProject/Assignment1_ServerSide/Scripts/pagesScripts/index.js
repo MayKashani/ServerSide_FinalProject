@@ -79,10 +79,9 @@ function getMediaSuccess(media) {
 	i = 1;
 	mediaId = media.id;
 	Current_TV = media;
-	console.log(media)
-	let poster = Current_TV.poster_path ? (imagePath + Current_TV.poster_path) : "..//Images//noImage.jpg" ;
-	str = "<img src='" + poster + "'/>";
-	$('#headerBackground').attr("src", imagePath+Current_TV.backdrop_path);  
+	console.log(media);
+	str = "<img src='" + checkPhotos(Current_TV.poster_path) + "'/>";
+	$('#headerBackground').attr("src", checkPhotos(Current_TV.backdrop_path));  
 	$("#seriesName").html(Current_TV.name)
 	$("#ph").html(str);
 	avg = Current_TV.vote_average*10;
@@ -143,11 +142,8 @@ function getTrailer(video) {
 }
 
 function getSeasonSuccessCB(season) {
-	if (season.poster_path == null)
-		poster = "..//Images//noImage.jpg";
-	else poster = imagePath + season.poster_path;
 	seasonsArr.push(season);
-	image = "<li id=" + i + " class='card'> <img class='card-img-top' src='" + poster + "'/>";
+	image = "<li id=" + i + " class='card'> <img class='card-img-top' src='" + checkPhotos(season.poster_path) + "'/>";
 	cardBody = "<div class='card-body' ><h6>" + season.name + "</h6><p>" + season.air_date + "</p></div> "; 
 	seasonsList += image + "<div class='goToPage'>Go to page" + cardBody + "</div></li>";
 	i++;
@@ -170,10 +166,7 @@ function getCredits(actors) {
 	let str = "";
 	let profile = "";
 	for (let i = 0; i < actors.length; i++) {
-		if (actors[i].profile_path == null)
-			profile = "..//Images//noImage.jpg";
-		else profile = imagePath + actors[i].profile_path;
-		image = "<li id=" + actors[i].id + " class='card actorCard'> <img class='card-img-top actorImg' src='" + profile + "'"+ (chosenMedia.type=='tv'? 'style="width:unset"':"")+">"
+		image = "<li id=" + actors[i].id + " class='card actorCard'> <img class='card-img-top actorImg' src='" + checkPhotos(actors[i].profile_path) + "'" + (chosenMedia.type == 'tv' ? 'style="width:unset"' : "") + ">"
 		cardBody = "<div class='card-body'><h6>" + actors[i].name + "</h6><p class='card-text'>" + actors[i].character + "</p></div ></li > ";
 		str += image + "<div class='goToPage'>Go to page" + cardBody + "</div></li>";
 	}
@@ -186,15 +179,10 @@ function getSimilar(series) {
 	let recommendations = "";
 	if (series.length > 0) {
 		for (let i = 0; i < series.length; i++) {
-			if (series[i].poster_path == null) {
-				poster = "..//Images//noImage.jpg";
-			}
-			else 
-				poster = imagePath + series[i].backdrop_path;
 			if (chosenMedia.type == "movie")
 				name = series[i].title;
 			else name = series[i].name;
-			image = "<li id=" + series[i].id + " class='card recommended'> <img class='card-img-top' src='" + poster + "'/>";
+			image = "<li id=" + series[i].id + " class='card recommended'> <img class='card-img-top' src='" + checkPhotos(series[i].backdrop_path) + "'/>";
 			cardBody = "<div class='card-body'><h6>" + name + "</h6> <p class='card-text'>" + series[i].original_language + "</p></div>";
 			recommendations += image + "<div class='goToPage'>Go to page" + cardBody + "</div></li>";
 		}

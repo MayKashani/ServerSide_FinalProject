@@ -124,8 +124,10 @@ $(document).ready(function () {
 
     //'Enter' keypress event for send message in chat
     $("#msgTB").keypress(function (event) {
-        if (event.keyCode === 13)
+        if (event.keyCode === 13) {
+            event.preventDefault();
             AddMSG();
+        }
     })
 
     chatListBtn = document.getElementById("openChatListBtn");
@@ -337,5 +339,13 @@ function toggleChat() {
 function deleteChat() {
     $("#chatWindow").css("visibility", "hidden");
     chatDetails=""
+}
+
+//checking photo for each html img src 
+
+function checkPhotos(photo) {
+    if (photo == null)
+        return errorPng;
+    return imagePath + photo;
 }
 

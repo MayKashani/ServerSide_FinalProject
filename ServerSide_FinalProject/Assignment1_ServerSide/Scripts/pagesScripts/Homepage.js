@@ -63,7 +63,7 @@ function getRecSuccess(rec) {
         let str = "";
         for (let i = 0; i < rec.length; i++) {
             str += "<li id = '" + rec[i].Id + "'class = 'card tv'>";
-            image = "<img class='card-img-top' src = '" + imagePath + rec[i].Poster_Path + "'/>";
+            image = "<img class='card-img-top' src = '" + checkPhotos(rec[i].Poster_Path) + "'/>";
             cardBody = "<div class='card-body'><h6>" + rec[i].Name + "</h6> <p class='card-text'>" + rec[i].Original_Language + "</p></div>";
             str += image + "<div class='goToPage'>Go to page" + cardBody + "</div></li>";
         }
@@ -92,7 +92,7 @@ function getMovieRecSuccessCB(movies) {
         let str = "";
         for (let i = 0; i < movies.length; i++) {
             str += "<li id = '" + movies[i].Id + "'class = 'card movie'>";
-            image = "<img class='card-img-top' src = '" + imagePath + movies[i].Backdrop_Path + "'/>";
+            image = "<img class='card-img-top' src = '" + checkPhotos(movies[i].Backdrop_Path) + "'/>";
             cardBody = "<div class='card-body'><h6>" + movies[i].Title + "</h6> <p class='card-text'>" + movies[i].Original_Language + "</p></div>";
             str += image + "<div class='goToPage'>Go to page" + cardBody + "</div></li>";
         }
@@ -122,7 +122,7 @@ function getTopShowSuccessCB(topTv) {
     let str = "";
     for (let i = 0; i < popularShows.length; i++) {
         str += "<li id = '" + popularShows[i].id + "'class = 'card tv'>";
-        image = "<img class='card-img-top' src = '" + imagePath + popularShows[i].poster_path + "'/>";
+        image = "<img class='card-img-top' src = '" + checkPhotos(popularShows[i].poster_path) + "'/>";
         cardBody = "<div class='card-body'><h6>" + popularShows[i].name + "</h6> <p class='card-text'>" + popularShows[i].original_language + "</p></div>";
         str += image + "<div class='goToPage'>Go to page"+cardBody + "</div></li>";
     }
@@ -144,7 +144,7 @@ function getTopMovieSuccessCB(movies) {
     let str = "";
     for (let i = 0; i < popularMovies.length; i++) {
         str += "<li id = '" + popularMovies[i].id + "'class = 'card movie'>";
-        image = "<img class='card-img-top' src = '" + imagePath + popularMovies[i].poster_path + "'/>";
+        image = "<img class='card-img-top' src = '" + checkPhotos(popularMovies[i].poster_path) + "'/>";
         cardBody = "<div class='card-body'><h6>" + popularMovies[i].original_title + "</h6> <p class='card-text'>" + popularMovies[i].original_language + "</p></div>";
         str += image + "<div class='goToPage'>Go to page" + cardBody + "</div></li>";
     }
