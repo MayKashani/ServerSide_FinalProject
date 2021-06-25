@@ -1,19 +1,23 @@
 ﻿$(document).ready(function () {
-	getUsers();
 
-	getLikedEpisodes();
-
-	getLikedShows();
+	getTables();
 
 	document.getElementById("defaultOpen").click();
 })
 
-function getUsers() {
-	let api = "../api/Users"
-	ajaxCall("GET", api, "", getUsersSuccess, getDataError);
+function getTables() {
+	let api = "../api/Episodes"
+	ajaxCall("GET", api, "", getTableSuccess, getTableError);
 }
 
-function getUsersSuccess(users) {
+function getTableSuccess(table) {
+	console.log(table);
+	getUsers(table.Users);
+	getMovies(table.LikedMovies);
+	getSeries(table.LikedSeries);
+	getEpisodes(table.LikedEpisodes);
+}
+function getUsers(users) {
 	console.log(users)
 	$("#usersTbl").DataTable({
 		data: users,
@@ -54,22 +58,18 @@ function getUsersSuccess(users) {
 			},
 			{
 				title: "Address",
-				data: "Address"
+				data: "HomeAddress"
 			}
 
 		]
 	})
 }
 
-function getLikedShows() {
-	let api = "../api/Seriess"
-	ajaxCall("GET", api, "", getLikedShowsSuccess, getDataError);
-}
 
-function getLikedShowsSuccess(shows) {
+function getSeries(shows) {
 	console.log(shows)
 	$("#likedShowsTbl").DataTable({
-		data: shows.LikedShows,
+		data: shows,
 		columns: [
 			{
 				title: "Series ID",
@@ -87,16 +87,32 @@ function getLikedShowsSuccess(shows) {
 	})
 }
 
-
-function getLikedEpisodes() {
-	let api = "../api/Episodes"
-	ajaxCall("GET", api, "", getLikedEpisodesSuccess, getDataError);
+function getMovies(movies) {
+	console.log(movies)
+	$("#likedMoviesTbl").DataTable({
+		data: movies,
+		columns: [
+			{
+				title: "Series ID",
+				data: "ID"
+			},
+			{
+				title: "Series Name",
+				data: "Title"
+			},
+			{
+				title: "Number of likes",
+				data: "NumOfUsers"
+			},
+		]
+	})
 }
 
-function getLikedEpisodesSuccess(episodes) {
+
+function getEpisodes(episodes) {
 	console.log(episodes)
 	$("#likedEpisodesTbl").DataTable({
-		data: episodes.LikedEpisodes,
+		data: episodes,
 		columns: [
 			{
 				title: "Series ID",
@@ -123,7 +139,7 @@ function getLikedEpisodesSuccess(episodes) {
 }
 
 
-function getDataError(err) {
+function getTableError(err) {
 	console.log(err)
 }
 

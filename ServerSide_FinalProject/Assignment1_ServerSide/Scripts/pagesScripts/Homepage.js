@@ -6,7 +6,7 @@ $(document).ready(function () {
     //Get Popular According to TMBD
     getPopularTv();
     getPopularMovie();
-
+    showNews();
 
     recommendMode = "tv";
 
@@ -190,4 +190,41 @@ function toggleRecommend() {
     }
 }
 
+function showNews() {
+    var currentDate = new Date();
+    var currentMonth = currentDate.getMonth() - 1;
+
+    const getNews1 = async () => {
+
+        const url = "https://newsapi.org/v2/everything?domains=mtv.com,ew.com&q=movies&q=movie&q=film&q=trailer&q=tv&q=series&from=" + currentMonth + "&sortBy=publishedAt&apiKey=e9657119e6324c7daa3dd0d6d06567a1&language=en";
+        const res = await fetch(url); //פונקציה שיש בדפדפן המקבלת כתובת ומחזירה את התוכן שלו.
+        // await תמשיך לשורה הבאה רק כאשר התוכן נטען במלואו
+        const { articles } = await res.json();  //לוקחים רק את articles מבין כל השדות שיש בכתובת.
+        return articles;
+    };
+
+    const createNewsItemEl = ({ description, title, url, urlToImage }) => {
+        const d = document.createElement("div");
+        d.innerHTML = `
+            <div><a href="${url}" target="_blank" ><h4>${title}</h4></a><div>
+            <div><h5>${description}</h5><div>
+            <img src="${urlToImage}" style="width:300px" />     
+            <hr class="solid">
+                `
+            ;
+        return d;
+    };
+
+    getNews1().then((news) => { // שיטה מודרנית לפונקצית הצלחה
+        console.log(news)
+
+        const cont = document.getElementById("showNews");
+        var index = Math.floor(Math.random() * 10);
+
+        cont.appendChild(createNewsItemEl(news[index]));
+
+    }).catch(console.error);
+
+ 
+}
 

@@ -53,10 +53,10 @@ namespace Assignment1_ServerSide.Models
             return eList;
         }
 
-        public DataSet GetLikedEpisodes()
+        public DataSet GetAdminData()
         {
             DataServices ds = new DataServices();
-            return ds.GetLikedEpisodes();
+            return ds.GetAdminData();
         }
 
     }

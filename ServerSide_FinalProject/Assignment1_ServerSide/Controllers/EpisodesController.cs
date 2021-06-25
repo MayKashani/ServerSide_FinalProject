@@ -21,11 +21,10 @@ namespace Assignment1_ServerSide.Controllers
         }
         
         [HttpGet]
-        public DataSet GetLikedEpisodes()
+        public DataSet GetAdminData()
 		{
-
             Episode e = new Episode();
-            return e.GetLikedEpisodes();
+            return e.GetAdminData();
         }
 
 
