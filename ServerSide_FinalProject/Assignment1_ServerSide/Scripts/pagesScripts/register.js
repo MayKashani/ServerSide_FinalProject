@@ -17,6 +17,7 @@ function checkLS() {
     }
     else {
         mode = "guest";
+        $("#userProfilePh").hide();
     }
 }
 
@@ -232,11 +233,13 @@ function getProfilePicture(user) {
     ref.child(user.Mail).getDownloadURL()
         .then(url => {
             localStorage['profileSrc'] = url;
+            $("#userProfilePh").attr("src", url).show();
         })
      .catch ((error) => {
         // Handle any errors
-         if (error.code == "storage/object-not-found")
-            localStorage['profileSrc'] = "";
+         if (error.code == "storage/object-not-found") {
+             localStorage['profileSrc'] = "";
+         }
     });
 
 }
