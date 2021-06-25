@@ -39,8 +39,8 @@ function getTVNamesSuccessCB(series) {
 function getMovieSuccessCB(movies) {
     let str = "";
     if (movies.length>0)
-    for (let i = 0; i < movies.length; i++) {
-        str += "<div class='episodeCard'><div><img src='" + (imagePath + movies[i].Backdrop_Path) + "' onerror='" + errorPng + "'/></div><div><h3>" + movies[i].Title + "</h3><p><b>Overview:</b> " + movies[i].Overview + "</p>";
+        for (let i = 0; i < movies.length; i++) {
+            str += "<div class='episodeCard'><div><img src='" + checkPhotos(movies[i].Backdrop_Path) + "'/></div><div><h3>" + movies[i].Title + "</h3><p><b>Overview:</b> " + movies[i].Overview + "</p>";
         str += "<p><b>Air Date: </b>" + movies[i].Release_Date + "</p></div>"
         str += "</div><hr>"
     }
@@ -73,7 +73,7 @@ function getEpisodes() {
 function getEpisodesSuccessCB(episodes) {
     let str = "";
     for (let i = 0; i < episodes.length; i++) {
-        str += "<div class='episodeCard'><div><img src='" + (imagePath + episodes[i].ImageURL) + "' onerror='" + errorPng + "'/></div><div><h3>" + episodes[i].EpisodeName + "</h3><p><b>Overview:</b> " + episodes[i].Overview + "</p>";
+        str += "<div class='episodeCard'><div><img src='" + checkPhotos(episodes[i].ImageURL) + "'/></div><div><h3>" + episodes[i].EpisodeName + "</h3><p><b>Overview:</b> " + episodes[i].Overview + "</p>";
         str += "<p><b>Air Date: </b>" + episodes[i].AirDate + "</p></div>"
         str += "</div><hr>"
     }

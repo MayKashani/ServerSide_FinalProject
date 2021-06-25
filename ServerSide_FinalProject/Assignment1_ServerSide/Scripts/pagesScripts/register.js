@@ -339,3 +339,11 @@ function deleteChat() {
     chatDetails=""
 }
 
+//checking photo for each html img src 
+
+function checkPhotos(photo) {
+    if (photo == null)
+        return errorPng;
+    return imagePath + photo;
+}
+
