@@ -16,7 +16,9 @@ namespace Assignment1_ServerSide.Models.DAL
         int current_UserID = 0;
 
         public SqlDataAdapter da;
-        public DataTable dt;
+        //public DataTable dt;
+        public DataSet ds;
+
 
         public DataServices()
         {
@@ -34,6 +36,47 @@ namespace Assignment1_ServerSide.Models.DAL
             SqlConnection con = new SqlConnection(cStr);
             con.Open();
             return con;
+        }
+
+        public DataSet GetAdminData()
+        {
+            if (ds == null)
+                ds = new DataSet("AdminDS");
+            SqlConnection con;
+            try
+            {
+                con = connect("connectionDB");
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            try
+            {
+                string usersDT = "SELECT * FROM UsersTBL;";
+                string moviesDT = "select ID, s.Title, count(distinct f.User_ID) NumOfUsers from Movies s inner join favoriteMovies f on s.ID = f.Movie_ID GROUP BY ID,s.Title;";
+                string seriesDT = "select ID, s.Name, count(distinct f.User_ID) NumOfUsers from Series s inner join Favorites f on s.ID = f.Series_ID GROUP BY ID,s.Name;";
+                string episodesDT = "select e.Series_ID,s.Name ,e.ID,e.Episode_Name ,count(distinct f.User_ID) NumOfUsers from Episodes e inner join Favorites f on e.ID = f.Episode_ID inner join Series s on e.Series_ID = s.ID GROUP BY e.Series_ID,s.Name,e.ID, e.Episode_Name";
+
+                SqlDataAdapter da = new SqlDataAdapter(usersDT +moviesDT+seriesDT+ episodesDT, con);
+                da.TableMappings.Add("Table", "Users");
+                da.TableMappings.Add("Table1", "LikedMovies");
+                da.TableMappings.Add("Table2", "LikedSeries");
+                da.TableMappings.Add("Table3", "LikedEpisodes");
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
         }
 
         public DataSet GetLikedEpisodes()
@@ -88,7 +131,6 @@ namespace Assignment1_ServerSide.Models.DAL
                 String cStr = "select ID, s.Name, count(distinct f.User_ID) NumOfUsers from Series s inner join Favorites f on s.ID = f.Series_ID GROUP BY ID,s.Name";
                 SqlDataAdapter da = new SqlDataAdapter(cStr, con);
 
-                DataSet ds = new DataSet("AdminDS");
                 da.Fill(ds,"LikedShows");
                 return ds;
             }
@@ -636,6 +678,8 @@ namespace Assignment1_ServerSide.Models.DAL
                 u.Style = reader.GetString(index++);
                 u.Address = reader.GetString(index++);
             }
+            if(u.Mail.Equals("admin@admin.com"))
+                ds = new DataSet("AdminDS");
             return u;
         }
 
