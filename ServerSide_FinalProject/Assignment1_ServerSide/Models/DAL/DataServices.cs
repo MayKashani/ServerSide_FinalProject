@@ -678,7 +678,8 @@ namespace Assignment1_ServerSide.Models.DAL
                 u.Style = reader.GetString(index++);
                 u.Address = reader.GetString(index++);
             }
-            if(u.Mail.Equals("admin@admin.com"))
+            
+            if(u.Mail!=null && u.Mail.Equals("admin@admin.com"))
                 ds = new DataSet("AdminDS");
             return u;
         }

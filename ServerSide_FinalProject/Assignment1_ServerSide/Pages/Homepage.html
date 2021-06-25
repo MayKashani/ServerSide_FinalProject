@@ -36,17 +36,13 @@
 
 		ol {
 			padding: 5px;
-		} 
+		}
 
 		#center {
 			grid-column: 2/3;
 			padding: 0px;
+			grid-row: 1/2;
 		}
-
-<<<<<<< Updated upstream
-
-		
-=======
 
 
 
@@ -81,10 +77,13 @@
             list-style-type: none;
         }
 
-        #showNews {
-            background-color: yellow;
-            width:100%;
-        }
+		#showNews {
+			background-color: #e9ecef;
+			border: 1px solid black;
+			width: 100%;
+			color:black;
+		}
+
 		#showNews >p{
 			color :orange;
 		}
@@ -92,7 +91,51 @@
 		a{
 			color:orange;
 		}
->>>>>>> Stashed changes
+
+		#showNews {
+			grid-row: 2/3;
+			grid-column: 1/4;
+		}
+
+		#mainDiv {
+			grid-template-rows: 1fr auto;
+		}
+
+		#fanClub,#menuContent {
+			height:100%
+		}
+
+		.newDiv {
+			width: 100%;
+			padding:15px;
+		}
+
+		.newImg > img {
+			border-radius: 25px;
+			box-shadow: black 0px 0px 18px 8px;
+			margin: 0 auto;
+		}
+
+		.newDescription {
+			margin: 20px auto;
+		}
+
+		#showNews > hr {
+			margin: 1rem auto;
+			width: 10%;
+			color: black;
+			border: none;
+			background-color: black;
+			height:1px
+		}
+
+		#showNews a,h4 {
+			color: #eb861c;
+			font-weight: bolder;
+		}
+
+
+
 	</style>
 
 </head>
@@ -153,14 +196,16 @@
 
 			</div>
 
-			<div id="showNews">
-				<h4>Some News</h4>
-				<a href="News.html" class="button">For all news click here</a>
-
-			</div>
 
 		</div>
-	
+
+		<div id="showNews">
+			<h4>Some News</h4>
+			<a href="News.html" class="button">For all news click here</a>
+			<hr />
+
+
+		</div>
 
 		<div id="menuContent">
 			<ul id="memberBar">

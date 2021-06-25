@@ -206,22 +206,31 @@ function showNews() {
     const createNewsItemEl = ({ description, title, url, urlToImage }) => {
         const d = document.createElement("div");
         d.innerHTML = `
-            <div><a href="${url}" target="_blank" ><h4>${title}</h4></a><div>
-            <div><h5>${description}</h5><div>
-            <img src="${urlToImage}" style="width:300px" />     
-            <hr class="solid">
+            <div class='newDiv row'>
+            <div class='newImg col-3'><img src="${urlToImage}" style="width:300px" /> </div>    
+            <div class='newDescription col-9'>
+            <div class='newUrl'><a href="${url}" target="_blank" ><h4>${title}</h4></a></div>
+               <h5>${description}</h5></div></div>
+            
+            <hr class="solid"></div>
                 `
             ;
         return d;
     };
 
-    getNews1().then((news) => { // שיטה מודרנית לפונקצית הצלחה
-        console.log(news)
+    
+    getNews1().then((news) => { 
+        setInterval(function () {
+            const cont = document.getElementById("showNews");
+            var index = Math.floor(Math.random() * 10);
+            $(cont).fadeToggle('slow', function () {
 
-        const cont = document.getElementById("showNews");
-        var index = Math.floor(Math.random() * 10);
-
-        cont.appendChild(createNewsItemEl(news[index]));
+                cont.replaceChild(createNewsItemEl(news[index]), cont.lastChild);
+                $(cont).fadeToggle('slow');
+            }
+         )
+        
+        },5000)
 
     }).catch(console.error);
 

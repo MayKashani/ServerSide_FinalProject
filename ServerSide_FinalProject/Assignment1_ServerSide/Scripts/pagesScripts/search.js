@@ -75,19 +75,21 @@ function renderSearchPerson(person) {
         $("#results").html("<h3>No person results found!");
     else {
         for (let i = 0; i < personArr.length; i++) {
-            str += "<div id='" + personArr[i].id + "' class='row result person'><div class='col-2'>";
+            str += "<div id='" + personArr[i].id + "' class='row result person'><div class='resultText row'><div class='col-4'>";
             name = personArr[i].name;
             imageSrc = personArr[i].profile_path;
-            description = "<div class='col-10'><h3>" + name + "</h3><p>" + personArr[i].known_for_department + "</p></div>";
+            description = "<div class='col-8'><h3>" + name + "</h3><p>" + personArr[i].known_for_department + "</p></div>";
             if (imageSrc == null)
                 image = "<img class='imgResult' src = '..//Images//noImage.jpg'/></div>";
             else
                 image = "<img class='imgResult' src = '" + imagePath + imageSrc + "'/></div>";
-            str += image + description + "</div>";
+            str += image + description + "</div></div>";
         }
         $("#results").html(str);
     }
 }
+
+
 function renderSearchTv(tv) {
     let str = "";
     let tvArr = tv.results;

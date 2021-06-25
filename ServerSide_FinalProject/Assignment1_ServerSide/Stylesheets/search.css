@@ -3,7 +3,6 @@
 	width: 80%;
 	height: 50px;
 	border: 1px solid white;
-	border-radius: 15px 15px;
 	float: left;
 	text-align:left;
 	position:relative
@@ -31,12 +30,30 @@ div > img {
 	background-color: aqua;
 }
 
-.resultText {
-	z-index:2;
-	width:100%
-}
+
 
 .imgResult {
 	height: 300px;
 	width: auto;
 }
+
+
+.resultText {
+	z-index: 2;
+	width: 100%;
+	transition: .2s ease-out;
+	margin: 0px auto;
+}
+
+	.resultText:hover {
+		box-shadow: inset 0px 0px 13px 16px white;
+		transform: translate3d(0,-2px,0);
+		padding: 20px;
+
+	}
+
+
+	.person .imgResult  {
+		height:150px;
+
+	}

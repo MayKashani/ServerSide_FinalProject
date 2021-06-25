@@ -7,7 +7,7 @@
 
 function errorAlert(msg) {
     $.notifyBar({
-        html: msg, cssClass: "error", close: true, closeText: '&times;', closeOnClick: true, waitingForClose: true
+        html: msg, cssClass: "error", close: true, closeText: '&times;', closeOnClick: true
     });
 }
 
