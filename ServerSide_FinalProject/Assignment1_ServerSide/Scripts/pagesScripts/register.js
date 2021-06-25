@@ -124,8 +124,10 @@ $(document).ready(function () {
 
     //'Enter' keypress event for send message in chat
     $("#msgTB").keypress(function (event) {
-        if (event.keyCode === 13)
+        if (event.keyCode === 13) {
+            event.preventDefault();
             AddMSG();
+        }
     })
 
     chatListBtn = document.getElementById("openChatListBtn");
