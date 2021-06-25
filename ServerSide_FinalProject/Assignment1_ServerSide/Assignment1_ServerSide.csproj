@@ -192,6 +192,7 @@
     <Content Include="Pages\Episodes.html" />
     <Content Include="Pages\Homepage.html" />
     <Content Include="Pages\index.html" />
+    <Content Include="Pages\News.html" />
     <Content Include="Pages\Search.html" />
     <Content Include="Pages\view.html" />
     <Content Include="Scripts\ajaxCalls.js" />
@@ -230,12 +231,17 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\pagesScripts\News.js" />
     <Content Include="Scripts\pagesScripts\register.js" />
     <Content Include="Scripts\pagesScripts\search.js" />
     <Content Include="Scripts\pagesScripts\view.js" />
     <Content Include="Stylesheets\chat.css" />
+    <Content Include="Stylesheets\circle.css" />
+    <Content Include="Stylesheets\index.css" />
     <Content Include="Stylesheets\jquery.notifyBar.css" />
+    <Content Include="Stylesheets\search.css" />
     <Content Include="Stylesheets\StyleSheet.css" />
+    <Content Include="Stylesheets\view.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

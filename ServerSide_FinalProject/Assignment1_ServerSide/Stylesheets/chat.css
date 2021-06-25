@@ -52,7 +52,9 @@
 #msgTB {
     border-radius: 12px;
     border: 1px solid #F0F0F0;
-    font-size:12px
+    font-size:12px;
+    width:80%;
+    float:left;
 }
 
 #chatWindow > .form-group  {
@@ -74,4 +76,17 @@
     display: inline-flex;
     flex-direction: column;
     height: 500px;
+}
+
+#sendMSG{
+    width: 10%;
+    float: left;
+    margin-top: 15px;
+    font-size: 20px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.p-3{
+    font-size:14px;
 }

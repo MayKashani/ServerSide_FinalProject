@@ -1,12 +1,18 @@
 ﻿
 var searchInput = 'addressTB';
+//onload user logged in check
 function checkLS() {
     if (localStorage["User"] != null) {
         user = JSON.parse(localStorage["User"]);
         $("#welcomeDiv").html("Welcome back, " + user.FirstName + " " + user.LastName);
         toggleBar();
         mode = "member";
+        if (typeof (sessionStorage.chat) != "undefined")
+            chatDetails = JSON.parse(sessionStorage["chat"]);
+        else
+            chatDetails = "";
         getChats();
+        getProfilePicture(user);
         setChat();
     }
     else {
@@ -71,7 +77,6 @@ $(document).ready(function () {
         if (event.target == trailerModal) {
             trailerModal.style.display = "none";
             $('#trailerModal').html("")
-           
         }
     }
 
@@ -135,7 +140,6 @@ $(document).ready(function () {
             name: this.parentElement.firstElementChild.innerText,
             bottom:'0px'
         }
-        sessionStorage.setItem("chat", JSON.stringify(chatDetails));
         setChat();
     });
     $("#chatHeader").click(toggleChat);
@@ -144,6 +148,11 @@ $(document).ready(function () {
     $("#openMenuBtn").click(function () {
         $("#menuContent").slideToggle('fast');
     })
+
+    window.onbeforeunload= function() {
+        chatDetails.bottom = $("#chatWindow").css("bottom");
+        sessionStorage["chat"] = JSON.stringify(chatDetails);
+    }
 });
 
 function searchByName() {
@@ -216,7 +225,6 @@ function uploadImage() {
         .then(snapshot => snapshot.ref.getDownloadURL())
         .then(url => {
             console.log(url)
-            alert("Image Upload Successfully");
         })
 }
 function getProfilePicture(user) {
@@ -241,12 +249,15 @@ function getUserByData() {
     return false;
 }
 function getUserSuccessCB(user) {
-    delete user["Password"];
-    localStorage["User"] = JSON.stringify(user);
-    getProfilePicture(user);
-    loginModal.style.display = "none";
-    location.reload();
-   
+    if (user.Mail == 'admin@admin.com')
+        window.location.reload("Admin.html");
+    else {
+        delete user["Password"];
+        localStorage["User"] = JSON.stringify(user);
+        getProfilePicture(user);
+        loginModal.style.display = "none";
+        location.reload();
+    }
 }
 function getUserErrorCB(err) {
     errorAlert(err.responseJSON.Message);
@@ -254,8 +265,7 @@ function getUserErrorCB(err) {
 
 //Get Chats from every prefered Series and his initiate functions
 function setChat() {
-    if (sessionStorage['chat'] != null) {
-        chatDetails = JSON.parse(sessionStorage.getItem("chat"));
+    if (chatDetails != "") {
         ref = firebase.database().ref("messages/" + chatDetails.id);
         $("#chatName").html(chatDetails.name);
         $("#chatWindow").css({ "visibility": "visible", "bottom": chatDetails.bottom })
@@ -293,6 +303,7 @@ function printMessage(msg) {
     str = '<div class="d-flex flex-row p-3">' + imageSrc + '<div class="' + type + ' p-3">' + "<h6><u>" + msg.name + '</u></h3>' + msg.content + '</div>'
 
     $("#messages").append(str);
+    $("#messages").scrollTop($("#messages")[0].scrollHeight);
     $("#msgTB").val("");
 }
 function listenToNewMessages() {
@@ -322,6 +333,6 @@ function toggleChat() {
 }
 function deleteChat() {
     $("#chatWindow").css("visibility", "hidden");
-    sessionStorage.removeItem("chat");
+    chatDetails=""
 }
 
