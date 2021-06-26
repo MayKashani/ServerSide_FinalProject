@@ -13,7 +13,7 @@ namespace Assignment1_ServerSide.Controllers
     {
 
 
-        // GET api/<controller>/5
+        //Get List of Series for requested user account for recommend/request mode.
         [HttpGet]
         public List<Series> Get(string mail,string mode)
         {
@@ -21,14 +21,8 @@ namespace Assignment1_ServerSide.Controllers
             return s.Get(mail,mode);
         }
 
-        [HttpGet]
-        public DataSet GetLikedShows()
-		{
-            Series s = new Series();
-            return s.GetLikedShows();
-        }
 
-        // POST api/<controller>
+        // POST Series in Series + Favorites.
         public int Post([FromBody] Series series)
         {
             return series.Insert();
