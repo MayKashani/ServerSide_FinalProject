@@ -30,7 +30,7 @@ $(document).ready(function () {
     tvMethod = "3/tv/";
     movieMethod = "3/movie/";
     api_key = "api_key=" + key;
-
+    newsInterval = "";
 
     var memberBar = document.getElementById("memberBar");
     var guestBar = document.getElementById("guestBar");
@@ -349,3 +349,7 @@ function checkPhotos(photo) {
     return imagePath + photo;
 }
 
+function exitNews(e) {
+    $(e.parentElement.parentElement).hide();
+    clearInterval(newsInterval);
+}

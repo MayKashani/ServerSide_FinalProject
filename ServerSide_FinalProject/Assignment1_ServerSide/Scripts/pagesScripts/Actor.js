@@ -1,4 +1,5 @@
 ﻿var creditMode = "";
+
 $(document).ready(function () {
 
     getActor();

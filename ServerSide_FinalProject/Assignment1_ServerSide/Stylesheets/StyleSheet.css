@@ -10,6 +10,10 @@
 	background-repeat:no-repeat
 }
 
+i {
+	cursor:pointer;
+}
+
 button:focus {
 	outline: none;
 }
@@ -135,6 +139,7 @@ button, input[type=submit] {
 	background: transparent;
 	border: none;
 	margin-top: 15px;
+	text-align:left;
 }
 
     /*button:hover, input[type=submit]:hover {
@@ -382,3 +387,49 @@ i {
 	height: 90vh;
 	width: 10vw;
 }
+
+
+/* News */
+#fanClub, #menuContent {
+	height: 100%
+}
+
+.newDiv {
+	width: 100%;
+	padding: 15px;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	padding:20px
+}
+
+.newImg > img {
+	border-radius: 25px;
+	box-shadow: black 0px 0px 18px 8px;
+	margin: 0 auto;
+}
+
+.newDescription {
+	margin: 0 auto;
+	grid-column: 2/3;
+	padding:20px;
+	text-align:left;
+}
+
+#showNews > hr {
+	margin: 1rem auto;
+	width: 10%;
+	color: black;
+	border: none;
+	background-color: black;
+	height: 1px
+}
+
+.showNews h5{
+	text-align:left
+}
+
+.newDiv a, h5 {
+	color: #eb861c;
+}
+
+

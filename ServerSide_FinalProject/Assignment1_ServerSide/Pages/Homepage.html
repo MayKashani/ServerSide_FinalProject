@@ -46,9 +46,9 @@
 
 
 
-		#menuContent ul {
+		#menuContent ul{
 			display: block;
-			height: 40vh;
+			height: 100%;
 			list-style-type: none;
 			margin: 0px;
 			padding: 0px
@@ -67,22 +67,20 @@
 
 
 		#menuContent {
-			display: none;
-			background: rgba(0, 0, 0, 0.4);
-			grid-column: 3/4;
-			height: 90vh;
-			width: 10vw;
+			height: 100%;
 		}
         ol {
             list-style-type: none;
         }
 
-		#showNews {
-			background-color: #e9ecef;
-			border: 1px solid black;
-			width: 100%;
-			color:black;
-		}
+        #showNews {
+            background-color: #e9ecef;
+            border: 1px solid black;
+            width: 100%;
+            color: black;
+            grid-row: 2/3;
+            grid-column: 1/4;
+        }
 
 		#showNews >p{
 			color :orange;
@@ -92,49 +90,24 @@
 			color:orange;
 		}
 
-		#showNews {
-			grid-row: 2/3;
-			grid-column: 1/4;
-		}
 
 		#mainDiv {
 			grid-template-rows: 1fr auto;
 		}
 
-		#fanClub,#menuContent {
-			height:100%
+		#showNews i
+		{
+			float:right;
+			margin:10px
 		}
 
-		.newDiv {
-			width: 100%;
-			padding:15px;
-		}
+        #showNews i:hover {
+            float: right;
+            margin: 10px;
+			font-size:larger;
+			
 
-		.newImg > img {
-			border-radius: 25px;
-			box-shadow: black 0px 0px 18px 8px;
-			margin: 0 auto;
-		}
-
-		.newDescription {
-			margin: 20px auto;
-		}
-
-		#showNews > hr {
-			margin: 1rem auto;
-			width: 10%;
-			color: black;
-			border: none;
-			background-color: black;
-			height:1px
-		}
-
-		#showNews a,h4 {
-			color: #eb861c;
-			font-weight: bolder;
-		}
-
-
+        }
 
 	</style>
 
@@ -200,6 +173,7 @@
 		</div>
 
 		<div id="showNews">
+			<div><i onclick="exitNews(this)" class="fa fa-times"></i></div>
 			<h4>Some News</h4>
 			<a href="News.html" class="button">For all news click here</a>
 			<hr />
@@ -211,11 +185,14 @@
 			<ul id="memberBar">
 				<li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='view.html'"> <i class="fa fa-heart"></i>Favorites </button></li>
 				<li> <button id="openChatListBtn" class="menuBtn"><i class="fa fa-comments"></i>Chat</button></li>
+				<li> <button id='newsBtn' class="menuBtn" onclick="window.location.href='news.html'"><i class="fa fa-newspaper-o"></i>News</button></li>
 				<li> <button id='logoutBtn' class="menuBtn"><i class="fa fa-sign-out"></i>Logout</button></li>
 			</ul>
 			<ul id="guestBar">
+				<li> <button id='newsBtn' class="menuBtn" onclick="window.location.href='news.html'"><i class="fa fa-newspaper-o"></i>News</button></li>
 				<li> <button id="registerBtn" class="menuBtn"><i class="fa fa-user-plus"></i>Register</button></li>
 				<li> <button id="loginBtn" class="menuBtn"><i class="fa fa-sign-in"></i>Login</button></li>
+
 			</ul>
 
 		</div>
