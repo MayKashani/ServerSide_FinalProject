@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDX02F5Z4U83fevL63h0sIKVde5iqwDmr4"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-analytics.js"></script>
@@ -90,19 +91,12 @@
 			$(window).load(function () {
 				// Animate loader off screen
 				$(".se-pre-con").fadeOut(2000);;
-
 			});
 		});
 	</script>
 </head>
 <body>
-<<<<<<< Updated upstream
-=======
 	<div class="se-pre-con"></div>
-
-	<!--Your web app's Firebase configuration-->
-	<script src="../Scripts/pagesScripts/firebase.js"></script>
->>>>>>> Stashed changes
 	<div class="nav">
 		<div class="logo"><i class="fa fa-film"></i>The movie DB </div>
 		<div id="welcomeDiv"></div>
@@ -122,11 +116,12 @@
 		<div id="actorDiv" class="center container">
 			<div id="head">
 				<div class="row" id="actorInfo">
-					<div class="col-5">
+					<div class="col-3">
 						<div id="actorImg"> </div>
 						<div id="externalLinks"></div>
 					</div>
-					<div class="col-7" id="headerInfo"></div>
+					<div class="col-5" id="headerInfo" style="margin:0px auto"></div>
+					<div id="map" class="col-4"></div>
 				</div>
 
 			</div>

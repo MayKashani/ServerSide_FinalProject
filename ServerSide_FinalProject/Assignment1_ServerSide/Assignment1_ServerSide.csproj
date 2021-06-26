@@ -239,6 +239,7 @@
     <Content Include="Stylesheets\circle.css" />
     <Content Include="Stylesheets\index.css" />
     <Content Include="Stylesheets\jquery.notifyBar.css" />
+    <Content Include="Stylesheets\news.css" />
     <Content Include="Stylesheets\search.css" />
     <Content Include="Stylesheets\StyleSheet.css" />
     <Content Include="Stylesheets\view.css" />
