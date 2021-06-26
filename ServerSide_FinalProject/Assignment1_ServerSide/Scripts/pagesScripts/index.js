@@ -55,16 +55,17 @@ function postMovie() {
 		Status: Current_TV.status,
 		Tagline: Current_TV.tagline
 	}
-	ajaxCall("POST", "../api/Movies?mail="+user, JSON.stringify(movie), postMovieSuccessCB, postMovieErrorCB)
+	ajaxCall("POST", "../api/Movies?mail="+user.Mail, JSON.stringify(movie), postMovieSuccessCB, postMovieErrorCB)
 	return false;
 }
-
-function postMovieSuccessCB(num) {
-	console.log("success");
+function postMovieSuccessCB(alert) {
+	console.log(alert);
+	successAlert(alert);
 }
 
 function postMovieErrorCB(err) {
-	console.log(err)
+	console.log(err);
+	errorAlert(err.responseJSON.Message);
 }
 
 
