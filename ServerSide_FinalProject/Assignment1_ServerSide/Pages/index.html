@@ -65,10 +65,7 @@
 
 
 		$(document).ready(function () {
-
-          
 			document.getElementById("defaultOpen").click();
-            
 		});
    
         
@@ -132,8 +129,8 @@
 
 				<div id="optionsDiv">
 					<button class="tablink" onclick="openPage('actorsDiv', this) " id="defaultOpen">Actors</button>
-					<button class="tablink" onclick="openPage('seasonsDiv', this)">Seasons</button>
-					<button class="tablink" onclick="openPage('recommendationsDiv', this)">Recommendations</button>
+					<button id="seasonsTab" class="tablink" onclick="openPage('seasonsDiv', this)">Seasons</button>
+					<button id="recommendationsTab" class="tablink" onclick="openPage('recommendationsDiv', this)">Recommendations</button>
 
 					<div id="actorsDiv" class="tabcontent">
 						<div>

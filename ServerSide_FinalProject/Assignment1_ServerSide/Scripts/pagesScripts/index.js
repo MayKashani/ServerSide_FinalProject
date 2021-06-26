@@ -95,6 +95,7 @@ function getMediaSuccess(media) {
 			$("#seriesName").html(Current_TV.title)
 			$("#movieLikeBtn").show();
 			renderDetails(Current_TV);
+			$("#seasonsTab").hide();
 			break;
 		}
 		case "tv": {
@@ -112,7 +113,10 @@ function renderDetails(media) {
 	let credits = media.credits.cast;
 	let recommendations = media.recommendations.results;
 	getCredits(credits);
-	getSimilar(recommendations);
+	if (recommendations.length > 0)
+		getSimilar(recommendations);
+	else
+		$("#recommendationsTab").hide();
 	getTrailer(video);
 	getExternalLinks();
 	$("#seriesDiv").show();
