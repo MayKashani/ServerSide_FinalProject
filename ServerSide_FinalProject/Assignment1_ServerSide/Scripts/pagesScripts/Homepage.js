@@ -15,10 +15,9 @@ $(document).ready(function () {
     if (mode == "member") {
         getRecBySimilarUsers();
         getRecMovieBySimilarUsers();
-
     }
 
-    //Toggle TVShows/Movies
+    //Toggle TVShows/Movies by click option for each popular/recommend
     $(".popularButton").click(function () {
         if ($(this).css("background-color") != "rgb(0, 255, 255)")
             togglePopular();
@@ -213,16 +212,14 @@ function showNews() {
 
     
     getNews1().then((news) => { 
+        const cont = document.getElementById("showNews");
         newsInterval = setInterval(function () {
-            const cont = document.getElementById("showNews");
             var index = Math.floor(Math.random() * 10);
             $(cont).fadeToggle('slow', function () {
-
                 cont.replaceChild(createNewsItemEl(news[index]), cont.lastChild);
                 $(cont).fadeToggle('slow');
             }
          )
-        
         },5000)
 
     }).catch(console.error);

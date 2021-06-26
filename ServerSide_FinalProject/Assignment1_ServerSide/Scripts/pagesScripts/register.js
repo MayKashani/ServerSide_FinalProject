@@ -248,8 +248,7 @@ function getProfilePicture(user) {
 
 }
 
-
-//login Get
+//login Get (Admin/Regular)
 function getUserByData() {
     let api = "../api/Users?Mail=" + $("#loginMail").val() + "&Password=" + $("#loginPassword").val();
     ajaxCall("GET", api, " ", getUserSuccessCB, getUserErrorCB);

@@ -1,9 +1,4 @@
 ﻿
-    //const dog = {name: "tributo", age: 10 };
-        //const {age} = dog;(=10)
-
-
-
         var currentDate = new Date();
         var currentMonth = currentDate.getMonth() - 1;
 

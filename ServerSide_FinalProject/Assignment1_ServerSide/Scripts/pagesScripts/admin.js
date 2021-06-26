@@ -17,6 +17,7 @@ function getTableSuccess(table) {
 	getSeries(table.LikedSeries);
 	getEpisodes(table.LikedEpisodes);
 }
+
 function getUsers(users) {
 	console.log(users)
 	$("#usersTbl").DataTable({
@@ -64,8 +65,6 @@ function getUsers(users) {
 		]
 	})
 }
-
-
 function getSeries(shows) {
 	console.log(shows)
 	$("#likedShowsTbl").DataTable({
@@ -86,7 +85,6 @@ function getSeries(shows) {
 		]
 	})
 }
-
 function getMovies(movies) {
 	console.log(movies)
 	$("#likedMoviesTbl").DataTable({
@@ -107,8 +105,6 @@ function getMovies(movies) {
 		]
 	})
 }
-
-
 function getEpisodes(episodes) {
 	console.log(episodes)
 	$("#likedEpisodesTbl").DataTable({
@@ -137,7 +133,6 @@ function getEpisodes(episodes) {
 		]
 	})
 }
-
 
 function getTableError(err) {
 	console.log(err)

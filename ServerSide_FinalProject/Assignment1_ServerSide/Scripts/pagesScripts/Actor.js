@@ -201,6 +201,7 @@ function getLinksErrorCB(err) {
     console.log(err);
 }
 
+//Use axios library for get location details, and then call render function map for location coordinates. 
 function getMap(place) {
     axios.get("https://maps.googleapis.com/maps/api/geocode/json?", {
         params: {
@@ -215,18 +216,17 @@ function getMap(place) {
             console.log(error);
         })
 }
-
 function initMap(location) {
     var latlng = {
         lat: location.lat,
         lng: location.lng
-    };
+    }; //get location coordinates.
     var map = new google.maps.Map(document.getElementById("map"), {
         zoom: 8,
         center: latlng
-    });
+    });//initiate map in html div
     var marker = new google.maps.Marker({
         position: latlng,
         map: map
-    });
+    });//put a marker location in the map.
 }
