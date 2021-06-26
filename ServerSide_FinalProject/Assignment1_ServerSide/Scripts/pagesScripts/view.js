@@ -3,7 +3,7 @@
     
     errorPng = 'this.src="..//Images//noImage.jpg"';
     imagePath = "https://image.tmdb.org/t/p/w500/";
-
+    
     getTVNames();
     getMovies();
 

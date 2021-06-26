@@ -32,13 +32,46 @@
 	<link href="../Stylesheets/StyleSheet.css" rel="stylesheet" />
 	<link rel="stylesheet" href="../Stylesheets/chat.css" />
 	<link rel="stylesheet" href="../Stylesheets/index.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
+	<style>
+		.no-js #loader {
+			display: none;
+		}
+
+		.js #loader {
+			display: block;
+			position: absolute;
+			left: 100px;
+			top: 0;
+		}
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-image: url('../Images/Bean Eater-0.9s-210px.gif');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: white;
+        }
+       
+ 	</style>
 	<script>
+
+
 		$(document).ready(function () {
 
+          
 			document.getElementById("defaultOpen").click();
-
-
+            
 		});
+   
+        
 		function openPage(pageName, elmnt) {
 			var tabcontent, tablinks;
 			// Hide all the pages with class tabcontent
@@ -63,6 +96,9 @@
 </head>
 
 <body>
+
+	<div class="se-pre-con"></div>
+
 	<div class="nav">
 		<div class="logo" onclick="window.location.href='Homepage.html'"><i class="fa fa-film"></i>The movie DB </div>
 		<div id="welcomeDiv"></div>
@@ -123,34 +159,34 @@
 
 			</div>
 
-		<div id="menuContent">
-			<ul id="memberBar">
-				<li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='view.html'"> <i class="fa fa-heart"></i>Favorites </button></li>
-				<li> <button id='logoutBtn' class="menuBtn"><i class="fa fa-sign-out"></i>Logout</button></li>
-				<li> <button id="openChatListBtn" class="menuBtn"><i class="fa fa-comments">Chat</i></button></li>
-			</ul>
-			<ul id="guestBar">
-				<li> <button id="registerBtn" class="menuBtn"><i class="fa fa-user-plus"></i>Register</button></li>
-				<li> <button id="loginBtn" class="menuBtn"><i class="fa fa-sign-in"></i>Login</button></li>
-			</ul>
+			<div id="menuContent">
+				<ul id="memberBar">
+					<li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='view.html'"> <i class="fa fa-heart"></i>Favorites </button></li>
+					<li> <button id='logoutBtn' class="menuBtn"><i class="fa fa-sign-out"></i>Logout</button></li>
+					<li> <button id="openChatListBtn" class="menuBtn"><i class="fa fa-comments">Chat</i></button></li>
+				</ul>
+				<ul id="guestBar">
+					<li> <button id="registerBtn" class="menuBtn"><i class="fa fa-user-plus"></i>Register</button></li>
+					<li> <button id="loginBtn" class="menuBtn"><i class="fa fa-sign-in"></i>Login</button></li>
+				</ul>
 
-		</div>
-		<div id="chatWindow" class="card mt-5" style="visibility:hidden">
-			<div id="chatHeader" class="d-flex flex-row justify-content-between p-3 adiv text-white"><span id="chatName" class="pb-3"></span> <i onclick="deleteChat()" class="fa fa-times"></i> </div>
-			<div id="messages">
 			</div>
-			<div class="form-group px-3">
-				<textarea id="msgTB" class="form-control" rows="2" placeholder="Type your message"></textarea>
-				<i id="sendMSG" onclick="AddMSG()" class="fa fa-paper-plane"></i>
+			<div id="chatWindow" class="card mt-5" style="visibility:hidden">
+				<div id="chatHeader" class="d-flex flex-row justify-content-between p-3 adiv text-white"><span id="chatName" class="pb-3"></span> <i onclick="deleteChat()" class="fa fa-times"></i> </div>
+				<div id="messages">
+				</div>
+				<div class="form-group px-3">
+					<textarea id="msgTB" class="form-control" rows="2" placeholder="Type your message"></textarea>
+					<i id="sendMSG" onclick="AddMSG()" class="fa fa-paper-plane"></i>
+				</div>
 			</div>
 		</div>
+
 	</div>
-
-
 
 	<div id="trailerModal" class="modal">
 
-	
+
 	</div>
 
 
@@ -227,5 +263,6 @@
 			</div>
 		</form>
 	</div>
+
 </body>
 </html>

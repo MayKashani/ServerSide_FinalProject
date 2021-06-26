@@ -116,6 +116,7 @@ function renderDetails(media) {
 	getTrailer(video);
 	getExternalLinks();
 	$("#seriesDiv").show();
+	$(".se-pre-con").fadeOut(1000);
 }
 
 function getMediaError(err) {
