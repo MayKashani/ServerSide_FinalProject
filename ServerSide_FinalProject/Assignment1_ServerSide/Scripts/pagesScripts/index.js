@@ -1,7 +1,7 @@
 ﻿
 
 $(document).ready(function () {
-	var i = 1; //
+	var i = 1; 
 	trailerUrl = "";
 
 	$("#watchTrailerBtn").hide();
@@ -58,6 +58,7 @@ function postMovie() {
 	ajaxCall("POST", "../api/Movies?mail="+user.Mail, JSON.stringify(movie), postMovieSuccessCB, postMovieErrorCB)
 	return false;
 }
+
 function postMovieSuccessCB(alert) {
 	console.log(alert);
 	successAlert(alert);
