@@ -255,7 +255,7 @@ function getUserByData() {
 }
 function getUserSuccessCB(user) {
     if (user.Mail == 'admin@admin.com')
-        window.location.href="Admin.html";
+        window.location.replace="Admin.html";
     else {
         delete user["Password"];
         localStorage["User"] = JSON.stringify(user);

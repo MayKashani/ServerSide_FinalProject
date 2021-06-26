@@ -47,6 +47,7 @@ div > img {
 	width: 100%;
 	max-width: 100%;
 	grid-template-columns: auto 1fr auto;
+	min-height:90vh
 }
 
 #fanClub {
@@ -360,9 +361,27 @@ i {
 
 /*menuCSS*/
 
+#menuContent {
+	display: none;
+	background: rgba(0, 0, 0, 0.4);
+	grid-column: 3/4;
+	height: 90vh;
+	width: 10vw;
+}
+
+ol {
+	padding: 5px;
+}
+
+#center {
+	grid-column: 2/3;
+	padding: 0px;
+	grid-row: 1/2;
+}
+
 #menuContent ul {
 	display: block;
-	height: 40vh;
+	height: 100%;
 	list-style-type: none;
 	margin: 0px;
 	padding: 0px
@@ -380,13 +399,6 @@ i {
 }
 
 
-#menuContent {
-	display: none;
-	background: rgba(0, 0, 0, 0.4);
-	grid-column: 3/4;
-	height: 90vh;
-	width: 10vw;
-}
 
 
 /* News */
@@ -398,10 +410,9 @@ i {
 	width: 100%;
 	padding: 15px;
 	display: grid;
-	grid-template-columns: 1fr auto;
-	padding:20px
+	grid-template-columns: 1fr 2fr;
+	padding: 20px;
 }
-
 .newImg > img {
 	border-radius: 25px;
 	box-shadow: black 0px 0px 18px 8px;
@@ -428,8 +439,61 @@ i {
 	text-align:left
 }
 
-.newDiv a, h5 {
-	color: #eb861c;
+
+
+/* search and view pages*/
+
+.result {
+	border: 1px solid white;
+	height: auto;
+	width: 100%;
+	margin: 0 auto;
 }
 
 
+.resultText {
+	z-index: 2;
+	width: 100%;
+	transition: .2s ease-out;
+	margin: 0px auto;
+}
+
+	.resultText:hover {
+		box-shadow: inset 0px 0px 13px 16px white;
+		transform: translate3d(0,-2px,0);
+		padding: 20px;
+	}
+
+
+.result {
+/*	width: 80%;
+	height: 50px;
+	border: 1px solid white;*/
+	float: left;
+	text-align: left;
+	position: relative
+}
+
+	.result::after {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		background: black;
+		opacity: 0.7;
+		content: ""
+	}
+
+	.result > div {
+		min-height:300px;
+		padding:10px
+	}
+
+
+#results, #favoritesMovies, #seriesEpisodes {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	max-height: 85vh;
+	display: inline-flex;
+	flex-direction: column;
+	width: 100%;
+}

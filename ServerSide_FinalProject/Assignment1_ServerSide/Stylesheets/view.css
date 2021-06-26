@@ -70,3 +70,16 @@
 		color: #FF4136;
 	}
 }
+
+
+.episode:hover{
+	box-shadow:none;
+	transform:none;
+	padding:10px;
+}
+
+
+
+#favoritesTv> div, #favoritesMovies {
+	margin:20px 0px;
+}

@@ -1,7 +1,6 @@
 ﻿$(document).ready(function () {
 
     
-    errorPng = 'this.src="..//Images//noImage.jpg"';
     imagePath = "https://image.tmdb.org/t/p/w500/";
     
     getTVNames();
@@ -37,16 +36,23 @@ function getTVNamesSuccessCB(series) {
 }
 
 function getMovieSuccessCB(movies) {
+    console.log(movies)
     let str = "";
-    if (movies.length>0)
+    if (movies.length == 0)
+        $("#favoritesMovies").html("<h3>No movie results found!</h3>");
+    else {
         for (let i = 0; i < movies.length; i++) {
-            str += "<div class='episodeCard'><div><img src='" + checkPhotos(movies[i].Backdrop_Path) + "'/></div><div><h3>" + movies[i].Title + "</h3><p><b>Overview:</b> " + movies[i].Overview + "</p>";
-        str += "<p><b>Air Date: </b>" + movies[i].Release_Date + "</p></div>"
-        str += "</div><hr>"
+            str += "<div class='row result' style='background:url(" + checkPhotos(movies[i].Backdrop_Path) + "); background-size:cover; background-repeat:no-repeat'><div class='resultText row'>"
+            description = "<div class='col-8'><h3>" + movies[i].Title + "</h3><p><b>Air Date: </b>" + movies[i].Release_Date + "</p><h5>" + movies[i].Tagline + "</h5><p> " + movies[i].Overview + "</p></div>"
+            str += description + "</div></div>"
+        }
+        $("#favoritesMovies").html(str)
+
     }
-    $("#favoritesMovies").html(str)
-    
 }
+
+
+
 
 function getMovieErrorCB(err) {
     console.log(err);
@@ -73,12 +79,15 @@ function getEpisodes() {
 function getEpisodesSuccessCB(episodes) {
     let str = "";
     for (let i = 0; i < episodes.length; i++) {
-        str += "<div class='episodeCard'><div><img src='" + checkPhotos(episodes[i].ImageURL) + "'/></div><div><h3>" + episodes[i].EpisodeName + "</h3><p><b>Overview:</b> " + episodes[i].Overview + "</p>";
-        str += "<p><b>Air Date: </b>" + episodes[i].AirDate + "</p></div>"
-        str += "</div><hr>"
+        str += "<div class='row result'><div class='row resultText episode'><div class='col-4'><img src='" + checkPhotos(episodes[i].ImageURL) + "'/></div><div class='col-8'><h3>" + episodes[i].EpisodeName + "</h3><p><b>Overview:</b> " + episodes[i].Overview + "</p>";
+        str += "<p><b>Air Date: </b>" + episodes[i].AirDate + "</p></div></div>"
+        str += "</div>"
     }
     $("#seriesEpisodes").html(str)
 }
+
+
+
 
 function getEpisodesErrorCB() {
     console.log("Error");
