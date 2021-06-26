@@ -1,27 +1,30 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title></title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous">
-    </script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../Stylesheets/jquery.notifyBar.css">
-    <script src="../Scripts/pagesScripts/alerts.js"></script>
-    <script src="../Scripts/jquery.notifyBar.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-    <script src="../Scripts/pagesScripts/admin.js"></script>
-    <script src="../Scripts/ajaxCalls.js"></script>
-    <style>
+	<meta charset="utf-8" />
+	<title></title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			crossorigin="anonymous">
+	</script>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="../Stylesheets/jquery.notifyBar.css">
+	<script src="../Scripts/pagesScripts/alerts.js"></script>
+	<script src="../Scripts/jquery.notifyBar.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+	<script src="../Scripts/pagesScripts/admin.js"></script>
+	<script src="../Scripts/ajaxCalls.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
+	<style>
 		/* Style tab links */
 		body {
 			height: 100vh;
@@ -40,21 +43,55 @@
 			width: 20%;
 		}
 
-		.tablink:hover {
-			background-color: #777;
-		}
+			.tablink:hover {
+				background-color: #777;
+			}
 
 		.tabcontent {
 			display: none;
 			padding: 100px 20px;
 			height: 100%;
-			background-color:lightgray;
+			background-color: lightgray;
 		}
 
+		.no-js #loader {
+			display: none;
+		}
 
-    </style>
+		.js #loader {
+			display: block;
+			position: absolute;
+			left: 100px;
+			top: 0;
+		}
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-image: url('../Images/Bean Eater-0.9s-210px.gif');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: white;
+        }
+	</style>
+	<script>
+		$(document).ready(function () {
+
+			$(window).load(function () {
+				// Animate loader off screen
+				$(".se-pre-con").fadeOut(2000);;
+
+			});
+		});
+	</script>
 </head>
 <body>
+	<div class="se-pre-con"></div>
+
 	<button class="tablink" onclick="openPage('home', this) " id="defaultOpen">Home</button>
 	<button class="tablink" onclick="openPage('users', this)">Users</button>
 	<button class="tablink" onclick="openPage('movies', this)">Movies</button>

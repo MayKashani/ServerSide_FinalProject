@@ -1,6 +1,11 @@
 ﻿var creditMode = "";
-$(document).ready(function () {
 
+
+$(document).ready(function () {
+    $(window).load(function () {
+        // Animate loader off screen
+        $(".se-pre-con").fadeOut("slow");;
+    });
     getActor();
    
     $(".knownButton").click(function () {
@@ -53,7 +58,14 @@ function getActorErrorCB(err) {
 //Render Actor details.
 function renderActor(actor) {
 
+<<<<<<< Updated upstream
     imageSrc = "<img src='" + checkPhotos(actor.profile_path) + "'>";
+=======
+    if (actor.profile_path == null)
+        imageSrc = "<img src = '..//Images//noImage.jpg'/>";
+    else
+        imageSrc = "<img src='" + imagePath + actor.profile_path + "' onerror=" + errorPng + ">";
+>>>>>>> Stashed changes
     getActorLinks();
     var gender = "";
     if (actor.gender == '1')

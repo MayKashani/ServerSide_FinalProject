@@ -2,7 +2,8 @@
 var popularMode = "";
 
 $(document).ready(function () {
-    
+
+
     //Get Popular According to TMBD
     getPopularTv();
     getPopularMovie();
@@ -19,7 +20,7 @@ $(document).ready(function () {
 
     //Toggle TVShows/Movies
     $(".popularButton").click(function () {
-        if($(this).css("background-color") != "rgb(0, 255, 255)")
+        if ($(this).css("background-color") != "rgb(0, 255, 255)")
             togglePopular();
     });
     $(".recommendButton").click(function () {
@@ -44,10 +45,6 @@ $(document).ready(function () {
         sessionStorage.setItem("mediaChoose", JSON.stringify(method));
         window.location.href = 'index.html';
     });
-
-
-
-
 
 });
 

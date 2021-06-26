@@ -32,6 +32,9 @@
 	<script src="../Scripts/jquery.notifyBar.js"></script>
 	<link rel="stylesheet" href="../Stylesheets/chat.css" />
 	<link href="../Stylesheets/StyleSheet.css" rel="stylesheet" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
 	<style>
 
 		ol {
@@ -44,6 +47,11 @@
 			grid-row: 1/2;
 		}
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 
 
 		#menuContent ul {
@@ -73,10 +81,8 @@
 			height: 90vh;
 			width: 10vw;
 		}
-        ol {
-            list-style-type: none;
-        }
 
+<<<<<<< Updated upstream
 		#showNews {
 			background-color: #e9ecef;
 			border: 1px solid black;
@@ -86,12 +92,26 @@
 
 		#showNews >p{
 			color :orange;
-		}
-     
-		a{
-			color:orange;
+=======
+		ol {
+			list-style-type: none;
+>>>>>>> Stashed changes
 		}
 
+		#showNews {
+			background-color: yellow;
+			width: 100%;
+		}
+
+			#showNews > p {
+				color: orange;
+			}
+
+		a {
+			color: orange;
+		}
+
+<<<<<<< Updated upstream
 		#showNews {
 			grid-row: 2/3;
 			grid-column: 1/4;
@@ -136,19 +156,55 @@
 
 
 
-	</style>
+=======
+		.no-js #loader {
+			display: none;
+		}
 
+		.js #loader {
+			display: block;
+			position: absolute;
+			left: 100px;
+			top: 0;
+		}
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-image: url('../Images/Bean Eater-0.9s-210px.gif');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: white;
+        }
+>>>>>>> Stashed changes
+	</style>
+	<script>
+
+		$(document).ready(function () {
+
+			$(window).load(function () {
+				// Animate loader off screen
+				$(".se-pre-con").fadeOut(2000);;
+
+			});
+		});
+	</script>
 </head>
 <body>
+	<div class="se-pre-con"></div>
 
 	<div class="nav">
 		<div class="logo" onclick=""><i class="fa fa-film"></i>The movie DB </div>
 		<div>
-			<img id="userProfilePh" src="../Images/userPng.jpeg"/>
+			<img id="userProfilePh" src="../Images/userPng.jpeg" />
 			<div id="welcomeDiv"></div>
 		</div>
 		<div id="searchDiv">
-			<input type="text" id="tvShowName" placeholder="Look for Tv Show/Movie/Person"/>
+			<input type="text" id="tvShowName" placeholder="Look for Tv Show/Movie/Person" />
 			<button id="getTV"><i class="fa fa-search"></i>Search</button>
 		</div>
 		<button id="openMenuBtn"><i class="fa fa-bars"> </i></button>
@@ -206,6 +262,10 @@
 
 
 		</div>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
 		<div id="menuContent">
 			<ul id="memberBar">
@@ -261,8 +321,8 @@
 			</div>
 			<div class="form-group">
 				<label for="gender"><span class="red-star">★ </span> Gender: </label>
-				<div><label style="margin: 5px 0px 0px 100px; float: left;">Male </label><input type="radio"  style="float: left; width: 20px; margin-left:5px"  class="form-control" name="gender" value="M" required=""></div>
-				<div><label style="margin: 5px 0px 0px 20px; float: left;">Female </label><input  type="radio" style="float: left; width: 20px; margin-left:5px"  class="form-control" name="gender" value="F"></div>
+				<div><label style="margin: 5px 0px 0px 100px; float: left;">Male </label><input type="radio" style="float: left; width: 20px; margin-left:5px" class="form-control" name="gender" value="M" required=""></div>
+				<div><label style="margin: 5px 0px 0px 20px; float: left;">Female </label><input type="radio" style="float: left; width: 20px; margin-left:5px" class="form-control" name="gender" value="F"></div>
 			</div>
 			<div class="form-group">
 				<label for="birthYear"><span class="red-star">★ </span> Birth year </label>
