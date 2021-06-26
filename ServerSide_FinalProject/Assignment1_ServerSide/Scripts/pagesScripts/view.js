@@ -20,11 +20,6 @@ function getTVNames() {
     let api = "../api/Seriess?mail=" + user.Mail +"&mode=Favorites";
     ajaxCall("GET", api, "", getTVNamesSuccessCB, getTVNamesErrorCB);
 }
-
-function getMovies() {
-    let api = "../api/Movies?mail=" + user.Mail + "&mode=Favorites";
-    ajaxCall("GET", api, "", getMovieSuccessCB, getMovieErrorCB);
-}
 function getTVNamesSuccessCB(series) {
     let str = "<option> Select TV Show </option>";
     for (let i = 0; i < series.length; i++)
@@ -34,7 +29,14 @@ function getTVNamesSuccessCB(series) {
     $("#showTvFavorites").css("background-color", "aqua");
     $("#favoritesMovies").hide();
 }
+function getTVNamesErrorCB() {
+    console.log("Error");
+}
 
+function getMovies() {
+    let api = "../api/Movies?mail=" + user.Mail + "&mode=Favorites";
+    ajaxCall("GET", api, "", getMovieSuccessCB, getMovieErrorCB);
+}
 function getMovieSuccessCB(movies) {
     console.log(movies)
     let str = "";
@@ -58,11 +60,6 @@ function getMovieErrorCB(err) {
     console.log(err);
 }
 
-function getTVNamesErrorCB() {
-    console.log("Error");
-}
-
-
 function getEpisodes() {
     if ($(this).prop('selectedIndex') != 0)
         $("#tvName").html($(this).val().toUpperCase());
@@ -75,7 +72,6 @@ function getEpisodes() {
 
 
 }
-
 function getEpisodesSuccessCB(episodes) {
     let str = "";
     for (let i = 0; i < episodes.length; i++) {

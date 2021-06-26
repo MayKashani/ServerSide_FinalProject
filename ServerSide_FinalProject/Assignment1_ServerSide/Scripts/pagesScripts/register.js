@@ -152,9 +152,11 @@ $(document).ready(function () {
         $("#menuContent").slideToggle('fast');
     })
 
-    window.onbeforeunload= function() {
-        chatDetails.bottom = $("#chatWindow").css("bottom");
-        sessionStorage["chat"] = JSON.stringify(chatDetails);
+    window.onbeforeunload = function () {
+        if (typeof (chatDetails) != "undefined") {
+            chatDetails.bottom = $("#chatWindow").css("bottom");
+            sessionStorage["chat"] = JSON.stringify(chatDetails);
+        }
     }
 });
 
@@ -246,8 +248,7 @@ function getProfilePicture(user) {
 
 }
 
-
-//login Get
+//login Get (Admin/Regular)
 function getUserByData() {
     let api = "../api/Users?Mail=" + $("#loginMail").val() + "&Password=" + $("#loginPassword").val();
     ajaxCall("GET", api, " ", getUserSuccessCB, getUserErrorCB);

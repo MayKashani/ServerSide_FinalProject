@@ -222,7 +222,6 @@
     <Content Include="Scripts\pagesScripts\Actor.js" />
     <Content Include="Scripts\pagesScripts\admin.js" />
     <Content Include="Scripts\pagesScripts\alerts.js" />
-    <Content Include="Scripts\pagesScripts\chat.js" />
     <Content Include="Scripts\pagesScripts\firebase.js" />
     <Content Include="Scripts\pagesScripts\Homepage.js" />
     <Content Include="Scripts\pagesScripts\index.js" />
@@ -239,6 +238,7 @@
     <Content Include="Stylesheets\circle.css" />
     <Content Include="Stylesheets\index.css" />
     <Content Include="Stylesheets\jquery.notifyBar.css" />
+    <Content Include="Stylesheets\news.css" />
     <Content Include="Stylesheets\search.css" />
     <Content Include="Stylesheets\StyleSheet.css" />
     <Content Include="Stylesheets\view.css" />
