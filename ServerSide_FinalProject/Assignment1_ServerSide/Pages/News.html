@@ -67,6 +67,7 @@
     <link rel="stylesheet" href="../Stylesheets/chat.css" />
     <link rel="stylesheet" href="../Stylesheets/chat.css" />
     <link href="../Stylesheets/StyleSheet.css" rel="stylesheet" />
+    <link href="../Stylesheets/news.css" rel="stylesheet" />
     <style>
 
 
@@ -75,6 +76,7 @@
     </style>
 </head>
 <body>
+
 
     <div class="nav">
         <div class="logo" onclick=""><i class="fa fa-film"></i>The movie DB </div>
@@ -89,6 +91,7 @@
         <button id="openMenuBtn"><i class="fa fa-bars"> </i></button>
     </div>
 
+
     <div id="mainDiv">
 
         <div id="fanClub" style="display:none">
@@ -97,7 +100,7 @@
             </ol>
         </div>
 
-        <div id="center" class="container center">
+        <div id="center" class="container-fluid center">
             <div id="title">
                 <h1>News From the Last Month</h1>
                 <br />
@@ -118,7 +121,9 @@
                 <li> <button id='newsBtn' class="menuBtn" onclick="window.location.href='news.html'"><i class="fa fa-newspaper-o"></i>News</button></li>
                 <li> <button id="registerBtn" class="menuBtn"><i class="fa fa-user-plus"></i>Register</button></li>
                 <li> <button id="loginBtn" class="menuBtn"><i class="fa fa-sign-in"></i>Login</button></li>
+
             </ul>
+
         </div>
 
         <div id="chatWindow" class="card mt-5" style="visibility:hidden">
@@ -132,7 +137,6 @@
         </div>
 
     </div>
-
     <div id="registerModal" class="modal">
         <form id="registerForm" class="modal-content">
             <h2>Sign Up</h2>

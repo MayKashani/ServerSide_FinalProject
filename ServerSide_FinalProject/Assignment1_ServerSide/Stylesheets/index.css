@@ -169,3 +169,6 @@ height:fit-content;
 }
 
 
+#seasonsList .card-img-top {
+	width:auto;
+}

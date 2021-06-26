@@ -1,4 +1,11 @@
 ﻿#news {
-    max-height: 90vh;
+    max-height:90%;
     overflow-y: scroll;
+}
+
+#center {
+    width: 100%;
+    margin: 0px;
+    max-height: 90vh;
+    padding: 0px;
 }
