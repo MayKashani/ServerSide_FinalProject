@@ -152,9 +152,11 @@ $(document).ready(function () {
         $("#menuContent").slideToggle('fast');
     })
 
-    window.onbeforeunload= function() {
-        chatDetails.bottom = $("#chatWindow").css("bottom");
-        sessionStorage["chat"] = JSON.stringify(chatDetails);
+    window.onbeforeunload = function () {
+        if (typeof (chatDetails) != "undefined") {
+            chatDetails.bottom = $("#chatWindow").css("bottom");
+            sessionStorage["chat"] = JSON.stringify(chatDetails);
+        }
     }
 });
 
