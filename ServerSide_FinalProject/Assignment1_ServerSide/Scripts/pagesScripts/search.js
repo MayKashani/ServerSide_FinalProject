@@ -30,6 +30,8 @@ $(document).ready(function () {
         sessionStorage.setItem("personId", JSON.stringify(this.id));
         window.location.href="actor.html";
     });
+
+
 });
 
 

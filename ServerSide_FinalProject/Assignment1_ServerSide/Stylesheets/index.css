@@ -1,11 +1,4 @@
-﻿#ph > img {
-	height: 300px;
-	border-radius: 25px;
-	width: auto;
-}
-
-
-
+﻿
 
 .cardsOL > .card {
 	height: 200px;
@@ -83,15 +76,11 @@
 	}
 
 #ph > img {
-	height: 300px;
-	border-radius: 25px;
-	width: auto;
-	box-shadow: black 0px 0px 18px 2px;
+	height: auto;
+	width: 100%;
 	padding:0px;
-	margin:30px
+
 }
-
-
 #trailerModal > .modal-content {
 	height: 50%;
 	width: 50%;
@@ -117,13 +106,12 @@ body {
 .tablink {
 	background-color: #555;
 	color: white;
-	float: left;
 	border: none;
 	outline: none;
 	cursor: pointer;
 	padding: 14px 16px;
 	font-size: 20px;
-	width: 25%;
+	width: 100%;
 }
 
 	.tablink:hover {
@@ -171,4 +159,24 @@ height:fit-content;
 
 #seasonsList .card-img-top {
 	width:auto;
+}
+
+#leftDiv {
+	background-color:#282323;
+	padding: 0px;
+}
+
+#leftDiv > div {
+	margin-bottom: 25px
+}
+
+	#genresDiv > div
+
+{
+	background: red;
+	color: white;
+	width: fit-content;
+	padding: 5px 10px;
+	text-transform: uppercase;
+	margin: 0 auto;
 }

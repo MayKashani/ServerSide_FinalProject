@@ -120,43 +120,54 @@
 			<div id="head">
 				<img id="headerBackground" />
 				<div class="row" id="headerInfo">
-					<div id="ph" class="col-5"></div>
-					<div id="details" class="col-7">
-						<h3 id="seriesName"></h3>
+					<div class="col-2" id="leftDiv">
+						<div id="ph">
+
+						</div>
+						<div id="externalLinks"></div>
+						<div>
+							<div><button class="tablink" onclick="openPage('actorsDiv', this) " id="defaultOpen">Actors</button></div>
+							<div><button id="seasonsTab" class="tablink" onclick="openPage('seasonsDiv', this)">Seasons</button></div>
+							<div><button id="recommendationsTab" class="tablink" onclick="openPage('recommendationsDiv', this)">Recommendations</button></div>
+						</div>
+
+					</div>
+					<div id="details" class="col-10">
+						<div id="genresDiv"></div>
+						<h1 id="seriesName"></h1>
 						<div id="average">
 						</div>
 						<button id="movieLikeBtn" class="headIconsBtn" style="display:none"><i class="fa fa-thumbs-up"></i></button>
 						<button id="watchTrailerBtn" class="headIconsBtn"> <i class="fa fa-play-circle"></i> </button>
 						<div id="overview"></div>
-					</div>
-				</div>
 
-				<div id="optionsDiv">
-					<button class="tablink" onclick="openPage('actorsDiv', this) " id="defaultOpen">Actors</button>
-					<button id="seasonsTab" class="tablink" onclick="openPage('seasonsDiv', this)">Seasons</button>
-					<button id="recommendationsTab" class="tablink" onclick="openPage('recommendationsDiv', this)">Recommendations</button>
+						<div id="optionsDiv">
 
-					<div id="actorsDiv" class="tabcontent">
-						<div>
-							<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
-							<ol id="actors" class="cardsOL"></ol>
-							<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
+							<div id="actorsDiv" class="tabcontent">
+								<div>
+									<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
+									<ol id="actors" class="cardsOL"></ol>
+									<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
+								</div>
+							</div>
+
+							<div id="seasonsDiv" class="tabcontent">
+								<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
+								<ol id="seasonsList" class="cardsOL"></ol>
+								<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
+							</div>
+
+							<div id="recommendationsDiv" class="tabcontent">
+								<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
+								<ol id="recommendations" class="cardsOL"></ol>
+								<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
+							</div>
+
 						</div>
 					</div>
-
-					<div id="seasonsDiv" class="tabcontent">
-						<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
-						<ol id="seasonsList" class="cardsOL"></ol>
-						<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
-					</div>
-
-					<div id="recommendationsDiv" class="tabcontent">
-						<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
-						<ol id="recommendations" class="cardsOL"></ol>
-						<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
-					</div>
-
 				</div>
+
+
 
 			</div>
 		</div>

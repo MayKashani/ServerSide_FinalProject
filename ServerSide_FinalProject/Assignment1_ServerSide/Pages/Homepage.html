@@ -20,6 +20,17 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 
+
+	<!--autocomplete search-->
+	<!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
 	<!--Your web app's Firebase configuration-->
 	<script src="../Scripts/pagesScripts/firebase.js"></script>
 	<script src="../Scripts/pagesScripts/register.js"></script>
@@ -132,7 +143,7 @@
 			<img id="userProfilePh" src="../Images/userPng.jpeg" />
 			<div id="welcomeDiv"></div>
 		</div>
-		<div id="searchDiv">
+		<div id="searchDiv" class="ui-widget">
 			<input type="text" id="tvShowName" placeholder="Look for Tv Show/Movie/Person" />
 			<button id="getTV"><i class="fa fa-search"></i>Search</button>
 		</div>

@@ -95,13 +95,26 @@ $(document).ready(function () {
     })
 
     $("#getTV").click(searchByName);
+
     $("#tvShowName").keypress(function (event) {
         if (event.keyCode === 13)
             searchByName();
     })
+
+    $("#tvShowName").keyup(function () {
+        let method = "3/search/multi?"
+        let query = "query=" + $("#tvShowName").val();
+        let moreParams = "&language=en-US&include_adult=false&page=1&";
+        apiCall = url + method + api_key + moreParams + query;
+        ajaxCall("GET", apiCall, "", getMultiSuccessCB, getMultiErrorCB);
+
+    })
+
     $(".logo").click(function () {
         window.location.href = "Homepage.html";
     })
+
+
 
     //scroll with button
     $('.rightScrollBtn').click(function () {
@@ -158,7 +171,57 @@ $(document).ready(function () {
             sessionStorage["chat"] = JSON.stringify(chatDetails);
         }
     }
+
+    $(document).on('click', ".autoOption", function () {
+        let method = {
+            id: this.id,
+            type: this.getAttribute('data-mediatype')
+        }
+        sessionStorage.setItem("mediaChoose", JSON.stringify(method));
+        window.location.href = "index.html";
+    })
 });
+
+
+
+function getMultiSuccessCB(availableTags) {
+    console.log(availableTags);
+    arr = availableTags.results;
+    name = "";
+    res = [];
+    for (let i = 0; i < arr.length; i++) {
+
+        if (arr[i].media_type == "movie")
+            name = arr[i].title;
+        else name = arr[i].name;
+
+        obj = {
+            "id":arr[i].id,
+            "name": name,
+            "poster": arr[i].poster_path,
+            "mediaType": arr[i].media_type
+        }
+        res[i]=JSON.stringify(obj) 
+	}
+
+    $("#tvShowName").autocomplete({
+        source: res,
+         minLength: 0
+    })
+        .autocomplete("instance")._renderItem = function (ul, item) {
+            
+            realItem = JSON.parse(item.label)
+            item.value = realItem.name;
+      return $( "<li class='autoOption' id="+realItem.id+" data-mediatype="+realItem.mediaType+">" )
+        .append( "<div><img src='"+imagePath+realItem.poster+"' style='width:50px'/><p>" +realItem.name +"</p><p>"+ realItem.mediaType + "</p></div>" )
+        .appendTo( ul );
+    };
+
+}
+
+function getMultiErrorCB(err) {
+    console.log(err)
+}
 
 function searchByName() {
     sessionStorage.setItem("searchValue", $("#tvShowName").val());

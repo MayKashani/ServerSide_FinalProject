@@ -87,11 +87,13 @@ function getMedia() {
 }
 
 function getMediaSuccess(media) {
+	console.log(media)
 	seasonsList = "";
 	i = 1;
 	mediaId = media.id;
 	Current_TV = media;
 	str = "<img src='" + checkPhotos(Current_TV.poster_path) + "'/>";
+	$("#genresDiv").html("<div class='genre'>" + media.genres[0].name+"</div>") // fix!!! 
 	$('#headerBackground').attr("src", checkPhotos(Current_TV.backdrop_path));  
 	$("#seriesName").html(Current_TV.name)
 	$("#ph").html(str);
@@ -214,15 +216,14 @@ function getExternalLinks() {
 
 function getExternalLinksSuccessCB(links) {
 	console.log(links);
-	let str = "<div>";
+	let str = "";
 	if (links.twitter_id != null)
 		str += "<a class='linkIcons' href= 'https://www.twitter.com/" + links.twitter_id + "/'><i class='fa fa-twitter'></i></a>";
 	if (links.facebook_id != null)
 		str += "<a class='linkIcons' href= 'https://www.facebook.com/" + links.facebook_id + "/'><i class='fa fa-facebook'></i></a>";
 	if (links.instagram_id != null)
 		str += "<a class='linkIcons' href= 'https://www.instagram.com/" + links.instagram_id + "/'><i class='fa fa-instagram'></i> </a>";
-	str += "</div>"
-	$("#ph").append(str);
+	$("#externalLinks").html(str);
 }
 
 function getExternalLinksErrorCB(err) {
