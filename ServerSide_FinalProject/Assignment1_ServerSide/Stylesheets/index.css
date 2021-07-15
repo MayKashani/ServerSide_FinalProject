@@ -34,6 +34,7 @@
 
 #head {
 	position: relative;
+	height:100%;
 }
 
 #headerBackground {
@@ -64,16 +65,13 @@
 #headerInfo {
 	position: relative;
 	margin: auto;
-	height:fit-content;
+	height:100%
 }
 
 #details {
 	margin-top: 30px;
 }
 
-	#details > div {
-		margin: 20px auto;
-	}
 
 #ph > img {
 	height: auto;
@@ -168,15 +166,25 @@ height:fit-content;
 
 #leftDiv > div {
 	margin-bottom: 25px
+
 }
 
-	#genresDiv > div
-
-{
+#genresDiv > .genre {
 	background: red;
 	color: white;
 	width: fit-content;
 	padding: 5px 10px;
 	text-transform: uppercase;
-	margin: 0 auto;
+	margin: 10px auto;
+	margin: 10px;
+	display: inline-flex;
+}
+
+#genresDiv {
+	padding:10px
+}
+
+#detailsInner {
+	padding: 50px;
+
 }
