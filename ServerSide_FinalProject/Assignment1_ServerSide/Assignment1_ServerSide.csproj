@@ -235,10 +235,14 @@
     <Content Include="Scripts\pagesScripts\register.js" />
     <Content Include="Scripts\pagesScripts\search.js" />
     <Content Include="Scripts\pagesScripts\view.js" />
+    <Content Include="Stylesheets\Actor.css" />
     <Content Include="Stylesheets\chat.css" />
     <Content Include="Stylesheets\circle.css" />
+    <Content Include="Stylesheets\Episodes.css" />
+    <Content Include="Stylesheets\Homepage.css" />
     <Content Include="Stylesheets\index.css" />
     <Content Include="Stylesheets\jquery.notifyBar.css" />
+    <Content Include="Stylesheets\News.css" />
     <Content Include="Stylesheets\search.css" />
     <Content Include="Stylesheets\StyleSheet.css" />
     <Content Include="Stylesheets\view.css" />
