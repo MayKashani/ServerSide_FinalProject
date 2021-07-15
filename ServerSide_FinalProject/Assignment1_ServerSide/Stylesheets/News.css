@@ -1,11 +1,35 @@
-﻿#news {
-    max-height:90%;
-    overflow-y: scroll;
+﻿hr.solid {
+    border-top: 3px solid #bbb;
 }
 
-#center {
+h2 {
+    color: black;
+}
+
+ol {
+    list-style-type: none;
+}
+
+.no-js #loader {
+    display: none;
+}
+
+.js #loader {
+    display: block;
+    position: absolute;
+    left: 100px;
+    top: 0;
+}
+
+.se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
     width: 100%;
-    margin: 0px;
-    max-height: 90vh;
-    padding: 0px;
+    height: 100%;
+    z-index: 9999;
+    background-image: url('../Images/Bean Eater-0.9s-210px.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
 }
