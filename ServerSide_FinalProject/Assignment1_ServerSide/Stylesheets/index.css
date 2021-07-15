@@ -5,6 +5,8 @@
 }
 
 
+
+
 .cardsOL > .card {
 	height: 200px;
 }
@@ -159,10 +161,8 @@ height:fit-content;
 	min-width: 10%;
 }
 
-.no-js #loader {
-	display: none;
-}
 
+<<<<<<< HEAD
 #leftDiv > div {
 	margin-bottom: 25px
 
@@ -187,3 +187,5 @@ height:fit-content;
 	padding: 50px;
 
 }
+=======
+>>>>>>> parent of 3630ccc (Css and js)

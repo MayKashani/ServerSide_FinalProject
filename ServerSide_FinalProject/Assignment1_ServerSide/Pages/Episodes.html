@@ -29,14 +29,41 @@
     <!--Your web app's Firebase configuration-->
     <script src="../Scripts/pagesScripts/firebase.js"></script>
     <link rel="stylesheet" href="../Stylesheets/chat.css" />
-    <link href="../Stylesheets/Episodes.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+    <style>
+        .no-js #loader {
+            display: none;
+        }
 
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-image: url('../Images/Bean Eater-0.9s-210px.gif');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: white;
+        }
+    </style>
 
     <script>
         $(document).ready(function () {
-         
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut(2000);;
 
-
+            });
             key = "46ee229c787140412cbafa9f3aa03555";
             url = "https://api.themoviedb.org/";
             imagePath = "https://image.tmdb.org/t/p/w500/";
@@ -47,26 +74,14 @@
             Current_TV = JSON.parse(sessionStorage.getItem("currentTV"))
             Current_Season = JSON.parse(sessionStorage.getItem("season"));
             episodes = JSON.parse(sessionStorage.getItem("episodes"));
-
-            let strHtml = "";
-            seriesNameStr = JSON.parse(sessionStorage.currentTV).name;
-            if (sessionStorage.season != null) { //האם צריך?
-                seriesSessionNum = " Season: " + sessionStorage.season;
-                strHtml = seriesNameStr + seriesSessionNum;
-            }
-            else
-                strHtml = seriesNameStr;
-            $("#seriesName").html(strHtml);
-        
             let str = "";
-          
+
             for (let i = 0; i < episodes.length; i++) {
-                str += "<div id='" + episodes[i].id + "' class='row result episode ' style='background:url(" + checkPhotos(episodes[i].still_path) + "); background-size:cover; background-repeat:no-repeat'><div class='resultText row'><div class='col-4'>";
-                str += "<img class='imgResult'src='" + checkPhotos(episodes[i].still_path) + "'/></div><div class='info col-8'><h3>" + episodes[i].name + "</h3><p><b>Overview:</b> <h6>" + episodes[i].overview + "</h6></p>";
+                str += "<div class='episodeCard row'><div class='col-4'><img class='chapterImg'src='" + checkPhotos(episodes[i].still_path) + "'/></div><div class='info col-8'><h3>" + episodes[i].name + "</h3><p><b>Overview:</b> " + episodes[i].overview + "</p>";
                 str += "<p><b>Air Date: </b>" + episodes[i].air_date + "</p> <button id='" + i + "' class = 'addEpisode heart'><i class='fa fa-heart'></i></button></div>"
                 str += "</div><hr>"
             }
-            $("#episodes").append(str);
+            $("#episodes").html(str);
 
             if (mode == "guest") {
                 $(".addEpisode").hide();
@@ -134,7 +149,8 @@
     </script>
 </head>
 <body>
-
+    
+    <div class="se-pre-con"></div>
 
     <div class="nav">
         <div class="logo" onclick=""><i class="fa fa-film"></i>The movie DB </div>
@@ -151,13 +167,11 @@
 
     <div id="mainDiv">
         <div id="fanClub" style="display:none">
-            <h3>JoinseriesName chat</h3>
+            <h3>Join chat</h3>
             <ol id="chatList" style="list-style-type:none">
             </ol>
         </div>
-        <div class="center" id="episodes">
-            <div><h1 id="seriesName"></h1></div>
-        </div>
+        <div class="center" id="episodes"></div>
         <div id="menuContent">
             <ul id="memberBar">
                 <li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='view.html'"> <i class="fa fa-heart"></i>Favorites </button></li>
