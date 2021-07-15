@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -29,112 +29,36 @@
     <!--Your web app's Firebase configuration-->
     <script src="../Scripts/pagesScripts/firebase.js"></script>
     <link rel="stylesheet" href="../Stylesheets/chat.css" />
-    <link href="../Stylesheets/Episodes.css" rel="stylesheet" />
-
-
-    <script>
-        $(document).ready(function () {
-         
-
-
-            key = "46ee229c787140412cbafa9f3aa03555";
-            url = "https://api.themoviedb.org/";
-            imagePath = "https://image.tmdb.org/t/p/w500/";
-            method = "3/tv/";
-            api_key = "api_key=" + key;
-            errorPng = 'this.src="..//Images//noImage.jpg"';
-
-            Current_TV = JSON.parse(sessionStorage.getItem("currentTV"))
-            Current_Season = JSON.parse(sessionStorage.getItem("season"));
-            episodes = JSON.parse(sessionStorage.getItem("episodes"));
-
-            let strHtml = "";
-            seriesNameStr = JSON.parse(sessionStorage.currentTV).name;
-            if (sessionStorage.season != null) { //האם צריך?
-                seriesSessionNum = " Season: " + sessionStorage.season;
-                strHtml = seriesNameStr + seriesSessionNum;
-            }
-            else
-                strHtml = seriesNameStr;
-            $("#seriesName").html(strHtml);
-        
-            let str = "";
-          
-            for (let i = 0; i < episodes.length; i++) {
-                str += "<div id='" + episodes[i].id + "' class='row result episode ' style='background:url(" + checkPhotos(episodes[i].still_path) + "); background-size:cover; background-repeat:no-repeat'><div class='resultText row'><div class='col-4'>";
-                str += "<img class='imgResult'src='" + checkPhotos(episodes[i].still_path) + "'/></div><div class='info col-8'><h3>" + episodes[i].name + "</h3><p><b>Overview:</b> <h6>" + episodes[i].overview + "</h6></p>";
-                str += "<p><b>Air Date: </b>" + episodes[i].air_date + "</p> <button id='" + i + "' class = 'addEpisode heart'><i class='fa fa-heart'></i></button></div>"
-                str += "</div><hr>"
-            }
-            $("#episodes").append(str);
-
-            if (mode == "guest") {
-                $(".addEpisode").hide();
-            }
-
-            $(document).on('click', '.addEpisode', postTV);
-
-            $(document).on("click", ".heart", function () {
-                $(this).removeClass("heart").addClass("red-heart");
-
-            });
-        })
-
-        function postTV() {
-            Current_ep = this.id;
-            let TV = {
-                Id: Current_TV.id,
-                First_Air_Date: Current_TV.first_air_date,
-                Name: Current_TV.name,
-                Origin_Country: Current_TV.origin_country[0],
-                Original_Language: Current_TV.original_language,
-                Overview: Current_TV.overview,
-                Popularity: Current_TV.popularity,
-                Poster_Path: Current_TV.poster_path
-            }
-            ajaxCall("POST", "../api/Seriess", JSON.stringify(TV), postTVSuccessCB, postTVErrorCB)
-            return false;
+    <script src="../Scripts/pagesScripts/Episodes.js"></script>
+    <style>
+        .no-js #loader {
+            display: none;
         }
 
-        function postTVSuccessCB(num) {
-            console.log("Post TV Success");
-            postEpisode();
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
         }
 
-        function postTVErrorCB(err) {
-            console.log("Post TV Not working")
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-image: url('../Images/Bean Eater-0.9s-210px.gif');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: white;
         }
-
-        function postEpisode() {
-            let ep = episodes[Current_ep];
-
-            let episode = {
-                Id: ep.id,
-                SeriesName: Current_TV.name,
-                Season: ep.season_number,
-                EpisodeName: ep.name,
-                ImageURL: ep.still_path,
-                Overview: ep.overview,
-                AirDate: ep.air_date
-            }
-
-            let api = "../api/Episodes?mail=" + user.Mail;
-            ajaxCall("POST", api, JSON.stringify(episode), postEpisodeSuccessCB, postEpisodeErrorCB)
-        }
-
-        function postEpisodeSuccessCB(numInserted) {
-            successAlert("Added successfully!");
-        }
-
-        function postEpisodeErrorCB(err) {
-            console.log("Error");
-        }
-
-
-    </script>
+    </style>
 </head>
 <body>
 
+    <div class="se-pre-con"></div>
 
     <div class="nav">
         <div class="logo" onclick=""><i class="fa fa-film"></i>The movie DB </div>
@@ -151,13 +75,11 @@
 
     <div id="mainDiv">
         <div id="fanClub" style="display:none">
-            <h3>JoinseriesName chat</h3>
+            <h3>Join chat</h3>
             <ol id="chatList" style="list-style-type:none">
             </ol>
         </div>
-        <div class="center" id="episodes">
-            <div><h1 id="seriesName"></h1></div>
-        </div>
+        <div class="center" id="episodes"></div>
         <div id="menuContent">
             <ul id="memberBar">
                 <li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='view.html'"> <i class="fa fa-heart"></i>Favorites </button></li>

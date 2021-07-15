@@ -1,9 +1,4 @@
-﻿#ph > img {
-	height: 300px;
-	border-radius: 25px;
-	width: auto;
-}
-
+﻿
 
 .cardsOL > .card {
 	height: 200px;
@@ -159,8 +154,14 @@ height:fit-content;
 	min-width: 10%;
 }
 
-.no-js #loader {
-	display: none;
+
+#seasonsList .card-img-top {
+	width:auto;
+}
+
+#leftDiv {
+	background-color:#282323;
+	padding: 0px;
 }
 
 #leftDiv > div {
