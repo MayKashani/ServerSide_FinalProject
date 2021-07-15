@@ -5,6 +5,8 @@
 }
 
 
+
+
 .cardsOL > .card {
 	height: 200px;
 }
@@ -39,6 +41,7 @@
 
 #head {
 	position: relative;
+	height:100%;
 }
 
 #headerBackground {
@@ -69,16 +72,13 @@
 #headerInfo {
 	position: relative;
 	margin: auto;
-	height:fit-content;
+	height:100%
 }
 
 #details {
 	margin-top: 30px;
 }
 
-	#details > div {
-		margin: 20px auto;
-	}
 
 #ph > img {
 	height: auto;
@@ -161,26 +161,39 @@ height:fit-content;
 	min-width: 10%;
 }
 
-.no-js #loader {
-	display: none;
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+<<<<<<< HEAD
+#leftDiv > div {
+	margin-bottom: 25px
+
 }
 
-.js #loader {
-	display: block;
-	position: absolute;
-	left: 100px;
-	top: 0;
+#genresDiv > .genre {
+	background: red;
+	color: white;
+	width: fit-content;
+	padding: 5px 10px;
+	text-transform: uppercase;
+	margin: 10px auto;
+	margin: 10px;
+	display: inline-flex;
 }
 
-.se-pre-con {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background-image: url('../Images/Bean Eater-0.9s-210px.gif');
-	background-repeat: no-repeat;
-	background-position: center;
-	background-color: white;
+#genresDiv {
+	padding:10px
 }
+
+#detailsInner {
+	padding: 50px;
+
+}
+=======
+>>>>>>> parent of 3630ccc (Css and js)
+=======
+
+>>>>>>> parent of 3630ccc (Css and js)
+=======
+
+>>>>>>> parent of 3630ccc (Css and js)

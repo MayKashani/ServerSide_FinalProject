@@ -89,7 +89,7 @@ function getMediaSuccess(media) {
 	mediaId = media.id;
 	Current_TV = media;
 	str = "<img src='" + checkPhotos(Current_TV.poster_path) + "'/>";
-	$("#genresDiv").html("<div class='genre'>" + media.genres[0].name+"</div>") // fix!!! 
+	fillGenresDiv();
 	$('#headerBackground').attr("src", checkPhotos(Current_TV.backdrop_path));  
 	$("#seriesName").html(Current_TV.name)
 	$("#ph").html(str);
@@ -113,6 +113,15 @@ function getMediaSuccess(media) {
 			break;
 		}
 
+	}
+}
+
+
+function fillGenresDiv() {
+	let genres = Current_TV.genres;
+	$("#genresDiv").html("") 
+	for (let i = 0; i < genres.length; i++) {
+		$("#genresDiv").append("<div class='genre'>" + Current_TV.genres[i].name + "</div>");
 	}
 }
 
