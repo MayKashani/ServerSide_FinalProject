@@ -31,20 +31,23 @@
     <script src="../Scripts/pagesScripts/firebase.js"></script>
     <link rel="stylesheet" href="../Stylesheets/search.css" />
 
-
 </head>
 <body>
 
+
     <div class="nav">
-        <div class="logo" onclick="window.location.href='Homepage.html'"><i class="fa fa-film"></i>The movie DB </div>
-        <div id="welcomeDiv"></div>
+        <div class="logo" onclick=""><i class="fa fa-film"></i>The movie DB </div>
+        <div>
+            <img id="userProfilePh" src="../Images/userPng.jpeg" />
+            <div id="welcomeDiv"></div>
+        </div>
         <div id="searchDiv">
             <input type="text" id="tvShowName" placeholder="Look for Tv Show/Movie/Person" />
             <button id="getTV"><i class="fa fa-search"></i>Search</button>
         </div>
         <button id="openMenuBtn"><i class="fa fa-bars"> </i></button>
-
     </div>
+
     <div id="mainDiv">
         <div id="fanClub" style="display:none">
             <h3>Join chat</h3>
@@ -68,11 +71,14 @@
             <ul id="memberBar">
                 <li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='view.html'"> <i class="fa fa-heart"></i>Favorites </button></li>
                 <li> <button id="openChatListBtn" class="menuBtn"><i class="fa fa-comments"></i>Chat</button></li>
+                <li> <button id='newsBtn' class="menuBtn" onclick="window.location.href='news.html'"><i class="fa fa-newspaper-o"></i>News</button></li>
                 <li> <button id='logoutBtn' class="menuBtn"><i class="fa fa-sign-out"></i>Logout</button></li>
             </ul>
             <ul id="guestBar">
+                <li> <button id='newsBtn' class="menuBtn" onclick="window.location.href='news.html'"><i class="fa fa-newspaper-o"></i>News</button></li>
                 <li> <button id="registerBtn" class="menuBtn"><i class="fa fa-user-plus"></i>Register</button></li>
                 <li> <button id="loginBtn" class="menuBtn"><i class="fa fa-sign-in"></i>Login</button></li>
+
             </ul>
 
         </div>
@@ -80,7 +86,7 @@
             <div id="chatHeader" class="d-flex flex-row justify-content-between p-3 adiv text-white"><span id="chatName" class="pb-3"></span> <i onclick="deleteChat()" class="fa fa-times"></i> </div>
             <div id="messages">
             </div>
-            <div class="form-group px-3">
+            <div id="sendMessageDiv" class="form-group px-3">
                 <textarea id="msgTB" class="form-control" rows="2" placeholder="Type your message"></textarea>
                 <i id="sendMSG" onclick="AddMSG()" class="fa fa-paper-plane"></i>
             </div>

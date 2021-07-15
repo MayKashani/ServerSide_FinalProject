@@ -30,9 +30,12 @@ $(document).ready(function () {
         sessionStorage.setItem("personId", JSON.stringify(this.id));
         window.location.href="actor.html";
     });
+
+
 });
 
 
+// Build apicall including search value and the search type --> person/tv/movie
 function getType(type) {
     let method = "3/search/"+type+"?"
     let query = "query=" + encodeURIComponent(searchVal);
@@ -40,32 +43,42 @@ function getType(type) {
     return url + method + api_key + moreParams + query;
 }
 
+
+// Get tv shows by search value + Callbacks
 function getTv() {
     let apiCall = getType("tv");
     ajaxCall("GET", apiCall, "", getTVSuccessCB, getErrorCB);
 }
+
 function getTVSuccessCB(tv) {
     console.log(tv);
     renderSearchTv(tv);
 }
 
+
+// Get movies by search value + Callbacks
 function getMovies() {
     let apiCall = getType("movie");
     ajaxCall("GET", apiCall, "", getMoviesSuccessCB, getErrorCB);
 }
+
 function getMoviesSuccessCB(movie) {
     console.log(movie);
     renderSearchMovie(movie);
 }
 
+
+// Get persons by search value + Callbacks
 function getPersons() {
     let apiCall = getType("person");
     ajaxCall("GET", apiCall, "", getPersonsSuccessCB, getErrorCB);
 }
+
 function getPersonsSuccessCB(person) {
     console.log(person);
     renderSearchPerson(person);
 }
+
 
 //Render Each Div by requested option
 function renderSearchPerson(person) {
@@ -86,7 +99,6 @@ function renderSearchPerson(person) {
     }
 }
 
-
 function renderSearchTv(tv) {
     let str = "";
     let tvArr = tv.results;
@@ -104,6 +116,7 @@ function renderSearchTv(tv) {
         $("#results").html(str);
     }
 }
+
 function renderSearchMovie(movie) {
     let str = "";
     let movieArr = movie.results;
@@ -125,10 +138,11 @@ function renderSearchMovie(movie) {
 
 
 
-//Same error for all requested options
+//Same error callback for all requested options
 function getErrorCB(err) {
     console.log(err);
 }
+
 
 function changeType(id) {
     $(".buttonType").removeClass("chosen");

@@ -223,7 +223,6 @@
     <Content Include="Scripts\pagesScripts\Actor.js" />
     <Content Include="Scripts\pagesScripts\admin.js" />
     <Content Include="Scripts\pagesScripts\alerts.js" />
-    <Content Include="Scripts\pagesScripts\chat.js" />
     <Content Include="Scripts\pagesScripts\firebase.js" />
     <Content Include="Scripts\pagesScripts\Homepage.js" />
     <Content Include="Scripts\pagesScripts\index.js" />

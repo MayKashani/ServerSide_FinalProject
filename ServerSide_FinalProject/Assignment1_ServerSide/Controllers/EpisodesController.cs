@@ -11,6 +11,8 @@ namespace Assignment1_ServerSide.Controllers
 {
     public class EpisodesController : ApiController
     {
+
+        //Get List of Episodes Liked of requested user account and series.
         [HttpGet]
         public List<Episode> Get(int seriesID,string mail)
         {
@@ -20,6 +22,8 @@ namespace Assignment1_ServerSide.Controllers
 
         }
         
+
+        //Get Dataset for all Admin data to render datatables. 
         [HttpGet]
         public DataSet GetAdminData()
 		{
@@ -28,7 +32,7 @@ namespace Assignment1_ServerSide.Controllers
         }
 
 
-        // POST api/<controller>
+        // POST Episode in Episodes + Favorites.
         public int Post([FromBody] Episode e,string mail)
         {
             e.Insert(mail);

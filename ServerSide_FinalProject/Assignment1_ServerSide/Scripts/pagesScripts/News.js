@@ -1,9 +1,4 @@
 ﻿
-    //const dog = {name: "tributo", age: 10 };
-        //const {age} = dog;(=10)
-
-
-
         var currentDate = new Date();
         var currentMonth = currentDate.getMonth() - 1;
 
@@ -16,17 +11,20 @@
             return articles;
         };
 
-        const createNewsItemEl = ({description, title, url, urlToImage}) => {
-            const d = document.createElement("div");
-            d.innerHTML = `
-            <div><a href="${url}" target="_blank" ><h2>${title}</h2></a><div>
-            <div><h5>${description}</h5><div>
-            <img src="${urlToImage}" style="width:300px" />     
-            <hr class="solid">
+const createNewsItemEl = ({ description, title, url, urlToImage }) => {
+    const d = document.createElement("div");
+    d.innerHTML = `
+            <div class='newDiv'>
+            <div class='newImg'><img src="${urlToImage}" style="width:300px; height:auto" /> </div>    
+            <div class='newDescription'>
+            <div class='newUrl'><a href="${url}" target="_blank" ><h5>${title}</h5></a></div>
+               <p>${description}</p></div></div>
+            
+            <hr class="solid"></div>
                 `
-                ;
-            return d;
-        };
+        ;
+    return d;
+};
 
     getNews1().then((news) => { // שיטה מודרנית לפונקצית הצלחה
     console.log(news)

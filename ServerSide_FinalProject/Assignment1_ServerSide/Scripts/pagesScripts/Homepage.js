@@ -15,10 +15,9 @@ $(document).ready(function () {
     if (mode == "member") {
         getRecBySimilarUsers();
         getRecMovieBySimilarUsers();
-
     }
 
-    //Toggle TVShows/Movies
+    //Toggle TVShows/Movies by click option for each popular/recommend
     $(".popularButton").click(function () {
         if ($(this).css("background-color") != "rgb(0, 255, 255)")
             togglePopular();
@@ -102,10 +101,6 @@ function getMovieRecSuccessCB(movies) {
 }
 function getMovieRecErrorCB(err) {
     console.log(err);
-}
-
-function exit(e) {
-    e.pa.style.visibility = "hidden"
 }
 
 //Get Popular TvShows
@@ -203,11 +198,11 @@ function showNews() {
     const createNewsItemEl = ({ description, title, url, urlToImage }) => {
         const d = document.createElement("div");
         d.innerHTML = `
-            <div class='newDiv row'>
-            <div class='newImg col-3'><img src="${urlToImage}" style="width:300px" /> </div>    
-            <div class='newDescription col-9'>
-            <div class='newUrl'><a href="${url}" target="_blank" ><h4>${title}</h4></a></div>
-               <h5>${description}</h5></div></div>
+            <div class='newDiv'>
+            <div class='newImg'><img src="${urlToImage}" style="width:300px; height:auto"  /> </div>    
+            <div class='newDescription'>
+            <div class='newUrl'><a href="${url}" target="_blank" ><h5>${title}</h5></a></div>
+               <p>${description}</p></div></div>
             
             <hr class="solid"></div>
                 `
@@ -217,16 +212,14 @@ function showNews() {
 
     
     getNews1().then((news) => { 
-        setInterval(function () {
-            const cont = document.getElementById("showNews");
+        const cont = document.getElementById("showNews");
+        newsInterval = setInterval(function () {
             var index = Math.floor(Math.random() * 10);
             $(cont).fadeToggle('slow', function () {
-
                 cont.replaceChild(createNewsItemEl(news[index]), cont.lastChild);
                 $(cont).fadeToggle('slow');
             }
          )
-        
         },5000)
 
     }).catch(console.error);

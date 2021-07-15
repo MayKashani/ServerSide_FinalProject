@@ -11,18 +11,21 @@ namespace Assignment1_ServerSide.Controllers
     public class MoviesController : ApiController
     {
 
-        // GET api/<controller>/5
+        //Get List of Movies for requested user account for recommend/request mode.
         public List<Movie> Get(string mail,string mode)
         {
             Movie m = new Movie();
             return m.Get(mail, mode);
         }
 
-        // POST api/<controller>
+        // POST Movie in Movies + favoriteMovies.
         [HttpPost]
-        public int Post([FromBody] Movie movie,string mail)
+        public HttpResponseMessage Post([FromBody] Movie movie,string mail)
         {
-            return movie.Insert(mail);
+            int num = movie.Insert(mail);
+            if (num > 0)
+                return Request.CreateResponse(HttpStatusCode.OK, "Movie Added Successfully");
+            return Request.CreateErrorResponse(HttpStatusCode.NotFound, "You have already added this!");
         }
 
         // PUT api/<controller>/5

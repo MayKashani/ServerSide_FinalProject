@@ -8,6 +8,8 @@
 			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 			crossorigin="anonymous">
 	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -32,20 +34,16 @@
 	<link href="../Stylesheets/StyleSheet.css" rel="stylesheet" />
 	<link rel="stylesheet" href="../Stylesheets/chat.css" />
 	<link rel="stylesheet" href="../Stylesheets/index.css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
 
 	<script>
 
 
 		$(document).ready(function () {
-
-          
 			document.getElementById("defaultOpen").click();
-            
 		});
-   
-        
+
+
 		function openPage(pageName, elmnt) {
 			var tabcontent, tablinks;
 			// Hide all the pages with class tabcontent
@@ -73,16 +71,20 @@
 
 	<div class="se-pre-con"></div>
 
+
 	<div class="nav">
-		<div class="logo" onclick="window.location.href='Homepage.html'"><i class="fa fa-film"></i>The movie DB </div>
-		<div id="welcomeDiv"></div>
+		<div class="logo" onclick=""><i class="fa fa-film"></i>The movie DB </div>
+		<div>
+			<img id="userProfilePh" src="../Images/userPng.jpeg" />
+			<div id="welcomeDiv"></div>
+		</div>
 		<div id="searchDiv">
 			<input type="text" id="tvShowName" placeholder="Look for Tv Show/Movie/Person" />
 			<button id="getTV"><i class="fa fa-search"></i>Search</button>
 		</div>
 		<button id="openMenuBtn"><i class="fa fa-bars"> </i></button>
-
 	</div>
+
 	<div id="mainDiv">
 		<div id="fanClub" style="display:none">
 			<h3>Join chat</h3>
@@ -93,66 +95,81 @@
 			<div id="head">
 				<img id="headerBackground" />
 				<div class="row" id="headerInfo">
-					<div id="ph" class="col-5"></div>
-					<div id="details" class="col-7">
-						<h3 id="seriesName"></h3>
+					<div class="col-2" id="leftDiv">
+						<div id="ph">
+
+						</div>
+						<div id="externalLinks"></div>
+						<div>
+							<div><button class="tablink" onclick="openPage('actorsDiv', this) " id="defaultOpen">Actors</button></div>
+							<div><button id="seasonsTab" class="tablink" onclick="openPage('seasonsDiv', this)">Seasons</button></div>
+							<div><button id="recommendationsTab" class="tablink" onclick="openPage('recommendationsDiv', this)">Recommendations</button></div>
+						</div>
+
+					</div>
+					<div id="details" class="col-10">
+						<div id="genresDiv"></div>
+						<h1 id="seriesName"></h1>
 						<div id="average">
 						</div>
 						<button id="movieLikeBtn" class="headIconsBtn" style="display:none"><i class="fa fa-thumbs-up"></i></button>
 						<button id="watchTrailerBtn" class="headIconsBtn"> <i class="fa fa-play-circle"></i> </button>
 						<div id="overview"></div>
-					</div>
-				</div>
 
-				<div id="optionsDiv">
-					<button class="tablink" onclick="openPage('actorsDiv', this) " id="defaultOpen">Actors</button>
-					<button class="tablink" onclick="openPage('seasonsDiv', this)">Seasons</button>
-					<button class="tablink" onclick="openPage('recommendationsDiv', this)">Recommendations</button>
+						<div id="optionsDiv">
 
-					<div id="actorsDiv" class="tabcontent">
-						<div>
-							<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
-							<ol id="actors" class="cardsOL"></ol>
-							<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
+							<div id="actorsDiv" class="tabcontent">
+								<div>
+									<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
+									<ol id="actors" class="cardsOL"></ol>
+									<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
+								</div>
+							</div>
+
+							<div id="seasonsDiv" class="tabcontent">
+								<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
+								<ol id="seasonsList" class="cardsOL"></ol>
+								<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
+							</div>
+
+							<div id="recommendationsDiv" class="tabcontent">
+								<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
+								<ol id="recommendations" class="cardsOL"></ol>
+								<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
+							</div>
+
 						</div>
 					</div>
-
-					<div id="seasonsDiv" class="tabcontent">
-						<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
-						<ol id="seasonsList" class="cardsOL"></ol>
-						<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
-					</div>
-
-					<div id="recommendationsDiv" class="tabcontent">
-						<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
-						<ol id="recommendations" class="cardsOL"></ol>
-						<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
-					</div>
-
 				</div>
+
+
 
 			</div>
+		</div>
 
-			<div id="menuContent">
-				<ul id="memberBar">
-					<li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='view.html'"> <i class="fa fa-heart"></i>Favorites </button></li>
-					<li> <button id='logoutBtn' class="menuBtn"><i class="fa fa-sign-out"></i>Logout</button></li>
-					<li> <button id="openChatListBtn" class="menuBtn"><i class="fa fa-comments">Chat</i></button></li>
-				</ul>
-				<ul id="guestBar">
-					<li> <button id="registerBtn" class="menuBtn"><i class="fa fa-user-plus"></i>Register</button></li>
-					<li> <button id="loginBtn" class="menuBtn"><i class="fa fa-sign-in"></i>Login</button></li>
-				</ul>
 
+		<div id="menuContent">
+			<ul id="memberBar">
+				<li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='view.html'"> <i class="fa fa-heart"></i>Favorites </button></li>
+				<li> <button id="openChatListBtn" class="menuBtn"><i class="fa fa-comments"></i>Chat</button></li>
+				<li> <button id='newsBtn' class="menuBtn" onclick="window.location.href='news.html'"><i class="fa fa-newspaper-o"></i>News</button></li>
+				<li> <button id='logoutBtn' class="menuBtn"><i class="fa fa-sign-out"></i>Logout</button></li>
+			</ul>
+			<ul id="guestBar">
+				<li> <button id='newsBtn' class="menuBtn" onclick="window.location.href='news.html'"><i class="fa fa-newspaper-o"></i>News</button></li>
+				<li> <button id="registerBtn" class="menuBtn"><i class="fa fa-user-plus"></i>Register</button></li>
+				<li> <button id="loginBtn" class="menuBtn"><i class="fa fa-sign-in"></i>Login</button></li>
+
+			</ul>
+
+		</div>
+		<div id="chatWindow" class="card mt-5" style="visibility:hidden">
+			<div id="chatHeader" class="d-flex flex-row justify-content-between p-3 adiv text-white"><span id="chatName" class="pb-3"></span> <i onclick="deleteChat()" class="fa fa-times"></i> </div>
+			<div id="messages">
 			</div>
-			<div id="chatWindow" class="card mt-5" style="visibility:hidden">
-				<div id="chatHeader" class="d-flex flex-row justify-content-between p-3 adiv text-white"><span id="chatName" class="pb-3"></span> <i onclick="deleteChat()" class="fa fa-times"></i> </div>
-				<div id="messages">
-				</div>
-				<div class="form-group px-3">
-					<textarea id="msgTB" class="form-control" rows="2" placeholder="Type your message"></textarea>
-					<i id="sendMSG" onclick="AddMSG()" class="fa fa-paper-plane"></i>
-				</div>
+			<div id="sendMessageDiv" class="form-group px-3">
+				<textarea id="msgTB" class="form-control" rows="2" placeholder="Type your message"></textarea>
+				<i id="sendMSG" onclick="AddMSG()" class="fa fa-paper-plane"></i>
 			</div>
 		</div>
 
@@ -162,7 +179,6 @@
 
 
 	</div>
-
 
 	<div id="registerModal" class="modal">
 		<form id="registerForm" class="modal-content">

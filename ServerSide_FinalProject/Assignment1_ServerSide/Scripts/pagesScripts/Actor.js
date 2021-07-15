@@ -4,7 +4,7 @@
 $(document).ready(function () {
   
     getActor();
-   
+
     $(".knownButton").click(function () {
         if ($(this).css("background-color") != "rgb(0, 255, 255)")
             toggleCredits();
@@ -17,7 +17,7 @@ $(document).ready(function () {
             type: "tv"
         }
         sessionStorage.setItem("mediaChoose", JSON.stringify(method));
-        window.location.href="index.html";
+        window.location.href = "index.html";
     });
     $(document).on("click", ".movie", function () {
         let method = {
@@ -34,7 +34,7 @@ function getActor() {
     personId = JSON.parse(sessionStorage.getItem("personId"));
     method = "3/person/" + personId;
     api_key = "api_key=" + key;
-    let apiCall = url + method + "?"+ api_key;
+    let apiCall = url + method + "?" + api_key;
     ajaxCall("GET", apiCall, "", getActorSuccessCB, getActorErrorCB);
 }
 function getActorSuccessCB(actor) {
@@ -45,8 +45,10 @@ function getActorSuccessCB(actor) {
         getActorTvCredits();
         getActorMovieCredits();
     }
-    else 
+    else
         $("#known_from").hide();
+    if (actor.place_of_birth != null)
+        getMap(actor.place_of_birth);
 }
 function getActorErrorCB(err) {
     console.log(err);
@@ -55,14 +57,7 @@ function getActorErrorCB(err) {
 //Render Actor details.
 function renderActor(actor) {
 
-
     imageSrc = "<img src='" + checkPhotos(actor.profile_path) + "'>";
-
-    if (actor.profile_path == null)
-        imageSrc = "<img src = '..//Images//noImage.jpg'/>";
-    else
-        imageSrc = "<img src='" + imagePath + actor.profile_path + "' onerror=" + errorPng + ">";
-
     getActorLinks();
     var gender = "";
     if (actor.gender == '1')
@@ -76,12 +71,12 @@ function renderActor(actor) {
         death = actor.deathday;
         strInfo += "<p>Date of death: " + death + "</p>";
     }
-    
+
     strName = "<h1>" + actor.name + "</h1>";
     let strImg = imageSrc;
     $("#actorImg").append(strImg);
     actorBio = "<p>Bio: <br>" + actor.biography + "</p>";
-    $("#headerInfo").html(strName + strInfo) 
+    $("#headerInfo").html(strName + strInfo)
     $("#info").html(actorBio);
 
 }
@@ -98,109 +93,137 @@ function getPhotosSuccessCB(photos) {
     else {
         let str = "";
         for (let i = 0; i < photosArr.length; i++) {
-            str += "<li class = 'card'><img class='card-img-top' src='" + checkPhotos(photosArr[i].file_path) + "></li>";
+            str += "<li class = 'card'><img class='card-img-top' src='" + checkPhotos(photosArr[i].file_path) + "'></li>";
         }
         $("#photosList").html(str);
     }
 }
 
-    function getPhotosErrorCB(err) {
-        console.log(err);
+function getPhotosErrorCB(err) {
+    console.log(err);
+}
+//toggle by credit type
+function toggleCredits() {
+    if (creditMode == "tv") {
+        $("#knownMovieList").show();
+        $("#knownTVList").hide();
+        $("#tvButton").css("background-color", "white");
+        $("#movieButton").css("background-color", "aqua");
+        creditMode = "movie";
     }
-    //toggle by credit type
-    function toggleCredits() {
-        if (creditMode == "tv") {
-            $("#knownMovieList").show();
-            $("#knownTVList").hide();
-            $("#tvButton").css("background-color", "white");
-            $("#movieButton").css("background-color", "aqua");
-            creditMode = "movie";
-        }
-        else {
-            $("#knownTVList").show();
-            $("#knownMovieList").hide();
-            $("#movieButton").css("background-color", "white");
-            $("#tvButton").css("background-color", "aqua");
-            creditMode = "tv";
-        }
-    }
-
-
-    //get Actor TV Known from, from TMDB
-    function getActorTvCredits() {
-        let apiCall = url + method + "/tv_credits?" + api_key;
-        ajaxCall("GET", apiCall, "", getActorTvCreditsSuccessCB, getActorTvCreditsErrorCB);
-    }
-    function getActorTvCreditsSuccessCB(tv) {
-        console.log(tv);
-        castingArr = tv.cast;
+    else {
+        $("#knownTVList").show();
+        $("#knownMovieList").hide();
+        $("#movieButton").css("background-color", "white");
         $("#tvButton").css("background-color", "aqua");
         creditMode = "tv";
-        if (castingArr == null) {
-            toggleCredits();
-            $("#tvButton").attr("disabled", true);
+    }
+}
+
+
+//get Actor TV Known from, from TMDB
+function getActorTvCredits() {
+    let apiCall = url + method + "/tv_credits?" + api_key;
+    ajaxCall("GET", apiCall, "", getActorTvCreditsSuccessCB, getActorTvCreditsErrorCB);
+}
+function getActorTvCreditsSuccessCB(tv) {
+    console.log(tv);
+    castingArr = tv.cast;
+    $("#tvButton").css("background-color", "aqua");
+    creditMode = "tv";
+    if (castingArr == null) {
+        toggleCredits();
+        $("#tvButton").attr("disabled", true);
+    }
+    else {
+        let str = "";
+        for (let i = 0; i < castingArr.length; i++) {
+            str += "<li id = '" + castingArr[i].id + "'class = 'card tv'>";
+            imageTv = "<img class='card-img-top' src='" + checkPhotos(castingArr[i].poster_path) + "'>";
+            cardBody = "<div class='card-body'><h6>" + castingArr[i].name + "</h6> <p class='card-text'>" + castingArr[i].character + "</p></div>";
+            str += imageTv + "<div class='goToPage'>Go to page" + cardBody + "</div></li> ";
         }
-        else {
-            let str = "";
-            for (let i = 0; i < castingArr.length; i++) {
-                str += "<li id = '" + castingArr[i].id + "'class = 'card tv'>";
-                imageTv = "<img class='card-img-top' src='" + checkPhotos(castingArr[i].poster_path) + ">";
-                cardBody = "<div class='card-body'><h6>" + castingArr[i].name + "</h6> <p class='card-text'>" + castingArr[i].character + "</p></div>";
-                str += imageTv + "<div class='goToPage'>Go to page" + cardBody + "</div></li> ";
-            }
-            $("#anyTvKnown").html(str);
-            $("#knownMovieList").hide();
+        $("#anyTvKnown").html(str);
+        $("#knownMovieList").hide();
+    }
+}
+function getActorTvCreditsErrorCB(err) {
+    console.log(err);
+}
+
+//get Actor Movie Known from, from TMDB
+function getActorMovieCredits() {
+    let apiCall = url + method + "/movie_credits?" + api_key;
+    ajaxCall("GET", apiCall, "", getActorMovieCreditsSuccessCB, getActorMovieCreditsErrorCB);
+}
+function getActorMovieCreditsSuccessCB(movie) {
+    console.log(movie);
+    castingArr = movie.cast;
+    if (castingArr == null) {
+        $("#movieButton").attr("disabled", true);
+    }
+    else {
+        let str = "";
+        for (let i = 0; i < castingArr.length; i++) {
+            str += "<li id = '" + castingArr[i].id + "'class = 'card movie'>";
+            imageTv = "<img class='card-img-top' src='" + checkPhotos(castingArr[i].poster_path) + "'>";
+            cardBody = "<div class='card-body'><h6>" + castingArr[i].title + "</h6> <p class='card-text'>" + castingArr[i].character + "</p></div>";
+            str += imageTv + "<div class='goToPage'>Go to page" + cardBody + "</div></li> ";
         }
-    }
-    function getActorTvCreditsErrorCB(err) {
-        console.log(err);
-    }
+        $("#anyMovieKnown").html(str);
 
-    //get Actor Movie Known from, from TMDB
-    function getActorMovieCredits() {
-        let apiCall = url + method + "/movie_credits?" + api_key;
-        ajaxCall("GET", apiCall, "", getActorMovieCreditsSuccessCB, getActorMovieCreditsErrorCB);
+
     }
-    function getActorMovieCreditsSuccessCB(movie) {
-        console.log(movie);
-        castingArr = movie.cast;
-        if (castingArr == null) {
-            $("#movieButton").attr("disabled", true);
+}
+function getActorMovieCreditsErrorCB(err) {
+    console.log(err);
+}
+
+//Get actor external links (Facebook,twitter,Instagram)
+function getActorLinks() {
+    let apiCall = url + method + "/external_ids?" + api_key;
+    ajaxCall("GET", apiCall, "", getLinksSuccessCB, getLinksErrorCB);
+}
+function getLinksSuccessCB(links) {
+    let strLink = "";
+    if (links.facebook_id != null)
+        strLink += "<a  href= 'https://www.facebook.com/" + links.facebook_id + "/'><i class='fa fa-facebook'></i></a>";
+    if (links.instagram_id != null)
+        strLink += "<a  href= 'https://www.instagram.com/" + links.instagram_id + "/'><i class='fa fa-instagram'></i> </a>";
+    if (links.twitter_id != null)
+        strLink += "<a  href= 'https://www.twitter.com/" + links.twitter_id + "/'><i class='fa fa-twitter'></i></a>";
+    $("#externalLinks").html(strLink);
+}
+function getLinksErrorCB(err) {
+    console.log(err);
+}
+
+//Use axios library for get location details, and then call render function map for location coordinates. 
+function getMap(place) {
+    axios.get("https://maps.googleapis.com/maps/api/geocode/json?", {
+        params: {
+            address: place,
+            key: "AIzaSyDX02F5Z4U83fevL63h0sIKVde5iqwDmr4"
         }
-        else {
-            let str = "";
-            for (let i = 0; i < castingArr.length; i++) {
-                str += "<li id = '" + castingArr[i].id + "'class = 'card movie'>";
-                imageTv = "<img class='card-img-top' src='" + checkPhotos(castingArr[i].poster_path) + ">";
-                cardBody = "<div class='card-body'><h6>" + castingArr[i].title + "</h6> <p class='card-text'>" + castingArr[i].character + "</p></div>";
-                str += imageTv + "<div class='goToPage'>Go to page" + cardBody + "</div></li> ";
-            }
-            $("#anyMovieKnown").html(str);
-
-
-        }
-    }
-    function getActorMovieCreditsErrorCB(err) {
-        console.log(err);
-    }
-
-    //Get actor external links (Facebook,twitter,Instagram)
-    function getActorLinks() {
-        let apiCall = url + method + "/external_ids?" + api_key;
-        ajaxCall("GET", apiCall, "", getLinksSuccessCB, getLinksErrorCB);
-    }
-    function getLinksSuccessCB(links) {
-        let strLink = "";
-        if (links.facebook_id != null)
-            strLink += "<a  href= 'https://www.facebook.com/" + links.facebook_id + "/'><i class='fa fa-facebook'></i></a>";
-        if (links.instagram_id != null)
-            strLink += "<a  href= 'https://www.instagram.com/" + links.instagram_id + "/'><i class='fa fa-instagram'></i> </a>";
-        if (links.twitter_id != null)
-            strLink += "<a  href= 'https://www.twitter.com/" + links.twitter_id + "/'><i class='fa fa-twitter'></i></a>";
-        $("#externalLinks").html(strLink);
-    }
-    function getLinksErrorCB(err) {
-        console.log(err);
-    }
-
-
+    })
+        .then(response => {
+            initMap(response.data.results[0].geometry.location);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+function initMap(location) {
+    var latlng = {
+        lat: location.lat,
+        lng: location.lng
+    }; //get location coordinates.
+    var map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 8,
+        center: latlng
+    });//initiate map in html div
+    var marker = new google.maps.Marker({
+        position: latlng,
+        map: map
+    });//put a marker location in the map.
+}

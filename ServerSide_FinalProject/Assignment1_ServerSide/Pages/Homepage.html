@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +17,19 @@
 	<!--**** Remember to add the database script ***-->
 	<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-storage.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
+
+	<!--autocomplete search-->
+	<!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 	<!--Your web app's Firebase configuration-->
 	<script src="../Scripts/pagesScripts/firebase.js"></script>
@@ -57,7 +70,7 @@
 			<img id="userProfilePh" src="../Images/userPng.jpeg" />
 			<div id="welcomeDiv"></div>
 		</div>
-		<div id="searchDiv">
+		<div id="searchDiv" class="ui-widget">
 			<input type="text" id="tvShowName" placeholder="Look for Tv Show/Movie/Person" />
 			<button id="getTV"><i class="fa fa-search"></i>Search</button>
 		</div>
@@ -72,6 +85,7 @@
 			<ol id="chatList" style="list-style-type:none">
 			</ol>
 		</div>
+
 		<div id="center" class="container center">
 			<div id="popular">
 				<h4>So Popular...</h4>
@@ -103,13 +117,10 @@
 					<ol id="recommendMovieList" class="cardsOL"></ol>
 					<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
 				</div>
-
 			</div>
-
-
 		</div>
-
 		<div id="showNews">
+			<div><i onclick="exitNews(this)" class="fa fa-times"></i></div>
 			<h4>Some News</h4>
 			<a href="News.html" class="button">For all news click here</a>
 			<hr />
@@ -117,16 +128,18 @@
 
 		</div>
 
-
 		<div id="menuContent">
 			<ul id="memberBar">
 				<li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='view.html'"> <i class="fa fa-heart"></i>Favorites </button></li>
 				<li> <button id="openChatListBtn" class="menuBtn"><i class="fa fa-comments"></i>Chat</button></li>
+				<li> <button id='newsBtn' class="menuBtn" onclick="window.location.href='news.html'"><i class="fa fa-newspaper-o"></i>News</button></li>
 				<li> <button id='logoutBtn' class="menuBtn"><i class="fa fa-sign-out"></i>Logout</button></li>
 			</ul>
 			<ul id="guestBar">
+				<li> <button id='newsBtn' class="menuBtn" onclick="window.location.href='news.html'"><i class="fa fa-newspaper-o"></i>News</button></li>
 				<li> <button id="registerBtn" class="menuBtn"><i class="fa fa-user-plus"></i>Register</button></li>
 				<li> <button id="loginBtn" class="menuBtn"><i class="fa fa-sign-in"></i>Login</button></li>
+
 			</ul>
 
 		</div>

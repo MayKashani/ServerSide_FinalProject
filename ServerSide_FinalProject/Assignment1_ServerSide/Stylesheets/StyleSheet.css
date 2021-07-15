@@ -10,6 +10,10 @@
 	background-repeat:no-repeat
 }
 
+i {
+	cursor:pointer;
+}
+
 button:focus {
 	outline: none;
 }
@@ -25,12 +29,8 @@ div {
 }
 
 
-h1 {
-/*	font-family: 'Showcard Gothic';*/
-	color: white;
-	-webkit-text-stroke: 2px black;
-	text-shadow: 5px 5px 2px indianred;
-}
+
+
 
 div > img {
 	height: 100%;
@@ -43,6 +43,7 @@ div > img {
 	width: 100%;
 	max-width: 100%;
 	grid-template-columns: auto 1fr auto;
+	min-height:90vh
 }
 
 #fanClub {
@@ -135,6 +136,7 @@ button, input[type=submit] {
 	background: transparent;
 	border: none;
 	margin-top: 15px;
+	text-align:left;
 }
 
     /*button:hover, input[type=submit]:hover {
@@ -268,6 +270,7 @@ i {
 	}
 
 
+
 .hrefbtn {
 	text-decoration: underline;
 	cursor: pointer;
@@ -355,9 +358,27 @@ i {
 
 /*menuCSS*/
 
+#menuContent {
+	display: none;
+	background: rgba(0, 0, 0, 0.4);
+	grid-column: 3/4;
+	height: 90vh;
+	width: 10vw;
+}
+
+ol {
+	padding: 5px;
+}
+
+#center {
+	grid-column: 2/3;
+	padding: 0px;
+	grid-row: 1/2;
+}
+
 #menuContent ul {
 	display: block;
-	height: 40vh;
+	height: 100%;
 	list-style-type: none;
 	margin: 0px;
 	padding: 0px
@@ -375,10 +396,101 @@ i {
 }
 
 
-#menuContent {
-	display: none;
-	background: rgba(0, 0, 0, 0.4);
-	grid-column: 3/4;
-	height: 90vh;
-	width: 10vw;
+
+
+/* News */
+#fanClub, #menuContent {
+	height: 100%
+}
+
+.newDiv {
+	width: 100%;
+	padding: 15px;
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	padding: 20px;
+}
+.newImg > img {
+	border-radius: 25px;
+	box-shadow: black 0px 0px 18px 8px;
+	margin: 0 auto;
+}
+
+.newDescription {
+	margin: 0 auto;
+	grid-column: 2/3;
+	padding:20px;
+	text-align:left;
+}
+
+#showNews > hr {
+	margin: 1rem auto;
+	width: 10%;
+	color: black;
+	border: none;
+	background-color: black;
+	height: 1px
+}
+
+.showNews h5{
+	text-align:left
+}
+
+
+
+/* search and view pages*/
+
+.result {
+	border: 1px solid white;
+	height: auto;
+	width: 100%;
+	margin: 0 auto;
+}
+
+
+.resultText {
+	z-index: 2;
+	width: 100%;
+	transition: .2s ease-out;
+	margin: 0px auto;
+}
+
+	.resultText:hover {
+		box-shadow: inset 0px 0px 13px 16px white;
+		transform: translate3d(0,-2px,0);
+		padding: 20px;
+	}
+
+
+.result {
+/*	width: 80%;
+	height: 50px;
+	border: 1px solid white;*/
+	float: left;
+	text-align: left;
+	position: relative
+}
+
+	.result::after {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		background: black;
+		opacity: 0.7;
+		content: ""
+	}
+
+	.result > div {
+		min-height:300px;
+		padding:10px
+	}
+
+
+#results, #favoritesMovies, #seriesEpisodes {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	max-height: 85vh;
+	display: inline-flex;
+	flex-direction: column;
+	width: 100%;
 }

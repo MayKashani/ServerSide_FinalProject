@@ -5,6 +5,8 @@
 	document.getElementById("defaultOpen").click();
 })
 
+
+// Get data from DB + Callbacks
 function getTables() {
 	let api = "../api/Episodes"
 	ajaxCall("GET", api, "", getTableSuccess, getTableError);
@@ -17,6 +19,13 @@ function getTableSuccess(table) {
 	getSeries(table.LikedSeries);
 	getEpisodes(table.LikedEpisodes);
 }
+
+function getTableError(err) {
+	console.log(err)
+}
+
+
+// Create and render DataTable for each category
 function getUsers(users) {
 	console.log(users)
 	$("#usersTbl").DataTable({
@@ -65,7 +74,6 @@ function getUsers(users) {
 	})
 }
 
-
 function getSeries(shows) {
 	console.log(shows)
 	$("#likedShowsTbl").DataTable({
@@ -108,7 +116,6 @@ function getMovies(movies) {
 	})
 }
 
-
 function getEpisodes(episodes) {
 	console.log(episodes)
 	$("#likedEpisodesTbl").DataTable({
@@ -138,10 +145,6 @@ function getEpisodes(episodes) {
 	})
 }
 
-
-function getTableError(err) {
-	console.log(err)
-}
 
 
 /* Tabs JS */
