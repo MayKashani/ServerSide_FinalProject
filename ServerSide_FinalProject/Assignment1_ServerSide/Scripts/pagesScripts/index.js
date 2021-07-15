@@ -14,11 +14,7 @@ $(document).ready(function () {
 		seasonsArr = [];
 
 		setButtons();
-
 	}
-
-
-
 });
 
 // Setting buttons/cards click events

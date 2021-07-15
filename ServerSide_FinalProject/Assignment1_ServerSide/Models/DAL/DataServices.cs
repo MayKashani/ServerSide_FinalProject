@@ -147,7 +147,7 @@ namespace Assignment1_ServerSide.Models.DAL
         }
 
         public List<User> GetUsers()
-		{
+        {
             SqlConnection con;
             SqlCommand cmd;
             List<User> users = new List<User>();
@@ -160,7 +160,7 @@ namespace Assignment1_ServerSide.Models.DAL
                 // write to log
                 throw (ex);
             }
-           
+
             try
             {
                 String cStr = "SELECT * from UsersTBL";
@@ -827,7 +827,7 @@ namespace Assignment1_ServerSide.Models.DAL
             try
             {
                 int userId = GetUserID(mail);
-                String cStr = "select distinct s.* from Favorites fav inner join Series s on fav.Series_ID = s.ID where fav.User_ID in (select f2.User_ID from Favorites f1 inner join Favorites f2 on f1.Series_ID = f2.Series_ID  inner join favorites f3 on f2.User_ID = f3.User_ID inner join favorites f4  on f4.User_ID = f1.User_ID where f1.User_ID = "+userId+" and f2.User_ID != "+userId+" group by f1.User_ID, f2.User_ID having ROUND(CAST(count(distinct f2.Series_ID) AS float) / CAST(count(distinct f3.Series_ID) AS float), 2) * ROUND(CAST(count(distinct f1.Series_ID) AS float) / CAST(count(distinct f4.Series_ID) AS float), 2) > 0.5) and fav.Series_ID not in (select distinct favorite.Series_id from Favorites favorite where favorite.User_ID = "+userId+")";
+                String cStr = "select distinct s.* from Favorites fav inner join Series s on fav.Series_ID = s.ID where fav.User_ID in (select f2.User_ID from Favorites f1 inner join Favorites f2 on f1.Series_ID = f2.Series_ID  inner join favorites f3 on f2.User_ID = f3.User_ID inner join favorites f4  on f4.User_ID = f1.User_ID where f1.User_ID = "+userId+" and f2.User_ID != "+userId+" group by f1.User_ID, f2.User_ID having ROUND(CAST(count(distinct f2.Series_ID) AS float) / CAST(count(distinct f3.Series_ID) AS float), 2) * ROUND(CAST(count(distinct f1.Series_ID) AS float) / CAST(count(distinct f4.Series_ID) AS float), 2) > 0.3) and fav.Series_ID not in (select distinct favorite.Series_id from Favorites favorite where favorite.User_ID = "+userId+")";
                 cmd = CreateCommand(cStr, con);
 
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -876,7 +876,7 @@ namespace Assignment1_ServerSide.Models.DAL
             try
             {
                 int userId = GetUserID(mail);
-                String cStr = "select distinct m.* from favoriteMovies fav inner join Movies m on fav.Movie_ID = m.ID where fav.User_ID in (select f2.User_ID from favoriteMovies f1 inner join favoriteMovies f2 on f1.Movie_ID = f2.Movie_ID inner join favoriteMovies f3 on f2.User_ID = f3.User_ID inner join favoriteMovies f4  on f4.User_ID = f1.User_ID where f1.User_ID = " + userId + " and f2.User_ID != " + userId + " group by f1.User_ID, f2.User_ID having ROUND(CAST(count(distinct f2.Movie_ID) AS float) / CAST(count(distinct f3.Movie_ID) AS float), 2) * ROUND(CAST(count(distinct f1.Movie_ID) AS float) / CAST(count(distinct f4.Movie_ID) AS float), 2) > 0.5) and fav.Movie_ID not in (select distinct favorite.Movie_ID from favoriteMovies favorite where favorite.User_ID = " + userId + ")";
+                String cStr = "select distinct m.* from favoriteMovies fav inner join Movies m on fav.Movie_ID = m.ID where fav.User_ID in (select f2.User_ID from favoriteMovies f1 inner join favoriteMovies f2 on f1.Movie_ID = f2.Movie_ID inner join favoriteMovies f3 on f2.User_ID = f3.User_ID inner join favoriteMovies f4  on f4.User_ID = f1.User_ID where f1.User_ID = " + userId + " and f2.User_ID != " + userId + " group by f1.User_ID, f2.User_ID having ROUND(CAST(count(distinct f2.Movie_ID) AS float) / CAST(count(distinct f3.Movie_ID) AS float), 2) * ROUND(CAST(count(distinct f1.Movie_ID) AS float) / CAST(count(distinct f4.Movie_ID) AS float), 2) > 0.3) and fav.Movie_ID not in (select distinct favorite.Movie_ID from favoriteMovies favorite where favorite.User_ID = " + userId + ")";
                 cmd = CreateCommand(cStr, con);
 
                 SqlDataReader reader = cmd.ExecuteReader();

@@ -60,10 +60,10 @@ namespace Assignment1_ServerSide.Models
             return u;
         }
 
-        public List<User> GetUsers()
-		{
-            DataServices ds = new DataServices();
-            return ds.GetUsers();
-        }
+  //      public List<User> GetUsers()
+		//{
+  //          DataServices ds = new DataServices();
+  //          return ds.GetUsers();
+  //      }
     }
 }

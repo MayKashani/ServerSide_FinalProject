@@ -4,12 +4,7 @@
         $(".se-pre-con").fadeOut(2000);;
 
     });
-    key = "46ee229c787140412cbafa9f3aa03555";
-    url = "https://api.themoviedb.org/";
-    imagePath = "https://image.tmdb.org/t/p/w500/";
-    method = "3/tv/";
-    api_key = "api_key=" + key;
-    errorPng = 'this.src="..//Images//noImage.jpg"';
+
 
     Current_TV = JSON.parse(sessionStorage.getItem("currentTV"))
     Current_Season = JSON.parse(sessionStorage.getItem("season"));
@@ -17,7 +12,7 @@
     let str = "";
 
     for (let i = 0; i < episodes.length; i++) {
-        str += "<div class='episodeCard row'><div class='col-4'><img class='chapterImg'src='" + checkPhotos(episodes[i].still_path) + "'/></div><div class='info col-8'><h3>" + episodes[i].name + "</h3><p><b>Overview:</b> " + episodes[i].overview + "</p>";
+        str += "<div class='episodeCard row'><div class='col-4'><img class='chapterImg' src='" + checkPhotos(episodes[i].still_path) + "'/></div><div class='info col-8'><h3>" + episodes[i].name + "</h3><p><b>Overview:</b> " + episodes[i].overview + "</p>";
         str += "<p><b>Air Date: </b>" + episodes[i].air_date + "</p> <button id='" + i + "' class='addEpisode heart'><i class='fa fa-heart'></i></button></div>"
         str += "</div><hr>"
     }

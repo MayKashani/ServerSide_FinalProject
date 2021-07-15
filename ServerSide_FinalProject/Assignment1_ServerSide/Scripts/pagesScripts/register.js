@@ -206,7 +206,7 @@ function getMultiSuccessCB(availableTags) {
 
     $("#tvShowName").autocomplete({
         source: res,
-         minLength: 0
+        minLength: 0
     })
         .autocomplete("instance")._renderItem = function (ul, item) {
             
@@ -218,7 +218,6 @@ function getMultiSuccessCB(availableTags) {
     };
 
 }
-
 function getMultiErrorCB(err) {
     console.log(err)
 }
@@ -282,18 +281,15 @@ function postUserErrorCB(err) {
 
 //Profile picture functions
 function uploadImage() {
-    const ref = firebase.storage().ref();
     const file = document.querySelector("#profileFile").files[0];
+    if (typeof (file) == "undefined")
+        return;
+    const ref = firebase.storage().ref();
     const name = $("#mailTB").val();
     const metadata = {
         contentType: file.type
     }
-    const task = ref.child(name).put(file, metadata);
-    task
-        .then(snapshot => snapshot.ref.getDownloadURL())
-        .then(url => {
-            console.log(url)
-        })
+    ref.child(name).put(file, metadata);
 }
 function getProfilePicture(user) {
     const ref = firebase.storage().ref();
@@ -319,7 +315,7 @@ function getUserByData() {
 }
 function getUserSuccessCB(user) {
     if (user.Mail == 'admin@admin.com')
-        window.location.replace="Admin.html";
+        window.location.href = "Admin.html";
     else {
         delete user["Password"];
         localStorage["User"] = JSON.stringify(user);

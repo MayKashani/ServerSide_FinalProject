@@ -11,7 +11,7 @@ namespace Assignment1_ServerSide.Controllers
     public class UsersController : ApiController
     {
 
-        // GET api/<controller>/5
+        // User Login
         [HttpGet]
         public HttpResponseMessage Get(string mail,string password)
         {
@@ -22,15 +22,15 @@ namespace Assignment1_ServerSide.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, found);
         }
 
-        [HttpGet]
-        public HttpResponseMessage GetUsers()
-		{
-            User u = new User();
-            List<User> users = u.GetUsers();
-            if (users.Count == 0)
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound,"No users to show");
-            return Request.CreateResponse(HttpStatusCode.OK, users);
-        }
+        //[HttpGet]
+  //      public HttpResponseMessage GetUsers()
+		//{
+  //          User u = new User();
+  //          List<User> users = u.GetUsers();
+  //          if (users.Count == 0)
+  //              return Request.CreateErrorResponse(HttpStatusCode.NotFound,"No users to show");
+  //          return Request.CreateResponse(HttpStatusCode.OK, users);
+  //      }
 
         // POST api/<controller>
         [HttpPost]

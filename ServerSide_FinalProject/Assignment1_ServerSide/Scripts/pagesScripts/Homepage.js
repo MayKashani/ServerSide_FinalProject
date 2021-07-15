@@ -187,7 +187,6 @@ function showNews() {
     var currentMonth = currentDate.getMonth() - 1;
 
     const getNews1 = async () => {
-
         const url = "https://newsapi.org/v2/everything?domains=mtv.com,ew.com&q=movies&q=movie&q=film&q=trailer&q=tv&q=series&from=" + currentMonth + "&sortBy=publishedAt&apiKey=e9657119e6324c7daa3dd0d6d06567a1&language=en";
         const res = await fetch(url); //פונקציה שיש בדפדפן המקבלת כתובת ומחזירה את התוכן שלו.
         // await תמשיך לשורה הבאה רק כאשר התוכן נטען במלואו

@@ -31,7 +31,6 @@ $(document).ready(function () {
         window.location.href="actor.html";
     });
 
-
 });
 
 
