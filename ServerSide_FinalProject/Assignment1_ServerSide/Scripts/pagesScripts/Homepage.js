@@ -68,8 +68,8 @@ function getRecSuccess(rec) {
         recommendMode = "tv";
     }
     else {
-        $("#showTvRecommend").hide();
-        $("#recommendTv").hide();
+        $("#showTvRecommend").css("display", "none");
+        $("#recommendTV").css("display", "none");
         recommendMode = "movie";
     }
 }
@@ -93,11 +93,13 @@ function getMovieRecSuccessCB(movies) {
             str += image + "<div class='goToPage'>Go to page" + cardBody + "</div></li>";
         }
         $("#recommendMovieList").html(str);
-        if (recommendMode == "movie") 
+        if (recommendMode == "movie")
             $("#showMovieRecommend").css("background-color", "aqua");
         else
-            $("#recommendMovie").hide();
+            $("#recommendMovie").css("display", "none");
     }
+    else
+        $("#recommendMovie").css("display", "none");
 }
 function getMovieRecErrorCB(err) {
     console.log(err);

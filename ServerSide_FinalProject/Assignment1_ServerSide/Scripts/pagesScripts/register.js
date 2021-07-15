@@ -1,7 +1,4 @@
 ﻿
-
-
-
 var searchInput = 'addressTB';
 //onload user logged in check
 function checkLS() {
@@ -25,9 +22,6 @@ function checkLS() {
 }
 
 $(document).ready(function () {
-
-
-
 
     errorPng = "..//Images//noImage.jpg";
     mode = "";
@@ -109,12 +103,13 @@ $(document).ready(function () {
     })
 
     $("#tvShowName").keyup(function () {
-        let method = "3/search/multi?"
-        let query = "query=" + $("#tvShowName").val();
-        let moreParams = "&language=en-US&include_adult=false&page=1&";
-        apiCall = url + method + api_key + moreParams + query;
-        ajaxCall("GET", apiCall, "", getMultiSuccessCB, getMultiErrorCB);
-
+        if ($("#tvShowName").val() != "") {
+            let method = "3/search/multi?"
+            let query = "query=" + $("#tvShowName").val();
+            let moreParams = "&language=en-US&include_adult=false&page=1&";
+            apiCall = url + method + api_key + moreParams + query;
+            ajaxCall("GET", apiCall, "", getMultiSuccessCB, getMultiErrorCB);
+        }
     })
 
     $(".logo").click(function () {

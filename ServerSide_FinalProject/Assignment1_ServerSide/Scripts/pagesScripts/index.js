@@ -90,7 +90,10 @@ function getMediaSuccess(media) {
 	Current_TV = media;
 	str = "<img src='" + checkPhotos(Current_TV.poster_path) + "'/>";
 	fillGenresDiv();
-	$("#leftDetails").html("<p>Episode runtime: " + Current_TV.episode_run_time[0] + "</p><p>First air date: "+Current_TV.first_air_date + "</p>")
+	if (chosenMedia.type =="tv")
+		$("#leftDetails").html("<p>Episode Runtime: " + Current_TV.episode_run_time[0] + "</p><p>First air date: " + Current_TV.first_air_date + "</p>")
+	else
+		$("#leftDetails").html("<p>Movie Runtime: " + Current_TV.runtime + "</p><p>First air date: " + Current_TV.release_date + "</p>")
 	$('#headerBackground').attr("src", checkPhotos(Current_TV.backdrop_path));  
 	$("#seriesName").html(Current_TV.name)
 	$("#ph").html(str);
