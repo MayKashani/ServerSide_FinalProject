@@ -65,7 +65,7 @@ function getRecSuccess(rec) {
         }
         $("#recommendTvList").html(str);
         $("#showTvRecommend").css("background-color", "aqua");
-        
+        recommendMode = "tv";
     }
     else {
         $("#showTvRecommend").hide();
@@ -93,7 +93,7 @@ function getMovieRecSuccessCB(movies) {
             str += image + "<div class='goToPage'>Go to page" + cardBody + "</div></li>";
         }
         $("#recommendMovieList").html(str);
-        if (recommendMode = "movie") 
+        if (recommendMode == "movie") 
             $("#showMovieRecommend").css("background-color", "aqua");
         else
             $("#recommendMovie").hide();
