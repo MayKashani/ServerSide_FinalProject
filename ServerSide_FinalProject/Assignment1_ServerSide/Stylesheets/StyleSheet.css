@@ -1,5 +1,5 @@
 ﻿body {
-	font-size: 18px;
+	font-size: 22px;
 	color: white;
 	margin: 0px;
 	height:100%;
@@ -11,6 +11,7 @@
 i {
 	cursor: pointer;
 	padding: 0px 2px;
+	font-size:30px;
 }
 
 button:focus, li:focus {
@@ -111,16 +112,15 @@ div > img {
 	margin-top: 15px
 }
 
-/*
+
 
 button, input[type=submit] {
     border: 2px solid black;
-    font-family: 'Berlin Sans FB';
     font-size: 18px;
     margin: 15px auto;
     border-radius: 20px;
     color: black;
-}*/
+}
 
 .menuBtn {
 	width: 100%;
@@ -129,13 +129,9 @@ button, input[type=submit] {
 	border: none;
 	margin-top: 15px;
 	text-align:left;
+	font-size:22px;
 }
 
-    /*button:hover, input[type=submit]:hover {
-        background-color: black;
-        border: 1px solid white;
-        color: white;
-    }*/
 
 
 
@@ -144,7 +140,7 @@ button, input[type=submit] {
 }
 
 #tvShowName, #tvShows {
-	height: 25px;
+
 	width: 200px;
 	border: 1px solid black;
 	border-radius: 20px;
@@ -349,7 +345,7 @@ button, input[type=submit] {
 	background: rgba(0, 0, 0, 0.4);
 	grid-column: 3/4;
 	height: 90vh;
-	width: 10vw;
+	max-width: 10vw;
 }
 
 ol {
@@ -507,3 +503,11 @@ ul.ui-autocomplete{
 	overflow-y:auto;
 	max-height:50%;
 }
+
+.headIconsBtn {
+	margin-top: 30px;
+	background: none;
+	border: none;
+	font-size: 30px;
+}
+

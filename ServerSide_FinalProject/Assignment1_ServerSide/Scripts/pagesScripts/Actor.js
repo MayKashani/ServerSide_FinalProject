@@ -65,11 +65,11 @@ function renderActor(actor) {
     getActorLinks();
     var gender = "";
     if (actor.gender == '1')
-        gender = "female";
+        gender = "Female";
     else if (actor.gender == '2')
-        gender = "male";
+        gender = "Male";
 
-    let strInfo = "<p><u> Personal Information</u><p>Known for: " + actor.known_for_department + "</p><p>Gender: " + gender + "</p><p> Birthday: " + actor.birthday + "</p><p>Place of birth: " + actor.place_of_birth + "</p><p>Popularity: " + actor.popularity + "%</p>";
+    let strInfo = "<p>Known for: " + actor.known_for_department + "</p><p>Gender: " + gender + "</p><p> Birthday: " + actor.birthday + "</p><p>Place of birth: " + actor.place_of_birth + "</p><p>Popularity: " + actor.popularity + "%</p>";
     var death = "";
     if (actor.deathday != null) {
         death = actor.deathday;
@@ -79,9 +79,9 @@ function renderActor(actor) {
     strName = "<h1>" + actor.name + "</h1>";
     let strImg = imageSrc;
     $("#actorImg").append(strImg);
-    actorBio = "<p>Bio: <br>" + actor.biography + "</p>";
-    $("#headerInfo").html(strName + strInfo)
-    $("#info").html(actorBio);
+    actorBio = "<p>" + actor.biography + "</p>";
+    $("#headerInfo").html(strInfo)
+    $("#info").html(strName + actorBio);
 
 }
 
@@ -191,11 +191,11 @@ function getActorLinks() {
 function getLinksSuccessCB(links) {
     let strLink = "";
     if (links.facebook_id != null)
-        strLink += "<a  href= 'https://www.facebook.com/" + links.facebook_id + "/'><i class='fa fa-facebook'></i></a>";
+        strLink += "<a class='headIconsBtn' href= 'https://www.facebook.com/" + links.facebook_id + "/'><i class='fa fa-facebook'></i></a>";
     if (links.instagram_id != null)
-        strLink += "<a  href= 'https://www.instagram.com/" + links.instagram_id + "/'><i class='fa fa-instagram'></i> </a>";
+        strLink += "<a class='headIconsBtn' href= 'https://www.instagram.com/" + links.instagram_id + "/'><i class='fa fa-instagram'></i> </a>";
     if (links.twitter_id != null)
-        strLink += "<a  href= 'https://www.twitter.com/" + links.twitter_id + "/'><i class='fa fa-twitter'></i></a>";
+        strLink += "<a class='headIconsBtn' href= 'https://www.twitter.com/" + links.twitter_id + "/'><i class='fa fa-twitter'></i></a>";
     $("#externalLinks").html(strLink);
 }
 function getLinksErrorCB(err) {

@@ -54,49 +54,47 @@
 			<ol id="chatList" style="list-style-type:none">
 			</ol>
 		</div>
-		<div id="actorDiv" class="center container">
-			<div id="head">
-				<div class="row" id="actorInfo">
-					<div class="col-2" id="leftDiv">
-						<div id="actorImg"> </div>
-						<div id="externalLinks"></div>
-						<div id="headerInfo" style="margin:0px auto"></div>
+		<div id="actorDiv" class="center">
+
+			<div class="row" id="actorInfo">
+				<div class="col-2" id="leftDiv">
+					<div id="actorImg"> </div>
+					<div id="externalLinks"></div>
+					<div id="headerInfo" style="margin:0px auto"></div>
+			
+				</div>
+
+
+
+				<div class="col-10">
+
+					<div id="infoContainer" class="row">
+					<div id="info" class="col-8" ></div>
+					<div id="map" class="col-4"></div>
+				</div>
+					<div id="photos">
+						<h3>Just look at her/him</h3>
+						<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
+						<ol id="photosList" class="cardsOL"></ol>
+						<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
 					</div>
-
-					<!--<div id="map" class="col-4"></div>-->
-
-					<div class="col-10">
-
-
-
-
-						<div id="info"></div>
-						<div id="photos">
-							<hr />
-							<h3>Just look at her/him</h3>
+					<div id="known_from">
+						<button id="tvButton" class="knownButton">Tv Shows</button>
+						<button id="movieButton" class="knownButton">Movies</button>
+						<div id="knownTVList">
 							<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
-							<ol id="photosList" class="cardsOL"></ol>
+							<ol id="anyTvKnown" class="cardsOL"></ol>
 							<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
 						</div>
-						<hr />
-						<div id="known_from">
-							<button id="tvButton" class="knownButton">Tv Shows</button>
-							<button id="movieButton" class="knownButton">Movies</button>
-							<div id="knownTVList">
-								<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
-								<ol id="anyTvKnown" class="cardsOL"></ol>
-								<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
-							</div>
-							<div id="knownMovieList">
-								<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
-								<ol id="anyMovieKnown" class="cardsOL"></ol>
-								<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
-							</div>
+						<div id="knownMovieList">
+							<button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
+							<ol id="anyMovieKnown" class="cardsOL"></ol>
+							<button class="rightScrollBtn"><i class="fa fa-chevron-right"></i></button>
 						</div>
 					</div>
 				</div>
-				</div>
 			</div>
+		</div>
 			<div id="menuContent">
 				<ul id="memberBar">
 					<li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='view.html'"> <i class="fa fa-heart"></i>Favorites </button></li>

@@ -7,11 +7,28 @@ hr {
 	margin: 30px;
 }
 
-#actorImg > img {
-	height: 300px;
-	border-radius: 25px;
-	width: auto;
-	box-shadow: black 0px 0px 18px 2px;
+
+#leftDiv {
+	background-color: #282323;
 	padding: 0px;
-	margin: 30px
+}
+
+	#leftDiv > div {
+		margin-bottom: 25px
+	}
+
+#actorImg > img {
+	height: auto;
+	width: 100%;
+	padding: 0px;
+}
+
+#actorInfo {
+	position: relative;
+	margin: auto;
+	height: 100%;
+}
+
+#infoContainer{
+	margin: 30px auto;
 }
