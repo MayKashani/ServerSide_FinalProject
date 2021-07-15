@@ -1,0 +1,17 @@
+﻿﻿.p {
+	color: white;
+}
+
+hr {
+	border-top: 2px solid white;
+	margin: 30px;
+}
+
+#actorImg > img {
+	height: 300px;
+	border-radius: 25px;
+	width: auto;
+	box-shadow: black 0px 0px 18px 2px;
+	padding: 0px;
+	margin: 30px
+}

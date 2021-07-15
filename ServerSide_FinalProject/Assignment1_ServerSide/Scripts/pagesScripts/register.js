@@ -1,4 +1,7 @@
 ﻿
+
+
+
 var searchInput = 'addressTB';
 //onload user logged in check
 function checkLS() {
@@ -22,6 +25,10 @@ function checkLS() {
 }
 
 $(document).ready(function () {
+
+
+
+
     errorPng = "..//Images//noImage.jpg";
     mode = "";
     key = "46ee229c787140412cbafa9f3aa03555";
@@ -213,9 +220,11 @@ function getMultiSuccessCB(availableTags) {
             realItem = JSON.parse(item.label)
             item.value = realItem.name;
       return $( "<li class='autoOption' id="+realItem.id+" data-mediatype="+realItem.mediaType+">" )
-        .append( "<div><img src='"+imagePath+realItem.poster+"' style='width:50px'/><p>" +realItem.name +"</p><p>"+ realItem.mediaType + "</p></div>" )
-        .appendTo( ul );
+          .append( "<div style='width:100%'><img src='"+imagePath+realItem.poster+"' style='width:70px;'/><p class='nameP'>" +realItem.name +" </p><p class='typeP'>"+ realItem.mediaType + "</p></div>" )
+                .appendTo(ul);
+          
     };
+
 
 }
 function getMultiErrorCB(err) {

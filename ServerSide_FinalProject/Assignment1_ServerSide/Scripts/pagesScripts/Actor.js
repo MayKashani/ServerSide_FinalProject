@@ -60,36 +60,8 @@ function getActorErrorCB(err) {
 //Render Actor details.
 function renderActor(actor) {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     imageSrc = "<img src='" + checkPhotos(actor.profile_path) + "'>";
-=======
-<<<<<<< Updated upstream
-    imageSrc = "<img src='" + checkPhotos(actor.profile_path) + "'>";
-=======
-=======
-<<<<<<< Updated upstream
-    imageSrc = "<img src='" + checkPhotos(actor.profile_path) + "'>";
-=======
->>>>>>> parent of 3630ccc (Css and js)
-=======
-<<<<<<< Updated upstream
-    imageSrc = "<img src='" + checkPhotos(actor.profile_path) + "'>";
-=======
->>>>>>> parent of 3630ccc (Css and js)
-    if (actor.profile_path == null)
-        imageSrc = "<img src = '..//Images//noImage.jpg'/>";
-    else
-        imageSrc = "<img src='" + imagePath + actor.profile_path + "' onerror=" + errorPng + ">";
->>>>>>> Stashed changes
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 3630ccc (Css and js)
-=======
->>>>>>> parent of 3630ccc (Css and js)
-=======
->>>>>>> parent of 3630ccc (Css and js)
+
     getActorLinks();
     var gender = "";
     if (actor.gender == '1')

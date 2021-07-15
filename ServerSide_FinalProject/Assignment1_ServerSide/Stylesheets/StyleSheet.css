@@ -1,7 +1,5 @@
 ﻿body {
-	/*font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
 	font-size: 18px;
-	/*	font-family: 'Berlin Sans FB';*/
 	color: white;
 	margin: 0px;
 	height:100%;
@@ -11,25 +9,18 @@
 }
 
 i {
-	cursor:pointer;
+	cursor: pointer;
+	padding: 0px 2px;
 }
 
-button:focus {
+button:focus, li:focus {
 	outline: none;
-}
-
-h2, h3 {
-/*	font-family: 'Berlin Sans FB';*/
-	font-weight: 400;
 }
 
 
 div {
 	text-align: center;
 }
-
-
-
 
 
 div > img {
@@ -91,12 +82,13 @@ div > img {
 }
 
 
-
 .leftScrollBtn, .rightScrollBtn {
 	border: none;
 	background: transparent;
 }
 
+
+/* can make class for things that get bigger on hover*/
 	.leftScrollBtn:hover, .rightScrollBtn:hover {
 		font-size: larger;
 	}
@@ -167,12 +159,6 @@ button, input[type=submit] {
 }
 
 
-i {
-	padding: 0px 2px;
-}
-
-
-
 	.form-group > label {
 		float: left;
 		text-align: left;
@@ -193,6 +179,8 @@ i {
 		.form-group > input[type=radio] {
 			width: auto
 		}
+
+
 
 /*Modal CSS*/
 .modal {
@@ -220,6 +208,7 @@ i {
 	background-color: black;
 	opacity: 0.9;
 }
+
 
 /* The Close Button */
 .close {
@@ -255,11 +244,7 @@ i {
 	}
 
 
-
-
-
 .logo {
-	/* text-align: left; */
 	font-size: 25px;
 	border-right: 2px solid white;
 	cursor: pointer;
@@ -268,7 +253,6 @@ i {
 	.logo > i {
 		margin: 10px;
 	}
-
 
 
 .hrefbtn {
@@ -295,10 +279,11 @@ i {
 	list-style-type: none;
 	margin: 30px 0;
 }
+
 .cardsOL > .card {
 	height: 200px;
 	min-width: 15%;
-	margin: 0 3px;
+	margin: 10px 3px;
 	position: relative;
 }
 
@@ -311,9 +296,8 @@ i {
 	width: 100%;
 	height: 100%;
 	visibility: visible;
-	z-index: 1;
+	z-index: 2;
 }
-
 
 .card:hover .goToPage {
 	visibility: visible;
@@ -326,7 +310,7 @@ i {
 	color: white;
 	position: absolute;
 	height: 100%;
-	z-index: 2;
+	z-index: 3;
 	margin-top: 0px
 }
 
@@ -356,6 +340,8 @@ i {
 	display: none;
 }
 
+
+
 /*menuCSS*/
 
 #menuContent {
@@ -374,6 +360,7 @@ ol {
 	grid-column: 2/3;
 	padding: 0px;
 	grid-row: 1/2;
+	margin-top:30px;
 }
 
 #menuContent ul {
@@ -394,7 +381,6 @@ ol {
 	margin: 0 30px;
 	background-color: transparent;
 }
-
 
 
 
@@ -493,4 +479,31 @@ ol {
 	display: inline-flex;
 	flex-direction: column;
 	width: 100%;
+}
+
+
+.autoOption > div {
+	display:grid;
+	grid-template-columns: auto 1fr 15%;
+	font-size:medium
+}
+
+.typeP {
+	background-color: black;
+	color: white;
+	padding: 5px 10px;
+	height:fit-content;
+	margin: 10px auto;
+	text-transform: uppercase;
+}
+
+.nameP {
+	margin: 10px auto;
+	text-transform: uppercase;
+	font-weight:bold;
+}
+
+ul.ui-autocomplete{
+	overflow-y:auto;
+	max-height:50%;
 }

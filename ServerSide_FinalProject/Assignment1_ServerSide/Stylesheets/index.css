@@ -1,7 +1,7 @@
 ﻿#ph > img {
-	height: 300px;
-	border-radius: 25px;
-	width: auto;
+	height: auto;
+	width: 100%;
+	padding: 0px;
 }
 
 
@@ -155,16 +155,20 @@ height:fit-content;
 
 
 
-.cardsOL > .actorCard {
+#seasonsList .card-img-top {
+	width: auto;
+}
+	.cardsOL > .actorCard {
 	background: transparent;
 	border: none;
 	min-width: 10%;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+#leftDiv {
+	background-color: #282323;
+	padding: 0px;
+}
 
-<<<<<<< HEAD
 #leftDiv > div {
 	margin-bottom: 25px
 
@@ -189,11 +193,7 @@ height:fit-content;
 	padding: 50px;
 
 }
-=======
->>>>>>> parent of 3630ccc (Css and js)
-=======
 
->>>>>>> parent of 3630ccc (Css and js)
-=======
-
->>>>>>> parent of 3630ccc (Css and js)
+body {
+	font-size: 22px;
+}
