@@ -62,11 +62,17 @@ function renderActor(actor) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     imageSrc = "<img src='" + checkPhotos(actor.profile_path) + "'>";
 =======
 <<<<<<< Updated upstream
     imageSrc = "<img src='" + checkPhotos(actor.profile_path) + "'>";
 =======
+=======
+<<<<<<< Updated upstream
+    imageSrc = "<img src='" + checkPhotos(actor.profile_path) + "'>";
+=======
+>>>>>>> parent of 3630ccc (Css and js)
 =======
 <<<<<<< Updated upstream
     imageSrc = "<img src='" + checkPhotos(actor.profile_path) + "'>";
@@ -78,6 +84,9 @@ function renderActor(actor) {
         imageSrc = "<img src='" + imagePath + actor.profile_path + "' onerror=" + errorPng + ">";
 >>>>>>> Stashed changes
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 3630ccc (Css and js)
+=======
 >>>>>>> parent of 3630ccc (Css and js)
 =======
 >>>>>>> parent of 3630ccc (Css and js)
