@@ -181,6 +181,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\background.jpg" />
+    <Content Include="Images\Bean Eater-0.9s-210px.gif" />
     <Content Include="Images\noImage.jpg" />
     <Content Include="Images\Presentation11.png" />
     <Content Include="Images\userPng.jpeg" />
@@ -235,10 +236,15 @@
     <Content Include="Scripts\pagesScripts\register.js" />
     <Content Include="Scripts\pagesScripts\search.js" />
     <Content Include="Scripts\pagesScripts\view.js" />
+    <Content Include="Stylesheets\Actor.css" />
+    <Content Include="Stylesheets\Admin.css" />
     <Content Include="Stylesheets\chat.css" />
     <Content Include="Stylesheets\circle.css" />
+    <Content Include="Stylesheets\Episodes.css" />
+    <Content Include="Stylesheets\HomePage.css" />
     <Content Include="Stylesheets\index.css" />
     <Content Include="Stylesheets\jquery.notifyBar.css" />
+    <Content Include="Stylesheets\News.css" />
     <Content Include="Stylesheets\search.css" />
     <Content Include="Stylesheets\StyleSheet.css" />
     <Content Include="Stylesheets\view.css" />

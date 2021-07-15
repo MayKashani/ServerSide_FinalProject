@@ -1,13 +1,18 @@
 ﻿/*Search CSS */
-.result {
+/*.result {
 	width: 80%;
 	height: 50px;
 	border: 1px solid white;
 	float: left;
 	text-align:left;
 	position:relative
+}*/
+.result {
+	border: 1px solid white;
+	height: auto;
+	width: 100%;
+	margin: 0 auto;
 }
-
 .result::after {
 	position:absolute;
 	height:100%;
@@ -57,3 +62,20 @@ div > img {
 		height:150px;
 
 	}
+
+
+#results {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	max-height: 85vh;
+	display: inline-flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.result {
+	border: 1px solid white;
+	height: auto;
+	width: 100%;
+	margin: 0 auto;
+}
