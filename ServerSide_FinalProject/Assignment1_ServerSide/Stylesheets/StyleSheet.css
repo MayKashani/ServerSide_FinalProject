@@ -1,9 +1,9 @@
 ﻿body {
-	font-size: 22px;
+	font-size:18px;
 	color: white;
 	margin: 0px;
 	height:100%;
-	background: linear-gradient(to bottom right, #ffe200,#ff8500,#ff5600);
+	background: rgba(0, 0, 0, 0.9);
 	background-size:cover;
 	background-repeat:no-repeat
 }
@@ -27,6 +27,20 @@ div {
 div > img {
 	height: 100%;
 	width: 100%;
+}
+
+
+#getTV{
+	background: none;
+	border: none;
+	color: deepskyblue;
+	font-size: 25px;
+	
+}
+
+#getTV:hover{
+	font-size:30px;
+
 }
 
 
@@ -115,11 +129,10 @@ div > img {
 
 
 button, input[type=submit] {
-    border: 2px solid black;
-    font-size: 18px;
-    margin: 15px auto;
-    border-radius: 20px;
-    color: black;
+	border: 2px solid black;
+	font-size: 18px;
+	margin: 15px auto;
+	border-radius: 20px;
 }
 
 .menuBtn {
@@ -128,8 +141,9 @@ button, input[type=submit] {
 	background: transparent;
 	border: none;
 	margin-top: 15px;
-	text-align:left;
-	font-size:22px;
+	text-align: left;
+	font-size: 22px;
+	color: deepskyblue;
 }
 
 
@@ -230,7 +244,7 @@ button, input[type=submit] {
 	min-height: 10vh;
 	background-color: black;
 	align-items: center;
-	background: rgba(0, 0, 0, 0.4);
+	background: #202020;
 	border-bottom: 2px solid white;
 }
 
@@ -376,8 +390,12 @@ ol {
 	font-size: 35px;
 	margin: 0 30px;
 	background-color: transparent;
+	color:white;
 }
 
+.menuBtn>i {
+	margin-right: 10px;
+}
 
 
 /* News */
@@ -475,6 +493,12 @@ ol {
 	display: inline-flex;
 	flex-direction: column;
 	width: 100%;
+}
+
+
+.autoOption{
+	border-bottom:2px solid black;
+
 }
 
 
