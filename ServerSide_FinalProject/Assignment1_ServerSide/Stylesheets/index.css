@@ -5,6 +5,10 @@
 }
 
 
+#watchTrailerBtn {
+	font-size:50px;
+}
+
 
 
 .cardsOL > .card {
@@ -151,7 +155,7 @@ body {
 	display: none;
 	padding: 100px 20px;
 	height: 100%;
-	background-color: lightgray;
+	background:linear-gradient( 45deg,transparent,deepskyblue,transparent);
 }
 
 #optionsDiv {
@@ -162,15 +166,6 @@ height:fit-content;
 	bottom: 0px;
 }
 
-
-.linkIcons, .linkIcons:hover {
-	font-size: 25px;
-	background: black;
-	margin: 10px;
-	border-radius: 50px;
-	padding: 5px;
-	color: deepskyblue;
-}
 
 
 
@@ -191,16 +186,14 @@ height:fit-content;
 	border: none;
 	min-width: 10%;
 }
-
 #leftDiv {
 	background-color: #282323;
 	padding: 0px;
 }
 
-#leftDiv > div {
-	margin-bottom: 25px
-
-}
+	#leftDiv > div {
+		margin-bottom: 25px
+	}
 
 #genresDiv > .genre {
 	background: deepskyblue;
@@ -225,4 +218,9 @@ height:fit-content;
 
 body {
 	font-size: 22px;
+}
+
+#leftDetails {
+	text-align:left;
+	padding-left:10px
 }

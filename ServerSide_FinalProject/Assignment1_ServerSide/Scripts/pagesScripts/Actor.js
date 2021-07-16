@@ -76,11 +76,11 @@ function renderActor(actor) {
         strInfo += "<p>Date of death: " + death + "</p>";
     }
 
-    strName = "<h1>" + actor.name + "</h1>";
+    strName = "<h1>" + actor.name + "</h1><br>";
     let strImg = imageSrc;
     $("#actorImg").append(strImg);
     actorBio = "<p>" + actor.biography + "</p>";
-    $("#headerInfo").html(strInfo)
+    $("#leftDetails").html(strInfo)
     $("#info").html(strName + actorBio);
 
 }
@@ -191,11 +191,11 @@ function getActorLinks() {
 function getLinksSuccessCB(links) {
     let strLink = "";
     if (links.facebook_id != null)
-        strLink += "<a class='headIconsBtn' href= 'https://www.facebook.com/" + links.facebook_id + "/'><i class='fa fa-facebook'></i></a>";
+        strLink += "<a class='linkIcons' href= 'https://www.facebook.com/" + links.facebook_id + "/'><i class='fa fa-facebook'></i></a>";
     if (links.instagram_id != null)
-        strLink += "<a class='headIconsBtn' href= 'https://www.instagram.com/" + links.instagram_id + "/'><i class='fa fa-instagram'></i> </a>";
+        strLink += "<a class='linkIcons' href= 'https://www.instagram.com/" + links.instagram_id + "/'><i class='fa fa-instagram'></i> </a>";
     if (links.twitter_id != null)
-        strLink += "<a class='headIconsBtn' href= 'https://www.twitter.com/" + links.twitter_id + "/'><i class='fa fa-twitter'></i></a>";
+        strLink += "<a class='linkIcons' href= 'https://www.twitter.com/" + links.twitter_id + "/'><i class='fa fa-twitter'></i></a>";
     $("#externalLinks").html(strLink);
 }
 function getLinksErrorCB(err) {
