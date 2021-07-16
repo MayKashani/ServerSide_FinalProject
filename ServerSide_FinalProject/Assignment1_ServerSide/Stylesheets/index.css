@@ -5,15 +5,17 @@
 }
 
 
-#watchTrailerBtn {
+#watchTrailerBtn,#movieLikeBtn {
 	font-size:50px;
+	background:transparent;
+	border:none;
 }
 
 
-
+/*
 .cardsOL > .card {
 	height: 200px;
-}
+}*/
 
 
 
@@ -25,15 +27,9 @@
 	height: 100%
 }
 
-	#recommendations .card {
-		height: 100%
-	}
 
 
-	#recommendations img {
-		width: 100%;
-		height: inherit;
-	}
+
 
 .card-body {
 	padding: 0px;
@@ -153,7 +149,6 @@ body {
 
 .tabcontent {
 	display: none;
-	padding: 100px 20px;
 	height: 100%;
 	background:linear-gradient( 45deg,transparent,deepskyblue,transparent);
 }
@@ -170,22 +165,22 @@ height:fit-content;
 
 
 
-.card > .actorImg {
+/*.card > .actorImg {
 	height: 150px;
 	border-radius: 50px 50px;
 	margin: 5px;
 }
 
-
+*/
 
 #seasonsList .card-img-top {
 	width: auto;
 }
-	.cardsOL > .actorCard {
+/*	.cardsOL > .actorCard {
 	background: transparent;
 	border: none;
 	min-width: 10%;
-}
+}*/
 #leftDiv {
 	background-color: #282323;
 	padding: 0px;

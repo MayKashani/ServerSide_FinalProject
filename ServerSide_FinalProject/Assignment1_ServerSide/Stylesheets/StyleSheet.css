@@ -57,7 +57,7 @@ div > img {
 	width: auto;
 	background: rgba(0, 0, 0, 0.4);
 	height: 90vh;
-	color: black;
+	color: white;
 	font-weight: bold;
 }
 
@@ -102,11 +102,14 @@ div > img {
 .leftScrollBtn, .rightScrollBtn {
 	border: none;
 	background: transparent;
+	font-size: 35px;
 }
 
 
-/* can make class for things that get bigger on hover*/
-	.leftScrollBtn:hover, .rightScrollBtn:hover {
+
+/*
+ can make class for things that get bigger on hover*/
+	.leftscrollbtn:hover, .rightscrollbtn:hover {
 		font-size: larger;
 	}
 
@@ -115,7 +118,7 @@ div > img {
 
 /* Resigtration */
 .red-star {
-	font-size: 15px;
+	font-size: 25px;
 	color: darkred;
 }
 
@@ -145,7 +148,7 @@ button, input[type=submit] {
 	margin-top: 15px;
 	text-align: left;
 	font-size: 22px;
-	color: deepskyblue;
+	color: white;
 }
 
 
@@ -211,7 +214,7 @@ button, input[type=submit] {
 /* Modal Content/Box */
 .modal-content {
 	background-color: #fefefe;
-	margin: 15% auto; /* 15% from the top and centered */
+	margin: 10% auto; /* 10% from the top and centered */
 	padding: 20px;
 	border: 1px solid #888;
 	width: 40%; /* Could be more or less, depending on screen size */
@@ -270,7 +273,7 @@ button, input[type=submit] {
 .hrefbtn {
 	text-decoration: underline;
 	cursor: pointer;
-	color: indianred;
+	color: deepskyblue;
 }
 
 
@@ -280,6 +283,9 @@ button, input[type=submit] {
 	color: black;
 	cursor: pointer;
 }
+
+
+
 
 .cardsOL {
 	overflow-x: scroll;
@@ -293,10 +299,10 @@ button, input[type=submit] {
 }
 
 .cardsOL > .card {
-	height: 200px;
-	min-width: 15%;
+	min-width: 20%;
 	margin: 10px 3px;
 	position: relative;
+	max-width:300px;
 }
 
 
@@ -313,6 +319,19 @@ button, input[type=submit] {
 
 .card:hover .goToPage {
 	visibility: visible;
+}
+
+.card:hover {
+	z-index: 1;
+	margin: 0px;
+}
+
+.card:hover img {height:100%}
+
+
+#recommendMovieList > li,#recommendations > li {
+	min-width: 33%;
+
 }
 
 .goToPage {
@@ -338,11 +357,11 @@ button, input[type=submit] {
 	position: inherit;
 }
 
-.card > .card-img-top {
+/*.card > .card-img-top {
 	height: 100%;
 	max-width: 400px;
 }
-
+*/
 .center {
 	grid-column:2/3
 }

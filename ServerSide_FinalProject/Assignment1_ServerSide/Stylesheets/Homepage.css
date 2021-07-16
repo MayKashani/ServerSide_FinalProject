@@ -33,8 +33,3 @@ a {
 }
 
 
-.card:hover {
-	z-index: 1;
-	height: 110%;
-	margin: 0px;
-}
