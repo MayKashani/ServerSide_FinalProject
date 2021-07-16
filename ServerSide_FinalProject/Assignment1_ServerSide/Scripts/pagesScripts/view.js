@@ -14,7 +14,7 @@ $(document).ready(function () {
             toggleFavorites();
     });
 
-    $("#tvShows").change(getEpisodes);
+    $(document).on('click','.showEpisodes',getEpisodes);
 
     $(document).on('click', '.movie', function () {
         sessionStorage.setItem("mediaChoose", JSON.stringify({ id: this.id, type: 'movie' }))
@@ -30,10 +30,12 @@ function getTVNames() {
 }
 
 function getTVNamesSuccessCB(series) {
-    let str = "<option> Select TV Show </option>";
-    for (let i = 0; i < series.length; i++)
-        str += "<option id=" + series[i].Id + ">" + series[i].Name + "</option>";
-    $("#tvShows").html(str);
+    console.log(series)
+    let str = "";
+    for (let i = 0; i < series.length; i++) {
+        str += "<li data-id=" + series[i].Id + " class='card showEpisodes'> <span id='seriesName' hidden>" + series[i].Name +"</span><img class='card-img-top' src='"+imagePath + series[i].Poster_Path+"'/></li>";
+    }
+    $("#tvShowsPic").html(str);
     favoriteMode = "tv";
     $("#showTvFavorites").css("background-color", "aqua");
     $("#favoritesMovies").hide();
@@ -73,13 +75,10 @@ function getMovieErrorCB(err) {
 
 // On list index change - Gets the current series episodes that the user liked  + Callbacks
 function getEpisodes() {
-    if ($(this).prop('selectedIndex') != 0)
-        $("#tvName").html($(this).val().toUpperCase());
-    else {
-        $("#tvName").html("");
-        $("#seriesEpisodes").html("")
-    }
-    let api = "../api/Episodes?seriesID=" + $(this).children(":selected").attr("id") + "&mail=" + user.Mail;
+    $(".showEpisodes").removeClass("chosen");
+    $(this).addClass("chosen");
+        $("#tvName").html($(this).children()[0].innerText);
+    let api = "../api/Episodes?seriesID=" + $(this).attr("data-id") + "&mail=" + user.Mail;
     ajaxCall("GET", api, "", getEpisodesSuccessCB, getEpisodesErrorCB);
 
 
@@ -88,7 +87,7 @@ function getEpisodes() {
 function getEpisodesSuccessCB(episodes) {
     let str = "";
     for (let i = 0; i < episodes.length; i++) {
-        str += "<div class='row result'><div class='row resultText episode'><div class='col-4'><img src='" + checkPhotos(episodes[i].ImageURL) + "'/></div><div class='col-8'><h3>" + episodes[i].EpisodeName + "</h3><p><b>Overview:</b> " + episodes[i].Overview + "</p>";
+        str += "<div class='row result'><div class='row resultText episode'><div class='col-4'><img src='" + checkPhotos(episodes[i].ImageURL) + "'/></div><div class='col-8'><h3>" + episodes[i].EpisodeName + "</h3><br><p> " + episodes[i].Overview + "</p>";
         str += "<p><b>Air Date: </b>" + episodes[i].AirDate + "</p></div></div>"
         str += "</div>"
     }

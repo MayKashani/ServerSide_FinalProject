@@ -9,14 +9,14 @@
     Current_TV = JSON.parse(sessionStorage.getItem("currentTV"))
     Current_Season = JSON.parse(sessionStorage.getItem("season"));
     episodes = JSON.parse(sessionStorage.getItem("episodes"));
-    let str = "";
+    let str = "<div id='seasonDetails'> <h3>" + Current_TV.name + "</h3><h4> Season " + Current_Season + "</h4></div><div id='episodesList'>";
 
     for (let i = 0; i < episodes.length; i++) {
-        str += "<div class='episodeCard row'><div class='col-4'><img class='chapterImg' src='" + checkPhotos(episodes[i].still_path) + "'/></div><div class='info col-8'><h3>" + episodes[i].name + "</h3><p><b>Overview:</b> " + episodes[i].overview + "</p>";
+        str += "<div class='episodeCard row'><div class='col-4'><img class='chapterImg' src='" + checkPhotos(episodes[i].still_path) + "'/></div><div class='info col-8'><h3>" + episodes[i].name + "</h3><br><p> " + episodes[i].overview + "</p>";
         str += "<p><b>Air Date: </b>" + episodes[i].air_date + "</p> <button id='" + i + "' class='addEpisode heart'><i class='fa fa-heart'></i></button></div>"
-        str += "</div><hr>"
+        str += "</div>"
     }
-    $("#episodes").html(str);
+    $("#episodes").html(str + "</div>");
 
     if (mode == "guest") {
         $(".addEpisode").hide();

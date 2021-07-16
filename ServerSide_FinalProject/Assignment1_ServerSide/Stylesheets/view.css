@@ -24,53 +24,6 @@
 }
 
 
-/*heart*/
-
-
-.heart {
-	background-color: transparent;
-	color: white;
-	border: none;
-}
-
-.heart:hover {
-	font-size: 25px;
-	color: red;
-	animation: beat .2s infinite alternate;
-	transform-origin: center;
-	border: none;
-	background-color: transparent;
-}
-
-	.heart:hover > i {
-		animation: pulse 2s;
-	}
-/* Heart beat animation*/
-@keyframes beat {
-	to {
-		transform: scale(1.4);
-	}
-}
-
-.red-heart, .red-heart:hover {
-	background-color: transparent;
-	color: red;
-	font-size: 25px;
-	border: none;
-}
-
-
-
-@keyframes pulse {
-	0% {
-		color: white;
-	}
-
-	100% {
-		color: #FF4136;
-	}
-}
-
 
 .episode:hover {
 	box-shadow: none;
@@ -80,5 +33,15 @@
 
 
 
-#favoritesTv > div, #favoritesMovies {
-	margin: 20px 0px;
+
+
+.cardsOL .chosen {
+	height: 110%;
+	width: 110%;
+	margin: auto 0px;
+
+}
+
+#tvName {
+	margin-bottom:15px
+}
