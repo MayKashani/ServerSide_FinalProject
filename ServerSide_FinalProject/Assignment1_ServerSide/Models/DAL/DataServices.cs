@@ -614,6 +614,7 @@ namespace Assignment1_ServerSide.Models.DAL
                         Movie movie= (Movie)obj;
                         if (movie != null)
                         {
+                            
                             string movieTitle = movie.Title.Replace("'", "");
                             string movieOverview = movie.Overview.Replace("'", "");
                             string tagline = movie.Tagline.Replace("'", "");
