@@ -33,6 +33,7 @@ $(document).ready(function () {
     api_key = "api_key=" + key;
     newsInterval = "";
 
+
     var memberBar = document.getElementById("memberBar");
     var guestBar = document.getElementById("guestBar");
 
@@ -103,12 +104,15 @@ $(document).ready(function () {
     })
 
     $("#tvShowName").keyup(function () {
-        if ($("#tvShowName").val() != "") {
+        if ($("#tvShowName").val() != "undefined") {
             let method = "3/search/multi?"
             let query = "query=" + $("#tvShowName").val();
             let moreParams = "&language=en-US&include_adult=false&page=1&";
             apiCall = url + method + api_key + moreParams + query;
             ajaxCall("GET", apiCall, "", getMultiSuccessCB, getMultiErrorCB);
+        }
+        else {
+            $("#ui-id-1").hide();
         }
     })
 
@@ -206,6 +210,8 @@ function getMultiSuccessCB(availableTags) {
         res[i]=JSON.stringify(obj) 
 	}
 
+   
+
     $("#tvShowName").autocomplete({
         source: res,
         minLength: 0
@@ -215,7 +221,7 @@ function getMultiSuccessCB(availableTags) {
             realItem = JSON.parse(item.label)
             item.value = realItem.name;
       return $( "<li class='autoOption' id="+realItem.id+" data-mediatype="+realItem.mediaType+">" )
-          .append( "<div style='width:100%'><img src='"+imagePath+realItem.poster+"' style='width:70px;'/><p class='nameP'>" +realItem.name +" </p><p class='typeP'>"+ realItem.mediaType + "</p></div>" )
+          .append( "<div style='width:100%'><img src='"+checkPhotos(realItem.poster)+"' style='width:70px;'/><p class='nameP'>" +realItem.name +" </p><p class='typeP'>"+ realItem.mediaType + "</p></div>" )
                 .appendTo(ul);
           
     };
@@ -223,7 +229,8 @@ function getMultiSuccessCB(availableTags) {
 
 }
 function getMultiErrorCB(err) {
-    console.log(err)
+    if (err.status == 422 || err.status==404)
+        $("#ui-id-1").hide();
 }
 
 function searchByName() {

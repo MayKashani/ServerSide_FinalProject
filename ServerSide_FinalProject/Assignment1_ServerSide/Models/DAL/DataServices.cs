@@ -616,7 +616,8 @@ namespace Assignment1_ServerSide.Models.DAL
                         {
                             string movieTitle = movie.Title.Replace("'", "");
                             string movieOverview = movie.Overview.Replace("'", "");
-                            sb.AppendFormat("Values({0}, '{1}', '{2}','{3}','{4}',{5},'{6}','{7}','{8}')", movie.Id,movieTitle,movie.Release_Date, movie.Original_Language, movieOverview, movie.Popularity, movie.Backdrop_Path, movie.Status,movie.Tagline);
+                            string tagline = movie.Tagline.Replace("'", "");
+                            sb.AppendFormat("Values({0}, '{1}', '{2}','{3}','{4}',{5},'{6}','{7}','{8}')", movie.Id,movieTitle,movie.Release_Date, movie.Original_Language, movieOverview, movie.Popularity, movie.Backdrop_Path, movie.Status,tagline);
                             prefix = "INSERT INTO Movies " + "([ID], [Title], [Release_Date], [Original_Language], [Overview], [Popularity], [Backdrop_Path],[Status],[Tagline]) ";
                         }
                         break;

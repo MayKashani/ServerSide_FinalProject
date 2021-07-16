@@ -9,7 +9,7 @@ $(document).ready(function () {
     getPopularMovie();
     showNews();
 
-    recommendMode = "tv";
+    recommendMode = "";
 
     //If User logged in, render User options to Homepage
     if (mode == "member") {
@@ -68,9 +68,10 @@ function getRecSuccess(rec) {
         recommendMode = "tv";
     }
     else {
-        $("#showTvRecommend").css("display", "none");
-        $("#recommendTV").css("display", "none");
+        $("#showTvRecommend").remove();
+        $("#recommendTV").remove();
         recommendMode = "movie";
+        $("#showMovieRecommend").css("background-color", "aqua");
     }
 }
 function getRecError(err) {
@@ -94,12 +95,14 @@ function getMovieRecSuccessCB(movies) {
         }
         $("#recommendMovieList").html(str);
         if (recommendMode == "movie")
-            $("#showMovieRecommend").css("background-color", "aqua");
+            $("#recommendMovie").css("display", "block");
         else
             $("#recommendMovie").css("display", "none");
     }
-    else
-        $("#recommendMovie").css("display", "none");
+    else {
+        $("#recommendMovie").remove();
+        $("showMovieRecommend").remove();
+    }
 }
 function getMovieRecErrorCB(err) {
     console.log(err);
@@ -214,6 +217,7 @@ function showNews() {
     
     getNews1().then((news) => { 
         const cont = document.getElementById("showNews");
+        cont.appendChild(createNewsItemEl(news[0]));
         newsInterval = setInterval(function () {
             var index = Math.floor(Math.random() * 10);
             $(cont).fadeToggle('slow', function () {
