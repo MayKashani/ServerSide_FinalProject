@@ -179,12 +179,20 @@ $(document).ready(function () {
     }
 
     $(document).on('click', ".autoOption", function () {
+
+        if (this.getAttribute('data-mediatype') == "person") {
+            sessionStorage.setItem("personId", JSON.stringify(this.id));
+            window.location.href = "actor.html";
+        }
+        else {
         let method = {
             id: this.id,
             type: this.getAttribute('data-mediatype')
         }
-        sessionStorage.setItem("mediaChoose", JSON.stringify(method));
-        window.location.href = "index.html";
+            sessionStorage.setItem("mediaChoose", JSON.stringify(method));
+            window.location.href = "index.html";
+        }
+
     })
 });
 
@@ -200,11 +208,15 @@ function getMultiSuccessCB(availableTags) {
         if (arr[i].media_type == "movie")
             name = arr[i].title;
         else name = arr[i].name;
+        if (arr[i].media_type == "person")
+            photo = arr[i].profile_path;
+        else
+            photo = arr[i].poster_path;
 
         obj = {
             "id":arr[i].id,
             "name": name,
-            "poster": arr[i].poster_path,
+            "poster": photo,
             "mediaType": arr[i].media_type
         }
         res[i]=JSON.stringify(obj) 
@@ -220,7 +232,7 @@ function getMultiSuccessCB(availableTags) {
             
             realItem = JSON.parse(item.label)
             item.value = realItem.name;
-      return $( "<li class='autoOption' id="+realItem.id+" data-mediatype="+realItem.mediaType+">" )
+      return $( "<li class='autoOption' id="+realItem.id+" data-mediatype="+realItem.mediaType+">")
           .append( "<div style='width:100%'><img src='"+checkPhotos(realItem.poster)+"' style='width:70px;'/><p class='nameP'>" +realItem.name +" </p><p class='typeP'>"+ realItem.mediaType + "</p></div>" )
                 .appendTo(ul);
           
