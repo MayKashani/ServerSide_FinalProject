@@ -181,8 +181,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\background.jpg" />
+    <Content Include="Images\Bean Eater-0.9s-210px.gif" />
     <Content Include="Images\noImage.jpg" />
     <Content Include="Images\Presentation11.png" />
+    <Content Include="Images\SpinningTV.gif" />
     <Content Include="Images\userPng.jpeg" />
     <Content Include="img\bg.png" />
     <Content Include="img\jq-notify-bar-icons.svg" />
