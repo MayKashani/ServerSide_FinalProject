@@ -703,7 +703,7 @@ namespace Assignment1_ServerSide.Models.DAL
 
             try
             {
-                String cStr = "SELECT distinct Series_ID,S.Name FROM Favorites F inner join Series S on F.Series_ID = S.ID  inner join UsersTBL u on u.ID = F.User_ID where u.Mail='" + mail + "'";
+                String cStr = "SELECT distinct Series_ID,S.Name,S.Poster_Path FROM Favorites F inner join Series S on F.Series_ID = S.ID  inner join UsersTBL u on u.ID = F.User_ID where u.Mail='" + mail + "'";
                 cmd = CreateCommand(cStr, con);
 
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -712,6 +712,7 @@ namespace Assignment1_ServerSide.Models.DAL
                     Series s = new Series();
                     s.Id = (int)reader["Series_ID"];
                     s.Name = reader["Name"].ToString();
+                    s.Poster_Path = reader["Poster_Path"].ToString();
                     sList.Add(s);
                 }
                 return sList;

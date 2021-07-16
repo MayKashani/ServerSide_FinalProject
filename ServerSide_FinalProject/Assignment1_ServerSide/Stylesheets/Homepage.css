@@ -14,34 +14,23 @@ ol {
 	border: 1px solid black;
 	width: 100%;
 	color: black;
+	grid-row: 2/3;
+	grid-column: 1/4;
 }
 
 	#showNews > p {
 		color: orange;
 	}
 
-#showNews {
-	background-color: yellow;
-	width: 100%;
-}
-
-	#showNews > p {
-		color: orange;
-	}
 
 a {
 	color: orange;
 }
 
-#showNews {
-	grid-row: 2/3;
-	grid-column: 1/4;
-}
 
 #mainDiv {
 	grid-template-rows: 1fr auto;
 }
-
 
 
 .card:hover {
