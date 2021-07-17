@@ -385,7 +385,7 @@ function printMessage(msg) {
     type = "";
     profileSrc = msg.profileSrc;
     if (profileSrc == "")
-        chatPhotoSrc = "../../Images/userPng.jpeg";
+        chatPhotoSrc = "../Images/userPng.jpeg";
     else
         chatPhotoSrc = profileSrc;
     imageSrc = '<img src=' + chatPhotoSrc + ' width="30" height="30">'
