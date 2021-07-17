@@ -41,9 +41,13 @@
 	<script src="../Scripts/jquery.notifyBar.js"></script>
 	<link href="../Stylesheets/StyleSheet.css" rel="stylesheet" />
 	<link href="../Stylesheets/Actor.css" rel="stylesheet" />
+	<script src="../Scripts/pagesScripts/nav.js"></script>
 </head>
 <body>
-	<div class="nav">
+
+	<div id="phNav"> </div>
+
+	<!--<div class="nav">
 		<div class="logo" onclick=""><i class="fa fa-film"></i>The movie DB </div>
 		<div>
 			<img id="userProfilePh" src="../Images/userPng.jpeg" />
@@ -54,7 +58,7 @@
 			<button id="getTV"><i class="fa fa-search"></i></button>
 		</div>
 		<button id="openMenuBtn"><i class="fa fa-bars"> </i></button>
-	</div>
+	</div>-->
 
 	<div id="mainDiv">
 		<div id="fanClub" style="display:none">
@@ -69,7 +73,7 @@
 					<div id="actorImg"> </div>
 					<div id="externalLinks"></div>
 					<div id="leftDetails" style="margin:0px auto"></div>
-			
+
 				</div>
 
 
@@ -77,9 +81,9 @@
 				<div class="col-10">
 
 					<div id="infoContainer" class="row">
-					<div id="info" class="col-8" ></div>
-					<div id="map" class="col-4"></div>
-				</div>
+						<div id="info" class="col-8"></div>
+						<div id="map" class="col-4"></div>
+					</div>
 					<div id="photos">
 						<h3>Just look at her/him</h3>
 						<div>
@@ -105,36 +109,36 @@
 				</div>
 			</div>
 		</div>
-			<div id="menuContent">
-				<ul id="memberBar">
-					<li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='Homepage.html'"> <i class="fa fa-home"></i>Home </button></li>
-					<li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='view.html'"> <i class="fa fa-heart"></i>Favorites </button></li>
-					<li> <button id="openChatListBtn" class="menuBtn"><i class="fa fa-comments"></i>Chat</button></li>
-					<li> <button id='newsBtn' class="menuBtn" onclick="window.location.href='news.html'"><i class="fa fa-newspaper-o"></i>News</button></li>
-					<li> <button id='logoutBtn' class="menuBtn"><i class="fa fa-sign-out"></i>Logout</button></li>
-				</ul>
-				<ul id="guestBar">
-					<li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='Homepage.html'"> <i class="fa fa-home"></i>Home </button></li>
-					<li> <button id='newsBtn' class="menuBtn" onclick="window.location.href='news.html'"><i class="fa fa-newspaper-o"></i>News</button></li>
-					<li> <button id="registerBtn" class="menuBtn"><i class="fa fa-user-plus"></i>Register</button></li>
-					<li> <button id="loginBtn" class="menuBtn"><i class="fa fa-sign-in"></i>Login</button></li>
+		<div id="menuContent">
+			<ul id="memberBar">
+				<li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='Homepage.html'"> <i class="fa fa-home"></i>Home </button></li>
+				<li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='view.html'"> <i class="fa fa-heart"></i>Favorites </button></li>
+				<li> <button id="openChatListBtn" class="menuBtn"><i class="fa fa-comments"></i>Chat</button></li>
+				<li> <button id='newsBtn' class="menuBtn" onclick="window.location.href='news.html'"><i class="fa fa-newspaper-o"></i>News</button></li>
+				<li> <button id='logoutBtn' class="menuBtn"><i class="fa fa-sign-out"></i>Logout</button></li>
+			</ul>
+			<ul id="guestBar">
+				<li> <button id="linkBtn" class="menuBtn" onclick="window.location.href='Homepage.html'"> <i class="fa fa-home"></i>Home </button></li>
+				<li> <button id='newsBtn' class="menuBtn" onclick="window.location.href='news.html'"><i class="fa fa-newspaper-o"></i>News</button></li>
+				<li> <button id="registerBtn" class="menuBtn"><i class="fa fa-user-plus"></i>Register</button></li>
+				<li> <button id="loginBtn" class="menuBtn"><i class="fa fa-sign-in"></i>Login</button></li>
 
-				</ul>
-
-			</div>
-
-
-			<div id="chatWindow" class="card mt-5" style="visibility:hidden">
-				<div id="chatHeader" class="d-flex flex-row justify-content-between p-3 adiv text-white"><span id="chatName" class="pb-3"></span> <i onclick="deleteChat()" class="fa fa-times"></i> </div>
-				<div id="messages">
-				</div>
-				<div id="sendMessageDiv" class="form-group px-3">
-					<textarea id="msgTB" class="form-control" rows="2" placeholder="Type your message"></textarea>
-					<i id="sendMSG" onclick="AddMSG()" class="fa fa-paper-plane"></i>
-				</div>
-			</div>
+			</ul>
 
 		</div>
+
+
+		<div id="chatWindow" class="card mt-5" style="visibility:hidden">
+			<div id="chatHeader" class="d-flex flex-row justify-content-between p-3 adiv text-white"><span id="chatName" class="pb-3"></span> <i onclick="deleteChat()" class="fa fa-times"></i> </div>
+			<div id="messages">
+			</div>
+			<div id="sendMessageDiv" class="form-group px-3">
+				<textarea id="msgTB" class="form-control" rows="2" placeholder="Type your message"></textarea>
+				<i id="sendMSG" onclick="AddMSG()" class="fa fa-paper-plane"></i>
+			</div>
+		</div>
+
+	</div>
 
 
 	<div id="registerModal" class="modal">

@@ -44,7 +44,7 @@
     <link rel="stylesheet" href="../Stylesheets/chat.css" />
     <link href="../Stylesheets/StyleSheet.css" rel="stylesheet" />
     <link href="../Stylesheets/view.css" rel="stylesheet" />
-
+    <script src="../Scripts/pagesScripts/nav.js"></script>
 
     <style>
 
@@ -87,8 +87,9 @@
 <body>
     <div class="se-pre-con"></div>
 
+    <div id="phNav"> </div>
 
-    <div class="nav">
+    <!--<div class="nav">
         <div class="logo" onclick=""><i class="fa fa-film"></i>The movie DB </div>
         <div>
             <img id="userProfilePh" src="../Images/userPng.jpeg" />
@@ -99,7 +100,7 @@
             <button id="getTV"><i class="fa fa-search"></i></button>
         </div>
         <button id="openMenuBtn"><i class="fa fa-bars"> </i></button>
-    </div>
+    </div>-->
 
 
     <div id="mainDiv">
@@ -112,7 +113,7 @@
             <h1> My List </h1>
             <button id="showTvFavorites" class="favoriteButton">Tv Shows</button>
             <button id="showMovieFavorites" class="favoriteButton">Movies</button>
-            <div id="favoritesTv"> 
+            <div id="favoritesTv">
                 <div>
                     <button class="leftScrollBtn"><i class="fa fa-chevron-left"></i></button>
                     <ol class="cardsOL" id="tvShowsPic"></ol>
@@ -123,7 +124,7 @@
                     <div id="seriesEpisodes"></div>
                 </div>
             </div>
-            
+
             <div id="favoritesMovies">
                 <h3>Favorites Movies </h3>
                 <div id="favoritesMovies">

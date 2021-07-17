@@ -1,5 +1,6 @@
 ﻿
 var searchInput = 'addressTB';
+
 //onload user logged in check
 function checkLS() {
     if (localStorage["User"] != null) {
@@ -22,6 +23,8 @@ function checkLS() {
 }
 
 $(document).ready(function () {
+
+    $("#phNav").html(nav)
 
     errorPng = "..//Images//noImage.jpg";
     mode = "";
