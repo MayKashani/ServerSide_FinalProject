@@ -102,6 +102,7 @@ div > img {
 .leftScrollBtn, .rightScrollBtn {
 	border: none;
 	background: transparent;
+	color:deepskyblue;
 	font-size: 35px;
 }
 
@@ -331,6 +332,7 @@ button, input[type=submit] {
 
 #recommendMovieList > li,#recommendations > li {
 	min-width: 33%;
+	max-width:50%;
 
 }
 

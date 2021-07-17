@@ -10,22 +10,14 @@ ol {
 
 
 #showNews {
-	background-color: #e9ecef;
+	background-color: #35393d ;
 	border: 1px solid black;
 	width: 100%;
-	color: black;
 	grid-row: 2/3;
 	grid-column: 1/4;
 }
 
-	#showNews > p {
-		color: orange;
-	}
 
-
-a {
-	color: orange;
-}
 
 
 #mainDiv {

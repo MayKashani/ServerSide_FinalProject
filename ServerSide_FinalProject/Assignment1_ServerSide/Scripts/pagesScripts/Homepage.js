@@ -85,6 +85,7 @@ function getRecMovieBySimilarUsers() {
 }
 function getMovieRecSuccessCB(movies) {
     if (movies.length > 0) {
+        console.log(movies);
         $("#recommend").css("visibility", "visible");
         let str = "";
         for (let i = 0; i < movies.length; i++) {
@@ -94,9 +95,7 @@ function getMovieRecSuccessCB(movies) {
             str += image + "<div class='goToPage'>Go to page" + cardBody + "</div></li>";
         }
         $("#recommendMovieList").html(str);
-        if (recommendMode == "movie")
-            $("#recommendMovie").css("display", "block");
-        else
+        if (recommendMode != "movie")
             $("#recommendMovie").css("display", "none");
     }
     else {
