@@ -4,17 +4,17 @@ var currentMonth = currentDate.getMonth() - 1;
 
 const getNews1 = async () => {
 
-    const url = "https://newsapi.org/v2/everything?domains=mtv.com,ew.com&q=movies&q=movie&q=film&q=trailer&q=tv&q=series&from=" + currentMonth + "&sortBy=publishedAt&apiKey=e9657119e6324c7daa3dd0d6d06567a1&language=en";
+    const url = "https://gnews.io/api/v4/search?q=movie&q=movies&q=film&q=trailer&q=netflix&from=" + currentMonth + "&sortBy=publishedAt&token=ba321b37abc7a5d974194335c54ceef8&lang=en";
     const res = await fetch(url);
     const { articles } = await res.json();
     return articles;
 };
 
-const createNewsItemEl = ({ description, title, url, urlToImage }) => {
+const createNewsItemEl = ({ description, title, url, image }) => {
     const d = document.createElement("div");
     d.innerHTML = `
             <div class='newDiv'>
-            <div class='newImg'><img src="${urlToImage}" style="width:300px; height:auto" /> </div>    
+            <div class='newImg'><img src="${image}" style="width:300px; height:auto" /> </div>    
             <div class='newDescription'>
             <div class='newUrl'><a href="${url}" target="_blank" ><h5>${title}</h5></a></div>
                <p>${description}</p></div></div>

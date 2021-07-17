@@ -59,10 +59,5 @@ namespace Assignment1_ServerSide.Models
             return ds.GetRecommendations(mail);
         }
 
-        public DataSet GetLikedShows()
-        {
-            DataServices ds = new DataServices();
-            return ds.GetLikedShows();
-        }
     }
 }

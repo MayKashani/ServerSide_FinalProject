@@ -22,16 +22,6 @@ namespace Assignment1_ServerSide.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, found);
         }
 
-        //[HttpGet]
-  //      public HttpResponseMessage GetUsers()
-		//{
-  //          User u = new User();
-  //          List<User> users = u.GetUsers();
-  //          if (users.Count == 0)
-  //              return Request.CreateErrorResponse(HttpStatusCode.NotFound,"No users to show");
-  //          return Request.CreateResponse(HttpStatusCode.OK, users);
-  //      }
-
         // POST api/<controller>
         [HttpPost]
         public int Post([FromBody] User u)

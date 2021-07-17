@@ -194,9 +194,12 @@ $(document).ready(function () {
         }
 
     })
+
 });
 
-
+function play() {
+    hoverSound.play();
+}
 
 function getMultiSuccessCB(availableTags) {
     console.log(availableTags);

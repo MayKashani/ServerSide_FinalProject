@@ -91,9 +91,9 @@ function getMediaSuccess(media) {
 	str = "<img src='" + checkPhotos(Current_TV.poster_path) + "'/>";
 	fillGenresDiv();
 	if (chosenMedia.type =="tv")
-		$("#leftDetails").html("<p>Episode Runtime: " + Current_TV.episode_run_time[0] + "</p><p>First air date: " + Current_TV.first_air_date + "</p>")
+		$("#leftDetails").html("<p>Episode Runtime: " + Current_TV.episode_run_time[0] + "min</p><p>First air date: " + Current_TV.first_air_date + "</p>")
 	else
-		$("#leftDetails").html("<p>Movie Runtime: " + Current_TV.runtime + "</p><p>First air date: " + Current_TV.release_date + "</p>")
+		$("#leftDetails").html("<p>Movie Runtime: " + Current_TV.runtime + "min</p><p>First air date: " + Current_TV.release_date + "</p>")
 	$('#headerBackground').attr("src", checkPhotos(Current_TV.backdrop_path));  
 	$("#seriesName").html(Current_TV.name)
 	$("#ph").html(str);
@@ -105,7 +105,9 @@ function getMediaSuccess(media) {
 	switch (chosenMedia.type) {
 		case "movie": {
 			$("#seriesName").html(Current_TV.title)
-			$("#movieLikeBtn").show();
+			if (mode=="member") {
+				$("#movieLikeBtn").show();
+			}
 			renderDetails(Current_TV);
 			$("#seasonsTab").hide();
 			break;
@@ -189,7 +191,7 @@ function getCredits(actors) {
 	let str = "";
 	let profile = "";
 	for (let i = 0; i < actors.length; i++) {
-		image = "<li id=" + actors[i].id + " class='card actorCard'> <img class='card-img-top actorImg' src='" + checkPhotos(actors[i].profile_path) + "'" + (chosenMedia.type == 'tv' ? 'style="width:unset"' : "") + ">"
+		image = "<li id=" + actors[i].id + " class='card actorCard'> <img class='card-img-top actorImg' src='" + checkPhotos(actors[i].profile_path) + "'>"
 		cardBody = "<div class='card-body'><h6>" + actors[i].name + "</h6><p class='card-text'>" + actors[i].character + "</p></div ></li > ";
 		str += image + "<div class='goToPage'>Go to page" + cardBody + "</div></li>";
 	}

@@ -79,122 +79,6 @@ namespace Assignment1_ServerSide.Models.DAL
             }
         }
 
-        public DataSet GetLikedEpisodes()
-        {
-            SqlConnection con;
-            try
-            {
-                con = connect("connectionDB");
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-
-            try
-            {
-                string cStr = "select e.Series_ID,s.Name ,e.ID,e.Episode_Name ,count(distinct f.User_ID) NumOfUsers from Episodes e inner join Favorites f on e.ID = f.Episode_ID inner join Series s on e.Series_ID = s.ID GROUP BY e.Series_ID,s.Name,e.ID, e.Episode_Name";
-  
-                SqlDataAdapter da = new SqlDataAdapter(cStr, con);
-                DataSet ds = new DataSet("AdminDS");
-                da.Fill(ds, "LikedEpisodes");
-                return ds;
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-            finally
-            {
-                if (con != null)
-                    con.Close();
-            }
-        }
-
-        public DataSet GetLikedShows()
-		{
-            SqlConnection con;
-            try
-            {
-                con = connect("connectionDB");
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-           
-            try
-            {
-                String cStr = "select ID, s.Name, count(distinct f.User_ID) NumOfUsers from Series s inner join Favorites f on s.ID = f.Series_ID GROUP BY ID,s.Name";
-                SqlDataAdapter da = new SqlDataAdapter(cStr, con);
-
-                da.Fill(ds,"LikedShows");
-                return ds;
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-            finally
-            {
-                if (con != null)
-                    con.Close();
-            }
-        }
-
-        public List<User> GetUsers()
-        {
-            SqlConnection con;
-            SqlCommand cmd;
-            List<User> users = new List<User>();
-            try
-            {
-                con = connect("connectionDB");
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-
-            try
-            {
-                String cStr = "SELECT * from UsersTBL";
-                cmd = CreateCommand(cStr, con);
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    int index = 1;
-                    User u = new User();
-                    u.FirstName = reader.GetString(index++);
-                    u.LastName = reader.GetString(index++);
-                    u.Mail = reader.GetString(index++);
-                    u.Password = reader.GetString(index++);
-                    u.PhoneNum = reader.GetString(index++);
-                    u.Gender = reader.GetString(index++).ToCharArray()[0];
-                    u.BirthYear = reader.GetInt32(index++);
-                    u.Style = reader.GetString(index++);
-                    u.Address = reader.GetString(index++);
-                    users.Add(u);
-                }
-                return users;
-            }
-            catch (Exception ex)
-            {
-                // write to log
-                throw (ex);
-            }
-            finally
-            {
-                if (con != null)
-                    con.Close();
-            }
-        }
 
         //Series_POST_DB
         public int Insert(Series series)
@@ -663,27 +547,40 @@ namespace Assignment1_ServerSide.Models.DAL
                 throw (ex);
             }
 
-            String cStr = "SELECT * FROM UsersTBL where [Mail]='" + mail + "' and [Pass]='" + password + "'";
-            cmd = CreateCommand(cStr, con);
-
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            try
             {
-                int index = 1;
-                u.FirstName = reader.GetString(index++);
-                u.LastName = reader.GetString(index++);
-                u.Mail = reader.GetString(index++);
-                u.Password = reader.GetString(index++);
-                u.PhoneNum = reader.GetString(index++);
-                u.Gender = reader.GetString(index++).ToCharArray()[0];
-                u.BirthYear = reader.GetInt32(index++);
-                u.Style = reader.GetString(index++);
-                u.Address = reader.GetString(index++);
+                String cStr = "SELECT * FROM UsersTBL where [Mail]='" + mail + "' and [Pass]='" + password + "'";
+                cmd = CreateCommand(cStr, con);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    int index = 1;
+                    u.FirstName = reader.GetString(index++);
+                    u.LastName = reader.GetString(index++);
+                    u.Mail = reader.GetString(index++);
+                    u.Password = reader.GetString(index++);
+                    u.PhoneNum = reader.GetString(index++);
+                    u.Gender = reader.GetString(index++).ToCharArray()[0];
+                    u.BirthYear = reader.GetInt32(index++);
+                    u.Style = reader.GetString(index++);
+                    u.Address = reader.GetString(index++);
+                }
+
+                if (u.Mail != null && u.Mail.Equals("admin@admin.com"))
+                    ds = new DataSet("AdminDS");
+                return u;
             }
-            
-            if(u.Mail!=null && u.Mail.Equals("admin@admin.com"))
-                ds = new DataSet("AdminDS");
-            return u;
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
         }
 
         public List<Series> Get(string mail)
@@ -794,22 +691,36 @@ namespace Assignment1_ServerSide.Models.DAL
                 throw (ex);
             }
 
-            String cStr = "Select E.* FROM Favorites F inner join Episodes E on F.Series_ID=E.Series_ID and F.Episode_ID=E.ID inner join UsersTBL U on U.ID = F.User_ID where U.Mail='" + mail + "' and E.Series_ID = " + seriesID;
-            cmd = CreateCommand(cStr, con);
-
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            try
             {
-                Episode e = new Episode();
-                e.Id = (int)reader["ID"];
-                e.Season = (int)reader["Season_Number"];
-                e.EpisodeName = reader["Episode_Name"].ToString();
-                e.ImageURL = reader["ImageURL"].ToString();
-                e.Overview = reader["Overview"].ToString();
-                e.AirDate = reader["Air_Date"].ToString();
-                eList.Add(e);
+                String cStr = "Select E.* FROM Favorites F inner join Episodes E on F.Series_ID=E.Series_ID and F.Episode_ID=E.ID inner join UsersTBL U on U.ID = F.User_ID where U.Mail='" + mail + "' and E.Series_ID = " + seriesID;
+                cmd = CreateCommand(cStr, con);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Episode e = new Episode();
+                    e.Id = (int)reader["ID"];
+                    e.Season = (int)reader["Season_Number"];
+                    e.EpisodeName = reader["Episode_Name"].ToString();
+                    e.ImageURL = reader["ImageURL"].ToString();
+                    e.Overview = reader["Overview"].ToString();
+                    e.AirDate = reader["Air_Date"].ToString();
+                    eList.Add(e);
+                }
+                return eList;
             }
-            return eList;
+
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                    con.Close();
+            }
         }
 
         public List<Series> GetRecommendations(string mail)
