@@ -2,6 +2,11 @@
 
 $(document).ready(function () {
 
+    $(window).load(function () {
+        // Animate loader off screen
+        $(".se-pre-con").fadeOut(2000);;
+
+    });
     
     imagePath = "https://image.tmdb.org/t/p/w500/";
     

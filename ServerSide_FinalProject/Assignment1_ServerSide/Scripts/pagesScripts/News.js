@@ -1,4 +1,13 @@
 ﻿
+$(document).ready(function () {
+
+    $(window).load(function () {
+        // Animate loader off screen
+        $(".se-pre-con").fadeOut(2000);;
+
+    });
+});
+
 var currentDate = new Date();
 var currentMonth = currentDate.getMonth() - 1;
 

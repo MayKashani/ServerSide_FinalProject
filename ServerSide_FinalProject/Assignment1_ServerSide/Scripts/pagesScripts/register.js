@@ -433,7 +433,7 @@ function deleteChat() {
 //checking photo for each html img src 
 
 function checkPhotos(photo) {
-    if (photo == null)
+    if (photo == null || photo=="")
         return errorPng;
     return imagePath + photo;
 }

@@ -43,3 +43,24 @@ div > img {
 		height:150px;
 
 	}
+
+	.person > div {
+		min-height:unset;
+	}
+
+
+#results {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	max-height: 85vh;
+	display: inline-flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.result {
+	border: 1px solid white;
+	height: auto;
+	width: 100%;
+	margin: 0 auto;
+}

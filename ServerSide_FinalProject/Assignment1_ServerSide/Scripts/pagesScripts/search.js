@@ -1,6 +1,12 @@
 ﻿
 $(document).ready(function () {
 
+    $(window).load(function () {
+        // Animate loader off screen
+        $(".se-pre-con").fadeOut(2000);;
+
+    })
+
     searchVal = sessionStorage.getItem("searchValue");
     $("#resultHeader").html("Result for: '" + searchVal + "'");
     getTv();
@@ -8,28 +14,6 @@ $(document).ready(function () {
     //Get each requested search (TVShows/Movies/People). each call separetally according to request for quicker load.
     $(".buttonType").click(function () { changeType(this.id) });
 
-    //Get to each requested Page
-    //$(document).on("click", ".tv", function () {
-    //    let method = {
-    //        id: this.id,
-    //        type: "tv"
-    //    }
-    //    sessionStorage.setItem("mediaChoose", JSON.stringify(method));
-    //    window.location.href = "index.html";
-    //});
-    //$(document).on("click", ".movie", function () {
-    //    let method = {
-    //        id: this.id,
-    //        type: "movie"
-            
-    //    }
-    //    sessionStorage.setItem("mediaChoose", JSON.stringify(method));
-    //    window.location.href = "index.html";
-    //});
-    //$(document).on("click", ".person", function () {
-    //    sessionStorage.setItem("personId", JSON.stringify(this.id));
-    //    window.location.href="actor.html";
-    //});
 
     $(document).on("click", ".result", function () {
         if (this.getAttribute('data-mediatype') == "person") {

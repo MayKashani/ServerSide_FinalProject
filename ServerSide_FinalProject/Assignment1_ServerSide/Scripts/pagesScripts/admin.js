@@ -1,9 +1,17 @@
 ﻿$(document).ready(function () {
 
+
+	$(window).load(function () {
+		// Animate loader off screen
+		$(".se-pre-con").fadeOut(2000);;
+
+	});
+
 	getTables();
 
 	document.getElementById("defaultOpen").click();
 })
+
 
 
 // Get data from DB + Callbacks

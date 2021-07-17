@@ -3,3 +3,14 @@
     overflow-y: scroll;
 }
 
+hr.solid {
+    border-top: 3px solid #bbb;
+}
+
+h2 {
+    color: black;
+}
+
+ol {
+    list-style-type: none;
+}
